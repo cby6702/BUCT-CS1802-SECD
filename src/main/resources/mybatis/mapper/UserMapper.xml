@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs1802.museum.mapper.UserMapper">
+    <update id="updateCity">
+        update users set city = #{city} where uid = #{uid}
+    </update>
+    <select id="getUser" resultType="com.cs1802.museum.bean.User">
+        select * from users where uid = #{uid}
+    </select>
+</mapper>
