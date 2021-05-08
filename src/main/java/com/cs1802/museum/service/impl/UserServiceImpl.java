@@ -25,4 +25,12 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+    /*
+    业务：通过uid查找用户信息返回user对象
+    逻辑：根据传入uid，返回相应user
+     */
+    @Override
+    public  User getUser(int uid){
+        return  userMapper.getUser(uid);
+    }
 }

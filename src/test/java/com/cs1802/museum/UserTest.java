@@ -21,4 +21,12 @@ public class UserTest {
         User user = userService.updateCity("北京", 1);
         System.out.println(user);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("查找用户信息")
+    public void getUserTest(){
+        User user=userService.getUser(34);
+        System.out.println(user);
+    }
 }
