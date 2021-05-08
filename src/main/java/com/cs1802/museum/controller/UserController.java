@@ -44,4 +44,25 @@ public class UserController {
         userService.updateCity(city, uid);
         return null;
     }
+
+    /**
+     * 功能：返回uid对应的users的所有信息，即user对象
+     *      url：/user/uid
+     *      接受参数：
+     *      返回查找到的user对象(String)
+     * @param  uidString    url上带的（前端传回来的都是String类型）
+     * @return
+     */
+
+    @PutMapping("/select/{uid}")
+    public String getUser(@PathVariable("uid") String uidString){
+        int uid=Integer.parseInt(uidString);
+        User user = userService.getUser(uid);
+        try {
+            return fastjson.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
