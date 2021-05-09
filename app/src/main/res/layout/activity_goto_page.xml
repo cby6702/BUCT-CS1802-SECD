@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--王乃豪：测试地图详情页面-->
+<!--测试启动页面：每个人都有一个button 给button注册点击事件跳转到自己的activity-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".wangnaihao.DeitalActivity.Detail_activity">
+    tools:context=".gotoEveryone_page.goto_page">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="详情页面"
-        ></TextView>
+        android:id="@+id/wnh"
+        android:text="王乃豪测试"
+        ></Button>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/detailinfo"></TextView>
+
 </LinearLayout>

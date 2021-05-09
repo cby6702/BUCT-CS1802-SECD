@@ -33,9 +33,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wangnaihao.DeitalActivity.Detail_activity"></activity>
-        <!-- 添加地图所需要的权限 -->
-        <activity android:name=".wangnaihao.Main.MainActivity">
+
+        <activity android:name=".wangnaihao.Main.MainActivity"></activity>
+        <activity android:name=".wangnaihao.DeitalActivity.Detail_activity" /> <!-- 添加地图所需要的权限 -->
+        <activity android:name=".gotoEveryone_page.goto_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +46,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="U5puXhXWvTaaGjqfImGHxGHgBxfgRcW2"></meta-data>
+            android:value="U5puXhXWvTaaGjqfImGHxGHgBxfgRcW2" />
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
