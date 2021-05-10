@@ -4,6 +4,8 @@ android {
     signingConfigs {
         debug {
             storeFile file('D:\\android\\wnh\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
+            //这个地方每个人要改成自己的BaiDuMapSign_1802所在地的绝对路径
+
             storePassword 'wwang123'
             keyAlias = 'wangnaihao'
             keyPassword 'wwang123'
