@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.Main3Activity;
+import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 import com.example.baidumapdemo.wangtianzi.Main2Activity;
 
@@ -24,6 +25,8 @@ public class goto_page extends AppCompatActivity {
         init_wtz();
         //注册李坤测试页面的按钮并设置点击事件
         init_axing();
+        //注册郭紫玉测试页面的按钮并设置点击事件
+        init_gzy();
 
     }
     public void init_wnh(){
@@ -55,6 +58,17 @@ public class goto_page extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+    }
+    public void init_gzy(){
+        Button gzy = findViewById(R.id.gzy);
+        gzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(), Main4Activity.class);
+                startActivity(intent2);
                 finish();
             }
         });
