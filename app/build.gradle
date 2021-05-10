@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\android\\wnh\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
+            storeFile file('E:\\secode\\BUCT-CS1802-SECD\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
             storePassword 'wwang123'
             keyAlias = 'wangnaihao'
             keyPassword 'wwang123'
