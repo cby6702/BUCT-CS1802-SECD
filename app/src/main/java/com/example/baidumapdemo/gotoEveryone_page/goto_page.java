@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.axingbuxiang.Main3Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 import com.example.baidumapdemo.wangtianzi.Main2Activity;
 
@@ -41,8 +42,8 @@ public class goto_page extends AppCompatActivity {
         wtz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(intent2);
                 finish();
             }
         });
@@ -52,7 +53,7 @@ public class goto_page extends AppCompatActivity {
         axing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent);
                 finish();
             }

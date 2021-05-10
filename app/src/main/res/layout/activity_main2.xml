@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <!--王天滋 测试用户评价页面-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".wangtianzi.Main2Activity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!-- 返回按钮-->
+<Button
+    android:id="@+id/return1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="返回" />
+
+<TextView
+    android:id="@+id/textView4"
+    android:layout_width="130dp"
+    android:layout_height="39dp"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginStart="152dp"
+    android:layout_marginLeft="152dp"
+    android:text="用户评价"
+    android:textColor="#3F51B5"
+    android:textSize="24sp" />
+
+<!-- 评价内容-->
+<EditText
+    android:id="@+id/editText2"
+    android:layout_width="312dp"
+    android:layout_height="402dp"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="32dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginTop="64dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:hint="请输入评价内容"
+    android:textSize="25dp"/>
+
+<!-- 博物馆评分-->
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="博物馆评分"
+    android:textSize="20sp"
+    android:layout_above="@+id/btn"
+    android:layout_marginBottom="130dp"/>
+
+<!-- 星级评分条 -->
+<RatingBar
+    android:id="@+id/ratingBar1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:numStars="5"
+    android:rating="0"
+    android:layout_above="@+id/btn"
+    android:layout_marginBottom="60dp"/>
+
+<!--发表评价-->
+<Button
+    android:id="@+id/btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:background="#FF5000"
+    android:text="发表评价" />
+
+
+</RelativeLayout>
