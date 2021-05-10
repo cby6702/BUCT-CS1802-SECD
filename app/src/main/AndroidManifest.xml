@@ -33,8 +33,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".wangnaihao.Main.MainActivity"></activity>
+        <activity android:name=".wangtianzi.Main2Activity"></activity>
+        <activity android:name=".wangnaihao.Main.MainActivity" />
         <activity android:name=".wangnaihao.DeitalActivity.Detail_activity" /> <!-- 添加地图所需要的权限 -->
         <activity android:name=".gotoEveryone_page.goto_page">
             <intent-filter>
