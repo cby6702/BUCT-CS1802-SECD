@@ -20,5 +20,11 @@
         android:id="@+id/wtz"
         android:text="王天滋测试"
         ></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/axing"
+        android:text="李坤测试"
+        ></Button>
 
 </LinearLayout>
