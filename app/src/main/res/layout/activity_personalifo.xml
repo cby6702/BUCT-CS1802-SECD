@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 郭紫玉 个人信息页面-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".guoziyu.personalifo">
+
+
+
+        <TextView
+            android:id="@+id/user_pwd4"
+            android:layout_width="64dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="120dp"
+            android:text="密码"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/user_pwd"
+            app:layout_constraintTop_toBottomOf="@id/user_id" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="个人信息"
+            android:textColor="#000000"
+            android:textSize="23sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            app:srcCompat="@drawable/sysus"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/user_id"
+            android:layout_width="64dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="36dp"
+            android:text="用户名"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/user_pwd"
+            app:layout_constraintTop_toBottomOf="@id/icon" />
+
+        <TextView
+            android:id="@+id/user_pwd"
+            android:layout_width="64dp"
+            android:layout_height="39dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            android:text="手机号"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_id" />
+
+
+        <TextView
+            android:id="@+id/user_pwd2"
+            android:layout_width="64dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="64dp"
+            android:text="邮箱"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/user_pwd"
+            app:layout_constraintTop_toBottomOf="@id/user_id" />
+
+        <EditText
+            android:id="@+id/text_userid"
+            android:layout_width="289dp"
+            android:layout_height="44dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/user_id"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_id" />
+
+        <EditText
+            android:id="@+id/text_userid2"
+            android:layout_width="289dp"
+            android:layout_height="44dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:digits="0123456789"
+            app:layout_constraintBottom_toBottomOf="@+id/user_pwd"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/user_id"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_pwd" />
+
+        <EditText
+            android:id="@+id/text_userpwd2"
+            android:layout_width="287dp"
+            android:layout_height="43dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/user_pwd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_userid"
+            app:layout_constraintTop_toTopOf="@+id/user_pwd2" />
+
+        <EditText
+            android:id="@+id/text_userpwd"
+            android:layout_width="287dp"
+            android:layout_height="43dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/user_pwd4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/user_pwd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_userpwd2"
+            app:layout_constraintTop_toTopOf="@+id/user_pwd4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioGroup
+            android:id="@+id/radioButton"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_pwd"
+            android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="返回"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

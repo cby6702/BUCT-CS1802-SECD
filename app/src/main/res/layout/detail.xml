@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--王乃豪：详情页面测试-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="80dp"
+    android:background="#00ffaa"
+    android:layout_height="30dp"
+
+>
+
+    <TextView
+        android:id="@+id/detail_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></TextView>
+
+
+</LinearLayout>
