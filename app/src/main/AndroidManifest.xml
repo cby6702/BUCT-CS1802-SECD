@@ -33,7 +33,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".guoziyu.Main4Activity"></activity>
+        <activity android:name=".guoziyu.mynew"></activity>
+        <activity android:name=".guoziyu.mycomment" />
+        <activity android:name=".guoziyu.personalifo" />
+        <activity android:name=".guoziyu.personalct" />
+        <activity android:name=".guoziyu.Main4Activity" />
         <activity android:name=".axingbuxiang.Main3Activity" />
         <activity android:name=".wangtianzi.Main2Activity" />
         <activity android:name=".wangnaihao.Main.MainActivity" />
