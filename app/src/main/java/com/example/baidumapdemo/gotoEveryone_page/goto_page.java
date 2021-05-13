@@ -46,7 +46,7 @@ public class goto_page extends AppCompatActivity {
         wtz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent2);
                 finish();
             }

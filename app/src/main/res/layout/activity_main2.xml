@@ -10,17 +10,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/xila"
     tools:context=".wangtianzi.Main2Activity">
 
-<!-- 返回按钮-->
-<Button
-    android:id="@+id/return1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="返回" />
+    <!-- 返回按钮-->
+    <Button
+        android:id="@+id/return1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
+        android:layout_alignParentLeft="true"
+        android:text="返回" />
     <!-- 显示“用户评价”标题字样-->
-<TextView
+    <TextView
     android:id="@+id/textView4"
     android:layout_width="130dp"
     android:layout_height="39dp"

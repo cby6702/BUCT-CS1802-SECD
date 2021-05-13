@@ -1,11 +1,18 @@
 package com.example.baidumapdemo.axingbuxiang;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangtianzi.Main2Activity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -15,6 +22,7 @@ import java.util.Map;
 
 public class comment_museum extends AppCompatActivity {
 
+    private RatingBar ratingbar;	//星级评分条
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +56,20 @@ public class comment_museum extends AppCompatActivity {
                 Toast.makeText(comment_museum.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button buttonq=(Button)findViewById(R.id.qqbtn);		//获取“返回”按钮
+        buttonq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转回上一个页面 即 博物馆评价表总页面
+                Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+
+        //以下是评星条的内容
+        ratingbar = (RatingBar) findViewById(R.id.ratingBar2);	//获取星级评分条
+
     }
 }
