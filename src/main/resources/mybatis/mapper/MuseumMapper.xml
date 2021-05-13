@@ -6,4 +6,10 @@
     <select id="getMuseum" resultType="com.cs1802.museum.bean.Museum">
         SELECT * FROM museums where mid = #{museum}
     </select>
+    <select id="museumCountByCity" resultType="int">
+        select count(*) from museums where city = #{city};
+    </select>
+    <select id="museumPageByCity" resultType="museum">
+        select * from museums where city = #{city} limit #{begin}, #{pageSize}
+    </select>
 </mapper>

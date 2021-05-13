@@ -16,11 +16,11 @@ public class MuseumTest {
     @Autowired
     private MuseumService museumService;
 
-    @Test
-    @Transactional
-    @DisplayName("根据mid查询博物馆表test")
-    public void getMuseumTest(){
-        Museum museum = museumService.searchMuseum(1);
-        System.out.println(museum);
-    }
+//    @Test
+//    @Transactional
+//    @DisplayName("根据mid查询博物馆表test")
+//    public void getMuseumTest(){
+//        Museum museum = museumService.searchMuseum(1);
+//        System.out.println(museum);
+//    }
 }

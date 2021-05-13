@@ -33,4 +33,5 @@ public class UserServiceImpl implements UserService {
     public  User getUser(int uid){
         return  userMapper.getUser(uid);
     }
+
 }

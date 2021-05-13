@@ -2,10 +2,10 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    username: buctcs1802
-#    password: cs1802..
-    username: root
-    password: 31531500qm.
+    username: buctcs1802
+    password: cs1802..
+#    username: root
+#    password: cry900207.
     url: jdbc:mysql://localhost:3306/museum?autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
   #����json�����ڸ�ʽ
   jackson:
@@ -18,3 +18,5 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true  #����ֵ�����շ�ӳ��
 logging.level.com.cs1802.museum.mapper: debug
+server:
+  port: 81

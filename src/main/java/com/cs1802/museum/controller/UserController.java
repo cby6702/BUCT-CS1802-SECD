@@ -26,10 +26,11 @@ public class UserController {
      *      返回更新后的user对象（String）
      * @param uidString   url上带的（前端传回来的都是string类型）
      * @param json 只有传入city的json数据，需要解析出来
-     * @return
+     * @return 成功返回user的json数据，否则是“null”
      */
     @PutMapping("/update/{uid}")
-    public String updateCity(@PathVariable("uid") String uidString, @RequestBody String json){
+    public String updateCity(@PathVariable("uid") String uidString,
+                             @RequestBody String json){
         //1.解析出city
         Map params = null;
         try {
@@ -41,7 +42,12 @@ public class UserController {
         //2.将uid类型转为int
         int uid = Integer.parseInt(uidString);
         //3.执行更新的业务
-        userService.updateCity(city, uid);
+        User user = userService.updateCity(city, uid);
+        try {
+            return fastjson.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -54,7 +60,7 @@ public class UserController {
      * @return
      */
 
-    @PutMapping("/select/{uid}")
+    @GetMapping("/select/{uid}")
     public String getUser(@PathVariable("uid") String uidString){
         int uid=Integer.parseInt(uidString);
         User user = userService.getUser(uid);
@@ -65,4 +71,5 @@ public class UserController {
         }
         return null;
     }
+
 }

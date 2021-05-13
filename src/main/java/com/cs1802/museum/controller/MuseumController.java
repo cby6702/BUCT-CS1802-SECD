@@ -1,14 +1,14 @@
 package com.cs1802.museum.controller;
 
 import com.cs1802.museum.bean.Museum;
+import com.cs1802.museum.bean.Page;
 import com.cs1802.museum.service.MuseumService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/museum")
@@ -39,4 +39,25 @@ public class MuseumController {
         return null;
     }
 
+    /**
+     * 功能：首页根据city字段查询博物馆表，得到分页数据
+     *      url: /museum/show/city/pageNo
+     * @param city      url上带的
+     * @param pageNoString      url上带的
+     * @return      Page<Museum>或null
+     */
+    @GetMapping("/show/{city}/{pageNo}")
+    public String getMuseumList(@PathVariable("city") String city,
+                                @PathVariable("pageNo")String pageNoString){
+        //1.将传入的pageNo从String转为int
+        int pageNo = Integer.parseInt(pageNoString);
+        //2.分页查询museums表得到分页数据
+        Page<Museum> page = museumService.showPage(city, pageNo);
+        try {
+            return fastjson.writeValueAsString(page);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
