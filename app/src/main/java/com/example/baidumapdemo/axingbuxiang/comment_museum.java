@@ -34,18 +34,23 @@ public class comment_museum extends AppCompatActivity {
                 R.drawable.img07,R.drawable.img08,R.drawable.img09};// 定义并初始化保存图片id的数组
         String[] title=new String[] {"用户001","用户002","用户003",
                 "用户004","用户005","用户006",
-                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组
+                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
+        String[] comment =new String[] {"真棒！","下次一定","真好用！"
+                ,"好棒！","谢谢","很久没有遇到这么好的APP了！"
+                ,"该用户没有句子评价","希望多多完善","界面真棒！"
+        };
         List<Map<String ,Object >> listitem = new ArrayList<Map<String ,Object >>();// 创建一个list集合
         // 通过for循环将图片id和列表项文字放到Map中，并添加到list集合中
         for(int i=0;i<imageid.length;i++){
             Map<String,Object> map =new HashMap<String, Object>();// 实例化Map对象
             map.put("image",imageid[i]);
             map.put("name",title[i]);
+            map.put("comment",comment[i]);
             listitem.add(map);// 将map对象添加到List集合中
         }
         SimpleAdapter adapter=new SimpleAdapter
                 (this,listitem,R.layout.main,
-                        new String[]{"name","image"},new int[]{R.id.title,R.id.image});
+                        new String[]{"name","image","comment"},new int[]{R.id.title,R.id.image});
                 // 创建SimpleAdapter
 
         listView.setAdapter(adapter); // 将适配器与ListView关联
