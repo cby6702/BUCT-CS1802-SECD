@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.Main3Activity;
+import com.example.baidumapdemo.axingbuxiang.comment_museum;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 import com.example.baidumapdemo.wangtianzi.Main2Activity;
@@ -56,7 +57,7 @@ public class goto_page extends AppCompatActivity {
         axing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+                Intent intent = new Intent(getApplicationContext(), comment_museum.class);
                 startActivity(intent);
                 finish();
             }

@@ -6,28 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".axingbuxiang.comment_museum">>
-<ImageView
-    android:id="@+id/image"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:adjustViewBounds="true"
-    android:maxWidth="72dp"
-    android:maxHeight="72dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
 
-<TextView
-    android:id="@+id/title"
-    android:layout_width="9dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:padding="10dp" />
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="642dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
 
-<!-- 列表视图-->
-<ListView
-    android:id="@+id/listview"
-    android:layout_width="match_parent"
-    android:layout_height="360dp"></ListView>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="72dp"
+            android:maxHeight="72dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp" />
+
+        <!-- 列表视图-->
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/ctype"
+            ></ListView>
+
+    </LinearLayout>
 
 </LinearLayout>
