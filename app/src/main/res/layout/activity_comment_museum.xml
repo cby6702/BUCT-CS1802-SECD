@@ -21,6 +21,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
             android:text="博物馆名称"
             android:textColor="#3F51B5"
             android:textSize="45dp" />
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="30dp"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="4" />
@@ -39,7 +40,9 @@
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="359dp"></ListView>
+            android:layout_height="360dp">
+
+        </ListView>
         <!--评论按钮-->
         <Button
             android:id="@+id/qqbtn"
@@ -48,6 +51,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
             android:text="前往评价" />
     </LinearLayout>
 
