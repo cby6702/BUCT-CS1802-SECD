@@ -32,5 +32,11 @@
         android:id="@+id/gzy"
         android:text="郭紫玉测试"
         ></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wjx"
+        android:text="王嘉薪测试"
+        ></Button>
 
 </LinearLayout>
