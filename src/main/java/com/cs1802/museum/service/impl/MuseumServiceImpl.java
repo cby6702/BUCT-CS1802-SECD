@@ -17,7 +17,7 @@ public class MuseumServiceImpl implements MuseumService {
     private MuseumMapper museumMapper;
     /*
     业务：根据博物馆id查询博物馆表
-    逻辑：1.根据传入mid，查询museum表对应的所有信息并返回
+    逻辑：1.根据传入mid，查询museums表并返回对应的museums对象
      */
     @Override
     public Museum searchMuseum(int mid) {
