@@ -81,8 +81,8 @@ public class goto_page extends AppCompatActivity {
         });
     }
     public void init_za(){
-        Button gzy = findViewById(R.id.za);
-        gzy.setOnClickListener(new View.OnClickListener() {
+        Button za = findViewById(R.id.za);
+        za.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), Main6Activity.class);

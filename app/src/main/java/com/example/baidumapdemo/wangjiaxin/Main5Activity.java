@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.comment_museum;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
-import com.example.baidumapdemo.wangtianzi.Main2Activity;
 
 public class Main5Activity extends AppCompatActivity {
 
