@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="642dp"
+    android:layout_height="match_parent"
     tools:context=".axingbuxiang.comment_museum">>
 
     <LinearLayout
-        android:id="@+id/ll_1"
-        android:layout_width="match_parent"
-        android:layout_height="642dp"
-        android:background="#FFFFFF"
-        android:orientation="horizontal">
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image"
@@ -36,9 +34,18 @@
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ></ListView>
+            android:layout_height="514dp"></ListView>
 
+        <!--评论按钮-->
+        <Button
+            android:id="@+id/qqbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="前往评价" />
     </LinearLayout>
+
 
 </LinearLayout>
