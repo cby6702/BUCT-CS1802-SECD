@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--石鼎 排名页-->
+<resources>
+    <string-array name="arrays_rank_choice">
+        <item>全部</item>
+        <item>按总评分排名</item>
+        <item>按服务评分排名</item>
+        <item>按环境评分排名</item>
+        <item>按展览次数排名</item>
+    </string-array>
+</resources>
