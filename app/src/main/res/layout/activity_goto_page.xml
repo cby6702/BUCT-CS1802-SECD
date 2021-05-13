@@ -35,6 +35,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/wjx"
+        android:text="王嘉薪测试"
+        ></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/za"
         android:text="邹傲测试"
         ></Button>
