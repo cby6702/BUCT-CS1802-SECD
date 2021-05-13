@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="642dp"
     tools:context=".axingbuxiang.comment_museum">>
 
     <LinearLayout
@@ -37,7 +37,6 @@
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/ctype"
             ></ListView>
 
     </LinearLayout>
