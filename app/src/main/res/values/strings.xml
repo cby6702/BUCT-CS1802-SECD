@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">BaiduMapDemo</string>
+    <string name="museumname">XX博物馆(4A)</string>
+    <string name="entermap">进入地图页</string>
+    <string name="address">北京市西城区xx路外大街99号</string>
+    <string name="sososo">博物馆评分</string>
+    <string name="entercomments">前往评价</string>
+    <string name="upload">上传讲解</string>
+    <string name="menu_title_museum_information">博物馆信息</string>
+    <string name="menu_title_collection_information">藏品信息</string>
+    <string name="menu_title_exhibition_information">展览信息</string>
+    <string name="menu_title_news">新闻</string>
+
 </resources>

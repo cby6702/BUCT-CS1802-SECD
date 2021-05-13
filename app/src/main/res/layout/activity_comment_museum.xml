@@ -4,41 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="642dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/xila"
     tools:context=".axingbuxiang.comment_museum">>
 
     <LinearLayout
-        android:id="@+id/ll_1"
-        android:layout_width="match_parent"
-        android:layout_height="642dp"
-        android:background="#FFFFFF"
-        android:orientation="horizontal">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image"
+        <!-- 星级评分条 -->
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:maxWidth="72dp"
-            android:maxHeight="72dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="9dp"
-            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_gravity="center"
-            android:padding="10dp" />
+            android:layout_marginBottom="30dp"
+            android:text="博物馆名称"
+            android:textColor="#3F51B5"
+            android:textSize="45dp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="30dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4" />
 
         <!-- 列表视图-->
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ></ListView>
+            android:layout_height="360dp">
 
+        </ListView>
+        <!--评论按钮-->
+        <Button
+            android:id="@+id/qqbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:text="前往评价" />
     </LinearLayout>
+
 
 </LinearLayout>

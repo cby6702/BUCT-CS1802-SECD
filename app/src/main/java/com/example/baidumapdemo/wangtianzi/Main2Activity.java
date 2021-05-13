@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.Main3Activity;
+import com.example.baidumapdemo.axingbuxiang.comment_museum;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转回上一个页面 即 博物馆评价表总页面
-                Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
+                Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
                 startActivity(intent2);
                 finish();
             }
