@@ -13,6 +13,7 @@ import com.example.baidumapdemo.axingbuxiang.comment_museum;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 import com.example.baidumapdemo.wangtianzi.Main2Activity;
+import com.example.baidumapdemo.zouao.Main6Activity;
 
 public class goto_page extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class goto_page extends AppCompatActivity {
         init_axing();
         //注册郭紫玉测试页面的按钮并设置点击事件
         init_gzy();
+        init_za();
 
     }
     public void init_wnh(){
@@ -69,6 +71,17 @@ public class goto_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), Main4Activity.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+    }
+    public void init_za(){
+        Button gzy = findViewById(R.id.za);
+        gzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(), Main6Activity.class);
                 startActivity(intent2);
                 finish();
             }
