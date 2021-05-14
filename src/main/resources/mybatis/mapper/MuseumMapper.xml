@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs1802.museum.mapper.MuseumMapper">
     <select id="getMuseum" resultType="com.cs1802.museum.bean.Museum">
-        SELECT * FROM museums where mid = #{mid}
+        SELECT * FROM museums where name = #{name}
     </select>
     <select id="museumCountByCity" resultType="int">
         select count(*) from museums where city = #{city};

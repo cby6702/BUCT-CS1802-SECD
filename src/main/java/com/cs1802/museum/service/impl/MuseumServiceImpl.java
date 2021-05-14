@@ -16,12 +16,12 @@ public class MuseumServiceImpl implements MuseumService {
     @Autowired
     private MuseumMapper museumMapper;
     /*
-    业务：根据博物馆id查询博物馆表
-    逻辑：1.根据传入mid，查询museums表并返回对应的museums对象
+    业务：根据博物馆name查询博物馆表
+    逻辑：1.根据传入name，查询museums表并返回对应的museums对象
      */
     @Override
-    public Museum searchMuseum(int mid) {
-        return museumMapper.getMuseum(mid);
+    public Museum searchMuseum(String name) {
+        return museumMapper.getMuseum(name);
     }
 
     /*

@@ -1,9 +1,7 @@
 package com.cs1802.museum;
 
 import com.cs1802.museum.bean.Museum;
-import com.cs1802.museum.bean.User;
 import com.cs1802.museum.service.MuseumService;
-import com.cs1802.museum.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +14,11 @@ public class MuseumTest {
     @Autowired
     private MuseumService museumService;
 
-//    @Test
-//    @Transactional
-//    @DisplayName("根据mid查询博物馆表test")
-//    public void getMuseumTest(){
-//        Museum museum = museumService.searchMuseum(1);
-//        System.out.println(museum);
-//    }
+    @Test
+    @Transactional
+    @DisplayName("根据name查询博物馆表test")
+    public void getMuseumTest(){
+        Museum museum = museumService.searchMuseum("北京博物馆");
+        System.out.println(museum);
+    }
 }

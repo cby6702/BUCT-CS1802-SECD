@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MuseumMapper {
-    Museum getMuseum(int mid);
+    Museum getMuseum(String name);
 
     int museumCountByCity(String city);
 
