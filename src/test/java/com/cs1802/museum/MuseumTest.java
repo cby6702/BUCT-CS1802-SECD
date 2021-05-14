@@ -1,6 +1,7 @@
 package com.cs1802.museum;
 
 import com.cs1802.museum.bean.Museum;
+import com.cs1802.museum.bean.Page;
 import com.cs1802.museum.service.MuseumService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,5 +21,13 @@ public class MuseumTest {
     public void getMuseumTest(){
         Museum museum = museumService.searchMuseum("北京博物馆");
         System.out.println(museum);
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("博物馆排名")
+    public void sortMuseumTest(){
+        Page<Museum> page = museumService.sortMuseum("all", 0, 1, 1);
+        System.out.println(page);
     }
 }

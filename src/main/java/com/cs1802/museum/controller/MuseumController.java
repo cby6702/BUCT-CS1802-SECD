@@ -58,4 +58,32 @@ public class MuseumController {
         }
         return null;
     }
+
+    /**
+     * url:/sort/{city}/{sortItem}/{sortKind}/{pageNo}
+     * 排名页显示分页数据
+     * @param city
+     * @param sortItemString
+     * @param sortKindString
+     * @param pageNoString
+     * @return
+     */
+    @GetMapping("/sort/{city}/{sortItem}/{sortKind}/{pageNo}")
+    public String sortMuseum(@PathVariable("city") String city,
+                             @PathVariable("sortItem") String sortItemString,
+                             @PathVariable("sortKind") String sortKindString,
+                             @PathVariable("pageNo") String pageNoString){
+        //1.将pageNoString和sortItemString,sortKindString转为int
+        int pageNo = Integer.parseInt(sortItemString);
+        int sortItem = Integer.parseInt(sortItemString);
+        int sortKind = Integer.parseInt(sortKindString);
+        //2.分页根据条件查询博物馆排名
+        Page<Museum> page = museumService.sortMuseum(city, sortItem, sortKind, pageNo);
+        try {
+            return fastjson.writeValueAsString(page);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

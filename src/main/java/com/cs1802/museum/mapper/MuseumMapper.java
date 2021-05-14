@@ -14,4 +14,7 @@ public interface MuseumMapper {
     int museumCountByCity(String city);
 
     List<Museum> museumPageByCity(String city, int begin, Integer pageSize);
+
+
+    List<Museum> sort(String city, int sortItem, int sortKind, int begin, Integer pageSize);
 }
