@@ -50,7 +50,7 @@ public class comment_museum extends AppCompatActivity {
         }
         SimpleAdapter adapter=new SimpleAdapter
                 (this,listitem,R.layout.main,
-                        new String[]{"name","image","comment"},new int[]{R.id.title,R.id.image});
+                        new String[]{"name","image","comment"},new int[]{R.id.title,R.id.image,R.id.comment});
                 // 创建SimpleAdapter
 
         listView.setAdapter(adapter); // 将适配器与ListView关联
