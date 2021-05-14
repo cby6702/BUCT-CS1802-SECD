@@ -28,6 +28,7 @@
                 android:singleLine="true"
                 android:id="@+id/Edit1"
                 android:text="楼"
+                android:background="@drawable/select_edittext"
                 ></EditText>
             <EditText
                 android:layout_width="wrap_content"
