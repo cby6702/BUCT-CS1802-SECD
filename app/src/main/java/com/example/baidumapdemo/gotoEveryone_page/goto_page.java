@@ -63,7 +63,7 @@ public class goto_page extends AppCompatActivity {
         axing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), comment_museum.class);
+                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent);
                 finish();
             }
