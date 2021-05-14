@@ -7,11 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".wangnaihao.Main.MainActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="标记是用移动位置自动改变坐标的，以下分别为关键字，范围，经度，纬度"
-        ></TextView>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,6 +55,7 @@
                 android:id="@+id/Edit4"
                 android:text="116.15726048919863"
                 ></EditText>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -81,10 +78,15 @@
 
 
     </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/maplist"></ListView>
 
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -93,6 +95,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true" />
-    </RelativeLayout>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
