@@ -42,7 +42,7 @@ public class UserController {
         //2.将uid类型转为int
         int uid = Integer.parseInt(uidString);
         //3.执行更新的业务
-        User user = userService.updateCity(city, uid);
+        User user = userService.updateCity(city, uidString);
         try {
             return fastjson.writeValueAsString(user);
         } catch (JsonProcessingException e) {
@@ -54,22 +54,35 @@ public class UserController {
     /**
      * 功能：返回uid对应的users的所有信息，即user对象
      *      url：/user/uid
-     *      接受参数：
      *      返回查找到的user对象(String)
      * @param  uidString    url上带的（前端传回来的都是String类型）
-     * @return
+     * @return  查询到返回user对象，否则是“null”
      */
 
     @GetMapping("/select/{uid}")
-    public String getUser(@PathVariable("uid") String uidString){
-        int uid=Integer.parseInt(uidString);
-        User user = userService.getUser(uid);
+    public String getUser(@PathVariable("account") String uidString){
+        User user = userService.getUser(uidString);
         try {
             return fastjson.writeValueAsString(user);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 功能：返回是否成功登录，boolean
+     *      url：/user/account/password
+     *      返回Boolean true or false
+     * @param accountString url上带的（前端传回来的都是String类型）
+     * @param passwordString url上带的（前端传回来的都是String类型）
+     * @return 用户存在且密码正确返回true，用户不存在或密码不正确均为false
+     */
+
+    @GetMapping("/login/{account}/{password}")
+    public boolean Login(@PathVariable("account") String accountString,
+                         @PathVariable("password") String passwordString){
+        return userService.Login(accountString,passwordString);
     }
 
 }

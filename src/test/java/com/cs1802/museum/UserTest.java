@@ -29,4 +29,19 @@ public class UserTest {
 //        User user=userService.getUser(34);
 //        System.out.println(user);
 //    }
+
+    @Test
+    @Transactional
+    @DisplayName("登录")
+    public void LoginTest(){
+        if(userService.Login("zxc-4947897","123456"))
+            System.out.println("登录成功");
+        else
+            System.out.println("登录失败");
+        if(userService.Login("zxc-4947897","kjdsklfjaldsj"))
+            System.out.println("登录成功");
+        else
+            System.out.println("登录失败");
+
+    }
 }

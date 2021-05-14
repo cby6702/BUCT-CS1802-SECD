@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
          2.修改若成功则返回true，获取新的user记录返回；否则返回null
      */
     @Override
-    public User updateCity(String city, int uid) {
-        if(userMapper.updateCity(city, uid)){
-           return userMapper.getUser(uid);
+    public User updateCity(String city, String account) {
+        if(userMapper.updateCity(city, account)){
+           return userMapper.getUser(account);
         }
         return null;
     }
@@ -30,8 +30,28 @@ public class UserServiceImpl implements UserService {
     逻辑：根据传入uid，返回相应user
      */
     @Override
-    public  User getUser(int uid){
-        return  userMapper.getUser(uid);
+    public  User getUser(String account){
+        return  userMapper.getUser(account);
+    }
+
+    /*
+    业务：通过account和passwoord登录
+    逻辑：根据传入的account查找该用户是否存在，如果存在，检验password是否正确，正确返回true；不正确返回false；
+									    如果不存在，返回false。
+     */
+
+    @Override
+    public boolean Login(String account,String password){
+        User user = userMapper.AccountExists(account);
+        System.out.println("user=" + user);
+        if(user==null)
+            return false;
+        else {
+            if(user.getPassword().equals(password))
+                return true;
+            else
+                return false;
+        }
     }
 
 }

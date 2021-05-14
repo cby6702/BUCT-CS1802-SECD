@@ -9,7 +9,7 @@
     <select id="museumCountByCity" resultType="int">
         select count(*) from museums where city = #{city};
     </select>
-    <select id="museumPageByCity" resultType="museum">
+    <select id="museumPageByCity" resultType="com.cs1802.museum.bean.Museum">
         select * from museums where city = #{city} limit #{begin}, #{pageSize}
     </select>
 </mapper>

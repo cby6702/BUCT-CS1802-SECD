@@ -7,6 +7,9 @@
         update users set city = #{city} where uid = #{uid}
     </update>
     <select id="getUser" resultType="com.cs1802.museum.bean.User">
-        select * from users where uid = #{uid}
+        select * from users where account = #{account}
+    </select>
+    <select id="AccountExists" resultType="com.cs1802.museum.bean.User">
+        select * from users where account=#{account}
     </select>
 </mapper>
