@@ -20,11 +20,11 @@ public class Detail_activity extends Activity {
         //接收上一个bundle传递的信息
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String province = bundle.getString("province");
-        String name = bundle.getString("name");
-        int distance = bundle.getInt("distance");
 
-        detail_info.setText(province+":"+name+"的详细信息,距离是:"+distance+"m");
+        String name = bundle.getString("name");
+        String distance = bundle.getString("distance");
+
+        detail_info.setText(name+"的详细信息,距离是:"+distance);
 
     }
 }

@@ -9,8 +9,11 @@ import android.os.Parcel;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +49,19 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.search.poi.PoiSortType;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangnaihao.DeitalActivity.Detail_activity;
 import com.example.baidumapdemo.wangnaihao.OverLayUtils.OverlayManager;
 import com.example.baidumapdemo.wangnaihao.OverLayUtils.PoiOverlay;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.callback.Callback;
 
@@ -91,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
     //当前位置坐标
     private  static  double Latitude;
     private  static  double Longitude;
+    //适配器相关
+    private List<Map<String,Object>> infos = new ArrayList<>();
 
 
     @Override
@@ -110,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
         use_marker();
         //poi
         use_poi();
+
+
     }
 
     @Override
@@ -284,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                             .pageNum(0));
                     Log.e("看看", String.valueOf(location.getLatitude()));
                 }
+
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -392,9 +407,8 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                     public void onClick(View v) {
                         //Toast.makeText(getApplicationContext(),"nihao",Toast.LENGTH_SHORT).show();
                         Bundle bundle = new Bundle();
-                        bundle.putString("province",extraInfo.getString("province"));
                         bundle.putString("name",extraInfo.getString("name"));
-                        bundle.putInt("distance",extraInfo.getInt("distance"));
+                        bundle.putString("distance",extraInfo.getInt("distance")+"m");
                         Intent intent = new Intent(getApplicationContext(),Detail_activity.class);
                         mBaiduMap.hideInfoWindow();
                         intent.putExtras(bundle);
@@ -459,6 +473,10 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                 for (com.baidu.mapapi.search.core.PoiInfo poiInfo : PoiInfo) {
                     Log.e("poi",poiInfo.name);
                 }//打印结果 看看问题
+                //创建List对象
+                infos = addtoList(PoiInfo);
+                use_adapter();
+
                 //创建PoiOverlay对象
                 PoiOverlay poiOverlay = new PoiOverlay(mBaiduMap);
 
@@ -506,6 +524,71 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
         option.setIsNeedAltitude(true);
         option.setIsNeedLocationDescribe(false);
         option.setWifiCacheTimeOut(1000);
+    }
+    //添加List数据
+    public List<Map<String,Object>> addtoList(List<PoiInfo> PoiInfo){
+        List<Map<String,Object>> info = new ArrayList<>();//创建适配器数据List
+        Map<PoiInfo,Integer> map = new HashMap<>();
+        LatLng latLng = new LatLng(jingdu,weidu);
+        for (PoiInfo poiInfo:PoiInfo) {
+            int distance = (int) DistanceUtil.getDistance(latLng, poiInfo.location);
+            map.put(poiInfo,distance);
+            poiInfo.setDistance(distance);
+        }
+        Map<com.baidu.mapapi.search.core.PoiInfo, Integer> Aftersort_map = sortAscend(map);
+        for (com.baidu.mapapi.search.core.PoiInfo poiInfo : Aftersort_map.keySet()) {
+            Map<String,Object> mapinfo = new HashMap<>();
+            mapinfo.put("name","名称:"+poiInfo.name);
+            mapinfo.put("address","地址:"+poiInfo.address);
+            mapinfo.put("distance","距离:"+poiInfo.getDistance()+"m");
+            info.add(mapinfo);
+        }
+
+
+        return info;
+    }
+
+    //设置adapter
+    public void use_adapter(){
+        SimpleAdapter adapter=new SimpleAdapter
+                (this,infos,R.layout.mapinfos_list,
+                        new String[]{"name","address","distance"},new int[]{R.id.name,R.id.address,R.id.distance});
+        // 创建SimpleAdapter
+        ListView listView = findViewById(R.id.maplist);
+        listView.setAdapter(adapter); // 将适配器与ListView关联
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
+                Toast.makeText(getApplicationContext(),map.get("distance").toString(),Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("name",map.get("name").toString());
+                bundle.putString("distance", map.get("distance").toString());
+                Intent intent = new Intent(getApplicationContext(),Detail_activity.class);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+    }
+    //排序map
+    // Map的value值升序排序
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortAscend(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                int compare = (o1.getValue()).compareTo(o2.getValue());
+                return compare;
+            }
+        });
+
+        Map<K, V> returnMap = new LinkedHashMap<K, V>();
+        for (Map.Entry<K, V> entry : list) {
+            returnMap.put(entry.getKey(), entry.getValue());
+        }
+        return returnMap;
     }
 
 }

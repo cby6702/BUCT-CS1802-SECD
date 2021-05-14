@@ -49,7 +49,7 @@ public class Main5Activity extends AppCompatActivity {
                 //跳转上传视频页
                // Intent intent2 = new Intent(getApplicationContext(), .class);//设置跳转页面
                 //startActivity(intent2);
-                finish();
+                //finish();
             }
         });
 
