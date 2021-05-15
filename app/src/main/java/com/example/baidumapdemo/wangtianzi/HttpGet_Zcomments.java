@@ -7,13 +7,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class HttpGet_Zcomments {
 
-    public static  String getText(String keyword) {
+    public static  float getText(int mid) {
         try {
             // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
             //URL url = new URL(https://api.ownthink.com/bot")
-            String u = ""+"name";//keyword是查询关键字
+            String u = "http://8.140.3.158:81/comments/search/"+mid ;//keyword是查询关键字
             URL url = new URL(u);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -36,11 +44,11 @@ public class HttpGet_Zcomments {
             System.out.println(buffer.toString() );//看返回的数据是否写全
             Usercomment res = gson.fromJson(buffer.toString(), Usercomment.class);
 
-            return res.getName();//返回名字 同理可以返回对象后使用getName..等方法获得别的信息 然后放到布局文件就可以了
+            return res.getGeneral_comment();
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "error";
+            return 9;
         }
 
     }
