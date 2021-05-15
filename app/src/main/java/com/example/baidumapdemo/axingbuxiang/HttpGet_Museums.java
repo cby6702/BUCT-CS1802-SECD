@@ -7,14 +7,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class HttpGet_Museums {
 
-    public static  String getText(String keyword) {
+    public static  String getText(String name) {
         try {
             // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
             //URL url = new URL(https://api.ownthink.com/bot")
-            String u = ""+"name";//keyword是查询关键字
+            String u = " http://8.140.3.158:81/museum/search/"+ URLEncoder.encode("博物馆")+"/"+URLEncoder.encode(name);
+
             URL url = new URL(u);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
