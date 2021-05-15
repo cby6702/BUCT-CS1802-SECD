@@ -33,14 +33,14 @@
     android:layout_marginStart="152dp"
     android:layout_marginLeft="152dp"
     android:text="用户评价"
-    android:textColor="#3F51B5"
+    android:textColor="#000000"
     android:textSize="24sp" />
 
 <!-- 评价内容-->
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="327dp"
-        android:layout_height="200dp"
+        android:layout_width="330dp"
+        android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -52,7 +52,7 @@
         android:ems="10"
         android:hint="请输入评价内容"
         android:inputType="textMultiLine"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
 
     <!-- 展览评分-->
     <TextView
@@ -62,17 +62,18 @@
     android:text="展览评分"
     android:textSize="20sp"
     android:layout_above="@+id/btn"
-    android:layout_marginBottom="300dp"/>
+    android:layout_marginBottom="270dp"/>
 
 <!-- 星级评分条 -->
 <RatingBar
     android:id="@+id/ratingBar1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    style="?android:attr/ratingBarStyleSmall"
     android:numStars="5"
     android:rating="0"
     android:layout_above="@+id/btn"
-    android:layout_marginBottom="240dp"/>
+    android:layout_marginBottom="250dp"/>
     <!-- 服务评分-->
     <TextView
         android:id="@+id/textViewf"
@@ -81,17 +82,18 @@
         android:text="服务评分"
         android:textSize="20sp"
         android:layout_above="@+id/btn"
-        android:layout_marginBottom="200dp"/>
+        android:layout_marginBottom="210dp"/>
 
     <!-- 星级评分条 -->
     <RatingBar
         android:id="@+id/ratingBarf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
         android:numStars="5"
         android:rating="0"
         android:layout_above="@+id/btn"
-        android:layout_marginBottom="140dp"/>
+        android:layout_marginBottom="190dp"/>
     <!-- 环境评分-->
     <TextView
         android:id="@+id/textViewh"
@@ -100,18 +102,18 @@
         android:text="环境评分"
         android:textSize="20sp"
         android:layout_above="@+id/btn"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="150dp"/>
 
     <!-- 星级评分条 -->
     <RatingBar
         android:id="@+id/ratingBarh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
         android:numStars="5"
         android:rating="0"
         android:layout_above="@+id/btn"
-        android:layout_marginBottom="40dp"/>
-
+        android:layout_marginBottom="120dp"/>
 <!--发表评价-->
 <Button
     android:id="@+id/btn"
