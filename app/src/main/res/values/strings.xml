@@ -10,5 +10,5 @@
     <string name="menu_title_collection_information">藏品信息</string>
     <string name="menu_title_exhibition_information">展览信息</string>
     <string name="menu_title_news">新闻</string>
-
+    <string name="time">周二至周日 全天 09：00-17：00\n周一 全天 固定闭馆</string>
 </resources>
