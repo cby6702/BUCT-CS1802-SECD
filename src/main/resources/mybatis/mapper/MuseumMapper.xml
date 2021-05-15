@@ -3,13 +3,74 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs1802.museum.mapper.MuseumMapper">
-    <select id="getMuseum" resultType="com.cs1802.museum.bean.Museum">
+    <!--把double的字段都映射一下不然获取到的都是0.0-->
+    <resultMap id="museumMap" type="com.cs1802.museum.bean.Museum">
+        <result property="environment_score" column="environment_score"></result>
+        <result property="exhibition_score" column="exhibition_score"></result>
+        <result property="service_score" column="service_score"></result>
+        <result property="general_score" column="general_score"></result>
+    </resultMap>
+
+    <select id="getMuseum" resultMap="museumMap">
         SELECT * FROM museums where name = #{name}
     </select>
+
     <select id="museumCountByCity" resultType="int">
-        select count(*) from museums where city = #{city};
+        select count(*) from museums
+        <if test="city != all">
+            where city like concat('%',#{city},'%')
+        </if>
     </select>
-    <select id="museumPageByCity" resultType="com.cs1802.museum.bean.Museum">
+
+    <select id="museumPageByCity" resultMap="museumMap">
         select * from museums where city = #{city} limit #{begin}, #{pageSize}
+    </select>
+
+    <select id="sort" resultMap="museumMap">
+        <bind name="city" value="city"/>
+        <bind name="sortItem" value="sortItem"/>
+        <bind name="sortKind" value="sortKind"/>
+        <bind name="begin" value="begin"/>
+        <bind name="pageSize" value="pageSize"/>
+        select * from museums
+        <if test="city != 'all'">
+            where city = #{city}
+        </if>
+        <if test="sortItem == 0">
+            <if test="sortKind == 0">
+                order by general_score desc
+            </if>
+            <if test="sortKind == 1">
+                order by general_score asc
+            </if>
+        </if>
+        <if test="sortItem == 1">
+            order by exhibition_score
+            <if test="sortKind == 0">
+                desc
+            </if>
+            <if test="sortKind == 1">
+                asc
+            </if>
+        </if>
+        <if test="sortItem == 2">
+            order by service_score
+            <if test="sortKind == 0">
+                desc
+            </if>
+            <if test="sortKind == 1">
+                asc
+            </if>
+        </if>
+        <if test="sortKind == 4">
+            order by annual_exhibitions
+            <if test="sortKind == 0">
+                desc
+            </if>
+            <if test="sortKind == 1">
+                asc
+            </if>
+        </if>
+        limit #{begin}, #{pageSize}
     </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.cs1802.museum.service.impl;
 
 import com.cs1802.museum.bean.Museum;
 import com.cs1802.museum.bean.Page;
+import com.cs1802.museum.mapper.CommentsMapper;
 import com.cs1802.museum.mapper.MuseumMapper;
 import com.cs1802.museum.service.MuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.List;
 public class MuseumServiceImpl implements MuseumService {
     @Autowired
     private MuseumMapper museumMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
     /*
     业务：根据博物馆name查询博物馆表
     逻辑：1.根据传入name，查询museums表并返回对应的museums对象
@@ -50,6 +53,23 @@ public class MuseumServiceImpl implements MuseumService {
             // 查询museum表得到List<Museum>
             List<Museum> items = museumMapper.museumPageByCity(city, begin, Page.PAGE_SIZE);
             page.setItems(items);
+        }
+        return page;
+    }
+
+    @Override
+    public Page<Museum> sortMuseum(String city, int sortItem, int sortKind, int pageNo) {
+        Page<Museum> page = new Page<>();
+        page.setPageNo(pageNo);
+        page.setPageSize(Page.PAGE_SIZE);
+        int count = museumMapper.museumCountByCity(city);
+        if (count > 0){
+            page.setPageTotalCount(count);
+            double pageTotal = Math.ceil((count * 1.0 / Page.PAGE_SIZE));
+            page.setPageTotal(Integer.valueOf((int) pageTotal));
+            int begin = (pageNo - 1) * Page.PAGE_SIZE;
+            List<Museum> list = museumMapper.sort(city, sortItem, sortKind, begin, page.getPageSize());
+            page.setItems(list);
         }
         return page;
     }

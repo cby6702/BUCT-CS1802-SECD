@@ -19,4 +19,9 @@ public class Museum {
     private BigDecimal lat;
     private String picture;
     private String city;
+    private double exhibition_score;
+    private double environment_score;
+    private double service_score;
+    private double general_score;
+    private int annual_exhibitions;
 }
