@@ -1,24 +1,46 @@
-#���ݿ�
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-     username: buctcs1802
-     password: cs1802..
+    username: buctcs1802
+    password: cs1802..
 #    username: root
 #    password: 31531500qm.
 
     url: jdbc:mysql://localhost:3306/museum?autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
-  #����json�����ڸ�ʽ
+
   jackson:
     date-format: yyyy-MM-dd
     time-zone: GMT+8
-#����mybatis
+  servlet:
+    multipart:
+      max-request-size: 50MB
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  thymeleaf:
+    cache: false
+    suffix: .html
+    prefix: classpath:/templates/
+    mode: HTML5
+    encoding: utf-8
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/
+
+upload:
+  pro : D:/buct/2020-2021-2/软件工程/课设/uploadVoice/
+  dev : C:/Users/Administrator/Desktop/uploadVoice/
+myIp:
+  address: http://8.140.3.158:81/
+
+
 mybatis:
   type-aliases-package: com.cs1802.museum.bean
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
-    map-underscore-to-camel-case: true  #����ֵ�����շ�ӳ��
+    map-underscore-to-camel-case: true
 logging.level.com.cs1802.museum.mapper: debug
+
 server:
   port: 81

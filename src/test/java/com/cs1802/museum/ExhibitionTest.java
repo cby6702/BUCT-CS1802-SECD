@@ -16,11 +16,11 @@ public class ExhibitionTest {
     @Autowired
     private ExhibitionService exhibitionService;
 
-    @Test
-    @Transactional
-    @DisplayName("根据mid查询展览表Test")
-    public void getExhibition(){
-        List<Exhibition> exhibitionList = exhibitionService.searchExhibition(1);
-        System.out.println(exhibitionList);
-    }
+//    @Test
+//    @Transactional
+//    @DisplayName("根据mid查询展览表Test")
+//    public void getExhibition(){
+//        List<Exhibition> exhibitionList = exhibitionService.searchExhibition(1);
+//        System.out.println(exhibitionList);
+//    }
 }

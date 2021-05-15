@@ -23,7 +23,7 @@
     </select>
 
     <select id="museumPageByCity" resultMap="museumMap">
-        select * from museums where city = #{city} limit #{begin}, #{pageSize}
+        select * from museums where city like concat('%',#{city},'%') limit #{begin}, #{pageSize}
     </select>
 
     <select id="sort" resultMap="museumMap">
@@ -34,7 +34,7 @@
         <bind name="pageSize" value="pageSize"/>
         select * from museums
         <if test="city != 'all'">
-            where city = #{city}
+            where city like concat('%',#{city},'%')
         </if>
         <if test="sortItem == 0">
             <if test="sortKind == 0">
@@ -74,7 +74,13 @@
         limit #{begin}, #{pageSize}
     </select>
 
+
     <select id="getMuseum1" resultMap="museumMap">
         SELECT * FROM museums where mid = #{mid}
+    </select>
+
+    <select id="searchByName" resultMap="museumMap">
+        select * from museums where name like concat('%',#{searchItem},'%')
+
     </select>
 </mapper>

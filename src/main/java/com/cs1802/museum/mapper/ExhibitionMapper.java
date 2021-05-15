@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ExhibitionMapper {
     List<Exhibition> getExhibition(int mid);
+
+    List<Exhibition> searchByName(String searchItem);
 }

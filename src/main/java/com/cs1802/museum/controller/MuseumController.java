@@ -6,13 +6,17 @@ import com.cs1802.museum.service.MuseumService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/museum")
-public class MuseumController {
+public class MuseumController<T> {
     @Autowired
     private MuseumService museumService;
     @Autowired
@@ -25,7 +29,7 @@ public class MuseumController {
      * @param  name   url上带的（前端传回来的都是string类型）
      * @return
      */
-    @GetMapping("/search/{name}")
+    @GetMapping("/searchName/{name}")
     public String getMuseum(@PathVariable("name") String name){
         //1.执行查询业务逻辑
         Museum museum = museumService.searchMuseum(name);
@@ -74,7 +78,7 @@ public class MuseumController {
                              @PathVariable("sortKind") String sortKindString,
                              @PathVariable("pageNo") String pageNoString){
         //1.将pageNoString和sortItemString,sortKindString转为int
-        int pageNo = Integer.parseInt(sortItemString);
+        int pageNo = Integer.parseInt(pageNoString);
         int sortItem = Integer.parseInt(sortItemString);
         int sortKind = Integer.parseInt(sortKindString);
         //2.分页根据条件查询博物馆排名
@@ -89,19 +93,36 @@ public class MuseumController {
 
     /**
      * 功能：根据博物馆id查询博物馆表
-     *      url: /museum/search/mid
+     *      url: /museum/searchId/mid
      *      返回museum对象（String）
      * @param  midString   url上带的（前端传回来的都是string类型）
      * @return
      */
-    @GetMapping("/search/{mid}")
-    public String getMuseum1(@PathVariable("mid") String midString){
+    @GetMapping("/searchId/{mid}")
+    public String getMuseum1(@PathVariable("mid") String midString) {
         //1.将mid转为int类型
         int mid = Integer.parseInt(midString);
         //2.执行查询业务逻辑
         Museum museum = museumService.searchMuseum1(mid);
         try {
             return fastjson.writeValueAsString(museum);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 查询页查询功能
+     * @param searchKind
+     * @param searchItem
+     * @return
+     */
+    @GetMapping("/search/{searchKind}/{searchItem}")
+    public String search(@PathVariable("searchKind") String searchKind,
+                         @PathVariable("searchItem") String searchItem){
+        List<T> list = museumService.search(searchKind, searchItem);
+        try {
+            return fastjson.writeValueAsString(list);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

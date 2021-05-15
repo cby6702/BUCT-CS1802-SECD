@@ -6,4 +6,8 @@
     <select id="getExhibition" resultType="com.cs1802.museum.bean.Exhibition">
         SELECT * FROM exhibition where mid = #{mid}
     </select>
+
+    <select id="searchByName" resultType="exhibition">
+        select * from exhibition where ename like concat('%', #{searchItem}, '%')
+    </select>
 </mapper>

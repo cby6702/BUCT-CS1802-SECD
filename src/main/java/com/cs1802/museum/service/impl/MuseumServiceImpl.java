@@ -1,23 +1,30 @@
 package com.cs1802.museum.service.impl;
 
+import com.cs1802.museum.bean.Exhibition;
 import com.cs1802.museum.bean.Museum;
 import com.cs1802.museum.bean.Page;
+import com.cs1802.museum.bean._Collection;
+import com.cs1802.museum.mapper.CollectionMapper;
 import com.cs1802.museum.mapper.CommentsMapper;
+import com.cs1802.museum.mapper.ExhibitionMapper;
 import com.cs1802.museum.mapper.MuseumMapper;
 import com.cs1802.museum.service.MuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
-public class MuseumServiceImpl implements MuseumService {
+public class MuseumServiceImpl<T> implements MuseumService {
     @Autowired
     private MuseumMapper museumMapper;
     @Autowired
-    private CommentsMapper commentsMapper;
+    private CollectionMapper collectionMapper;
+    @Autowired
+    private ExhibitionMapper exhibitionMapper;
     /*
     业务：根据博物馆name查询博物馆表
     逻辑：1.根据传入name，查询museums表并返回对应的museums对象
@@ -69,10 +76,12 @@ public class MuseumServiceImpl implements MuseumService {
             page.setPageTotal(Integer.valueOf((int) pageTotal));
             int begin = (pageNo - 1) * Page.PAGE_SIZE;
             List<Museum> list = museumMapper.sort(city, sortItem, sortKind, begin, page.getPageSize());
+            System.out.println("pageItem=" + list);
             page.setItems(list);
         }
         return page;
     }
+
 
     /*
     业务：根据博物馆id查询博物馆表
@@ -80,6 +89,30 @@ public class MuseumServiceImpl implements MuseumService {
      */
     @Override
     public Museum searchMuseum1(int mid) {
-        return  museumMapper.getMuseum1(mid);
+        return museumMapper.getMuseum1(mid);
+    }
+    /**
+     *查询页搜索功能
+     * @param searchKind
+     * @param searchItem
+     * @return
+     */
+    @Override
+    public List<T> search(String searchKind, String searchItem) {
+        List<T> list = new ArrayList<>();
+        switch (searchKind){
+            case "博物馆":
+                list = (List<T>) museumMapper.searchByName(searchItem);
+                break;
+            case "展览":
+                list = (List<T>) exhibitionMapper.searchByName(searchItem);
+                break;
+            case "藏品":
+                list = (List<T>) collectionMapper.searchByName(searchItem);
+                break;
+            default:
+                break;
+        }
+        return list;
     }
 }

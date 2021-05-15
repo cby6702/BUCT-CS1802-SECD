@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface CollectionMapper {
     List<_Collection> getCollection(int mid);
+
+    List<_Collection> searchByName(String searchItem);
 }

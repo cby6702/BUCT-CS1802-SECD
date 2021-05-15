@@ -18,5 +18,9 @@ public interface MuseumMapper {
 
     List<Museum> sort(String city, int sortItem, int sortKind, int begin, Integer pageSize);
 
+
     Museum getMuseum1(int mid);
+
+    List<Museum> searchByName(String searchItem);
+
 }

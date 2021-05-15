@@ -17,11 +17,11 @@ public class NewsTest {
     @Autowired
     private NewsService newsService;
 
-    @Test
-    @Transactional
-    @DisplayName("根据mid查询新闻表")
-    public void getNews() {
-        List<News> newsList = newsService.searchNews(1);
-        System.out.println(newsList);
-    }
+//    @Test
+//    @Transactional
+//    @DisplayName("根据mid查询新闻表")
+//    public void getNews() {
+//        List<News> newsList = newsService.searchNews(1);
+//        System.out.println(newsList);
+//    }
 }

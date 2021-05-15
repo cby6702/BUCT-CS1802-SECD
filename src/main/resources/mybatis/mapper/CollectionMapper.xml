@@ -6,4 +6,8 @@
     <select id="getCollection" resultType="com.cs1802.museum.bean._Collection">
         SELECT * FROM collection where mid = #{mid}
     </select>
+
+    <select id="searchByName" resultType="_Collection">
+        select * from collection where cname like concat('%', #{searchItem}, '%')
+    </select>
 </mapper>

@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @DisplayName("VoiceTest")
 public class VoiceTest {
-    @Autowired
-    private VoiceService voiceService;
-
-    @Test
-    @Transactional
-    @DisplayName("查询讲解音频test")
-    public void getVocie() {
-        Voice voice = voiceService.searchVoice(1,1);
-        System.out.println(voice);
-    }
+//    @Autowired
+//    private VoiceService voiceService;
+//
+//    @Test
+//    @Transactional
+//    @DisplayName("查询讲解音频test")
+//    public void getVocie() {
+//        Voice voice = voiceService.searchVoice(1,1);
+//        System.out.println(voice);
+//    }
 }
