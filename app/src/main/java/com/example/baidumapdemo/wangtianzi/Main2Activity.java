@@ -17,7 +17,9 @@ import com.example.baidumapdemo.axingbuxiang.comment_museum;
 
 public class Main2Activity extends AppCompatActivity {
 
-    private RatingBar ratingbar;	//星级评分条
+    private RatingBar ratingbar1;	//星级评分条 展览
+    private RatingBar ratingbar2;	//星级评分条 服务
+    private RatingBar ratingbar3;	//星级评分条 环境
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +35,26 @@ public class Main2Activity extends AppCompatActivity {
                 finish();
             }
         });
-
-        ratingbar = (RatingBar) findViewById(R.id.ratingBar1);	//获取星级评分条
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar1);
+        ratingbar2 = (RatingBar) findViewById(R.id.ratingBar2);
+        ratingbar3 = (RatingBar) findViewById(R.id.ratingBar3);
+        //获取星级评分条
         Button button=(Button)findViewById(R.id.btn);		//获取“提交”按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = ratingbar.getProgress();            //获取进度
-                float rating = ratingbar.getRating();            //获取等级
-                float step = ratingbar.getStepSize();            //获取每次最少要改变多少个星级
-                Log.i("星级评分条","step="+step+" result="+result+" rating="+rating);
-                Toast.makeText(Main2Activity.this, "你评价了" + rating + "颗星", Toast.LENGTH_SHORT).show();
+                int result1 = ratingbar1.getProgress();
+                int result2 = ratingbar1.getProgress();
+                int result3 = ratingbar1.getProgress();            //获取进度
+                float rating1 = ratingbar1.getRating();
+                float rating2 = ratingbar1.getRating();
+                float rating3 = ratingbar1.getRating();            //获取等级
+                float step1 = ratingbar1.getStepSize();
+                float step2 = ratingbar1.getStepSize();
+                float step3 = ratingbar1.getStepSize();            //获取每次最少要改变多少个星级
+                float rating = (rating1+rating2+rating3)/3;
+                Log.i("星级评分条","step="+step1+" result="+result1+" rating="+rating);
+                //Toast.makeText(Main2Activity.this, "你评价了" + rating + "颗星", Toast.LENGTH_SHORT).show();
             }
         });
 
