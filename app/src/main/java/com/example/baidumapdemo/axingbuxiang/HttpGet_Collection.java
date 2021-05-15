@@ -22,14 +22,11 @@ public class HttpGet_Collection {
     static List<Collection> CollectionList;
     static String name;
     public  static List<Collection> getText(String cname) {
-        name=cname;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 try {
                     // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
                     //URL url = new URL(https://api.ownthink.com/bot")
-                    String u = "http://8.140.3.158:81/museum/search/"+URLEncoder.encode("藏品")+"/"+URLEncoder.encode(name);
+                    String u = "http://8.140.3.158:81/museum/search/"+URLEncoder.encode("藏品")+"/"+URLEncoder.encode(cname);
                     URL url = new URL(u);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -55,8 +52,7 @@ public class HttpGet_Collection {
                 } catch (Exception e) {
                     Log.d("TAG",e.toString());
                 }
-            }
-        }).start();
+
 
         return CollectionList ;//返回名字 同理可以返回对象后使用getName..等方法获得别的信息 然后放到布局文件就可以了
 

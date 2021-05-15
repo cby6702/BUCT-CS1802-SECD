@@ -24,6 +24,7 @@ public class Main3Activity extends AppCompatActivity {
 
     private String cityname="北京";       //默认当前城市为北京
     private int flagg=0;
+    private List<Map<String,Object>> collection_infos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,19 +67,21 @@ public class Main3Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText input=(EditText) findViewById(R.id.sous);//搜索框输入的数据
-                String inn=input.getText().toString().trim();
+                final String inn=input.getText().toString().trim();
                 Toast.makeText(Main3Activity.this, inn, Toast.LENGTH_SHORT).show();
 
                 if(flagg==0)//按博物馆名称搜索
                 {
                     int i=0;
-                    List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
-                    for (Museums museums : museumsList) {
+
+
+
+                    /*for (Museums museums : museumsList) {
                        // System.out.println(museums.getName());
                         title[i]=museums.getName().toString();
                         i++;
                         //System.out.println(museums.getMid());
-                    }
+                    }*/
 
                 }
                 if(flagg==1)//按展览名称搜索
@@ -94,22 +97,28 @@ public class Main3Activity extends AppCompatActivity {
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
-                    int i=0;
-                    List<Collection> collectionList = HttpGet_Collection.getText("明永乐");//获取数据
-                    System.out.println("collectionList的内容是："+collectionList);
-                    if(collectionList==null){
-                        title[0]="无藏品";
-                    }else{
-                        for (Collection collection : collectionList) {
+
+                        /*for (Collection collection : collectionList) {
                             //System.out.println(collection.getCname());
                             //System.out.println(collection.getMid());
                             title[i]=collection.getCname();
                         //    Log.d("title",title[i]);
-                            i++;
+                            i++;*/
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
+                                    System.out.println(collectionlist);
+
+                                    collection_infos = addtoList(collectionlist);
+                                }
+                            }).start();
+                            Log.e("信息",collection_infos.toString());
+                            show_museum_adapter();
                         }
                     }
-                }
-            }
+
+
         });
 
 
@@ -133,11 +142,30 @@ public class Main3Activity extends AppCompatActivity {
                 Toast.makeText(Main3Activity.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public List<Map<String,Object>> addtoList(List<Collection> collectionList){
+        List<Map<String,Object>> collect_info = new ArrayList<>();
 
-
-
-
-
+        for (Collection collection : collectionList) {
+            Map<String,Object> mapinfo = new HashMap<>();
+            mapinfo.put("title",collection.getCname());
+            collect_info.add(mapinfo);
+        }
+        return collect_info;
+    }
+    public void show_museum_adapter(){
+        SimpleAdapter adapter=new SimpleAdapter
+                (this,collection_infos,R.layout.xmain,
+                        new String[]{"title"},new int[]{R.id.title});
+        ListView listView = findViewById(R.id.listviewm);
+        listView.setAdapter(adapter); // 将适配器与ListView关联
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
+                Toast.makeText(getApplicationContext(),map.get("title").toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
