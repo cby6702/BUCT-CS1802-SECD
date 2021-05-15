@@ -19,7 +19,7 @@ public class UserController {
 
     /**
      * 功能：更新uid对应的users表的中的city字段
-     *      url: /user/uid
+     *      url: /user/update/{uid}
      *      接受参数：data: {
      *          "city" : xxx
      *      }
@@ -53,7 +53,7 @@ public class UserController {
 
     /**
      * 功能：返回uid对应的users的所有信息，即user对象
-     *      url：/user/uid
+     *      url：/user/select/{uid}
      *      返回查找到的user对象(String)
      * @param  uidString    url上带的（前端传回来的都是String类型）
      * @return  查询到返回user对象，否则是“null”
@@ -73,7 +73,7 @@ public class UserController {
 
     /**
      * 功能：返回是否成功登录，boolean
-     *      url：/user/account/password
+     *      url：/user/login/{account}/{password}
      *      返回Boolean true or false
      * @param accountString url上带的（前端传回来的都是String类型）
      * @param passwordString url上带的（前端传回来的都是String类型）
