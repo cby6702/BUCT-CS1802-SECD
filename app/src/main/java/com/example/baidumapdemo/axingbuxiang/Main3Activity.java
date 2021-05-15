@@ -53,6 +53,12 @@ public class Main3Activity extends AppCompatActivity {
 
         });
 
+        ListView listView=(ListView)findViewById(R.id.listviewm);// 获取列表视图
+        final String[] title
+                =new String[100];
+//                = new String[] {"用户001","用户002","用户003",
+//                "用户004","用户005","用户006",
+//                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
         Button buttonq=(Button)findViewById(R.id.qbtn);		//获取“确认”按钮
         buttonq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,36 +70,41 @@ public class Main3Activity extends AppCompatActivity {
 
                 if(flagg==0)//按博物馆名称搜索
                 {
+                    int i=0;
                     List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
                     for (Museums museums : museumsList) {
-                        System.out.println(museums.getName());
-                        System.out.println(museums.getMid());
+                       // System.out.println(museums.getName());
+                        title[i]=museums.getName().toString();
+                        i++;
+                        //System.out.println(museums.getMid());
                     }
 
                 }
                 if(flagg==1)//按展览名称搜索
                 {
+                    int i=0;
                     List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
                     for (Exhibition exhibition : exhibitionList) {
-                        System.out.println(exhibition.getEname());
-                        System.out.println(exhibition.getMid());
+                       // System.out.println(exhibition.getEname());
+                        //System.out.println(exhibition.getMid());
+                        title[i]=exhibition.getEname();
+                        i++;
                     }
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
+                    int i=0;
                     List<Collection> collectionList = HttpGet_Collection.getText(inn);//获取数据
                     for (Collection collection : collectionList) {
-                        System.out.println(collection.getCname());
-                        System.out.println(collection.getMid());
+                        //System.out.println(collection.getCname());
+                        //System.out.println(collection.getMid());
+                        title[i]=collection.getCname();
+                        i++;
                     }
                 }
             }
         });
 
-        ListView listView=(ListView)findViewById(R.id.listviewm);// 获取列表视图
-        String[] title=new String[] {"用户001","用户002","用户003",
-                "用户004","用户005","用户006",
-                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
 
         List<Map<String ,Object >> listitem = new ArrayList<Map<String ,Object >>();// 创建一个list集合
         // 通过for循环将图片id和列表项文字放到Map中，并添加到list集合中
