@@ -14,7 +14,7 @@ public class HttpGet_Collection {
         try {
             // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
             //URL url = new URL(https://api.ownthink.com/bot")
-            String u = ""+keyword;//keyword是查询关键字
+            String u = ""+"cname";//keyword是查询关键字
             URL url = new URL(u);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

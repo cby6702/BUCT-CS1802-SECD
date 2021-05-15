@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ctype">
-        <item>全部</item>
+        <item>选择分类</item>
         <item>博物馆</item>
         <item>展览</item>
         <item>藏品</item>

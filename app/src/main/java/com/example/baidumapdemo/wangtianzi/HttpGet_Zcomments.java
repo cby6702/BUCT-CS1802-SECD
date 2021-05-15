@@ -1,5 +1,4 @@
-package com.example.baidumapdemo.axingbuxiang;
-
+package com.example.baidumapdemo.wangtianzi;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -8,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpGet_Museums {
+public class HttpGet_Zcomments {
 
     public static  String getText(String keyword) {
         try {
@@ -35,7 +34,7 @@ public class HttpGet_Museums {
             }
             is.close();
             System.out.println(buffer.toString() );//看返回的数据是否写全
-            Museums res = gson.fromJson(buffer.toString(), Museums.class);
+            Usercomment res = gson.fromJson(buffer.toString(), Usercomment.class);
 
             return res.getName();//返回名字 同理可以返回对象后使用getName..等方法获得别的信息 然后放到布局文件就可以了
 
@@ -45,7 +44,4 @@ public class HttpGet_Museums {
         }
 
     }
-
 }
-
-
