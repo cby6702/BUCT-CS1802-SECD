@@ -20,7 +20,6 @@ public class ExhibitionServiceImpl implements ExhibitionService {
      */
     @Override
     public List<Exhibition> searchExhibition(int mid){
-        List<Exhibition> exhibitionList = exhibitionMapper.getExhibition(mid);
-        return exhibitionList;
+        return exhibitionMapper.getExhibition(mid);
     }
 }

@@ -20,13 +20,13 @@ public class MuseumController {
 
     /**
      * 功能：根据博物馆name查询博物馆表
-     *      url: /museum/name
+     *      url: /museum/search/name
      *      返回museum对象（String）
      * @param  name   url上带的（前端传回来的都是string类型）
      * @return
      */
-    @GetMapping("/search/{mid}")
-    public String getMuseum(@PathVariable("mid") String name){
+    @GetMapping("/search/{name}")
+    public String getMuseum(@PathVariable("name") String name){
         //1.执行查询业务逻辑
         Museum museum = museumService.searchMuseum(name);
         try {

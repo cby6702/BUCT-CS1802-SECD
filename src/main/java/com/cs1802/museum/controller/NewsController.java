@@ -22,7 +22,7 @@ public class NewsController {
 
     /**
      * 功能：根据博物馆id查询新闻表
-     *      url: /news/mid
+     *      url: /news/search/mid
      *      返回news对象（String）
      * @param  midString   url上带的（前端传回来的都是string类型）
      * @return  news或null
@@ -32,7 +32,7 @@ public class NewsController {
     public String getNews(@PathVariable("mid") String midString) {
         //1.将前端传回的String类型mid转换为int类型
         int mid = Integer.parseInt(midString);
-        //2.执行查询业务逻辑，使用List返回多个collection对象
+        //2.执行查询业务逻辑，使用List返回多个news对象
         List<News> newsList = newsService.searchNews(mid);
         try{
             return fastjson.writeValueAsString(newsList);

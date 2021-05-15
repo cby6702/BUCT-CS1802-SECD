@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs1802.museum.mapper.VoiceMapper">
+    <select id="getVoice0" resultType="com.cs1802.museum.bean.Voice">
+        SELECT * FROM voice where mid = #{id}
+    </select>
+    <select id="getVoice1" resultType="com.cs1802.museum.bean.Voice">
+        SELECT * FROM voice where eid = #{id}
+    </select>
+    <select id="getVoice2" resultType="com.cs1802.museum.bean.Voice">
+        SELECT * FROM voice where cid = #{id}
+    </select>
+</mapper>

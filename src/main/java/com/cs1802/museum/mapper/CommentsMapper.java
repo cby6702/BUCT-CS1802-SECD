@@ -1,5 +1,6 @@
 package com.cs1802.museum.mapper;
 
+import com.cs1802.museum.bean.AllComments;
 import com.cs1802.museum.bean.Comments;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -11,4 +12,7 @@ import java.util.List;
 public interface CommentsMapper {
     List<Comments> getComments(int mid);
 
+    Comments isComment(int uid, int mid);
+
+    List<AllComments> showComments(int mid);
 }

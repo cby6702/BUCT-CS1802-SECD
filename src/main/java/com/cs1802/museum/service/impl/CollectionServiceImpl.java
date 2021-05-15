@@ -20,7 +20,6 @@ public class CollectionServiceImpl implements CollectionService {
      */
     @Override
     public List<_Collection> searchCollection(int mid) {
-        List<_Collection> collectionlist = collectionMapper.getCollection(mid);
-        return collectionlist;
+        return collectionMapper.getCollection(mid);
     }
 }

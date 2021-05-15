@@ -20,7 +20,6 @@ public class NewsServiceImpl implements NewsService {
      */
     @Override
     public List<News> searchNews(int mid) {
-        List<News> newsList = newsMapper.getNews(mid);
-        return newsList;
+        return newsMapper.getNews(mid);
     }
 }

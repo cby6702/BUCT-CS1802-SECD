@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cs1802.museum.mapper.CommentsMapper">
-    <select id="getComments" resultType="com.cs1802.museum.bean.Comments">
-        SELECT * FROM comments where mid = #{comments}
+    <resultMap id="generalMap" type="com.cs1802.museum.bean.Comments">
+        <result property="general_comment" column="general_comment"></result>
+    </resultMap>
+    <select id="getComments" resultMap="generalMap">
+        select * from comments where mid = #{mid}
+    </select>
+
+    <select id="isComment" resultType="com.cs1802.museum.bean.Comments">
+        SELECT * FROM comments where uid=#{uid} and mid=#{mid}
+    </select>
+
+    <resultMap id="general_Map" type="com.cs1802.museum.bean.AllComments">
+        <result property="general_comment" column="general_comment"></result>
+    </resultMap>
+    <select id="showComments" resultMap="general_Map">
+        SELECT * FROM comments where mid=#{mid}
     </select>
 </mapper>

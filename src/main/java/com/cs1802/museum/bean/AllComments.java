@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comments {
+public class AllComments {
     private int aid;
     private int uid;
     private int mid;
@@ -17,4 +17,6 @@ public class Comments {
     private double general_comment;
     private String comment;
     private String picture;
+    private String account;
+    private String avatarUrl;
 }

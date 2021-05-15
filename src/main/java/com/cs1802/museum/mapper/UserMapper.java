@@ -9,5 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
     boolean updateCity(String city, int uid);
     User getUser(int uid);
+
     User AccountExists(String account);
+
+    int getValidstate(int uid);
 }

@@ -22,7 +22,7 @@ public class ExhibitionController {
 
     /**
      * 功能：根据博物馆id查询展览表
-     * url: /exhibition/mid
+     * url: /exhibition/search/mid
      * 返回exhibition对象（String）
      *
      * @param midString url上带的（前端传回来的都是string类型）
@@ -33,7 +33,7 @@ public class ExhibitionController {
     public String getExhibition(@PathVariable("mid") String midString) {
         //1.将前端传回的String类型mid转换为int类型
         int mid = Integer.parseInt(midString);
-        //2.执行查询业务逻辑，使用List返回多个collection对象
+        //2.执行查询业务逻辑，使用List返回多个exhibition对象
         List<Exhibition> exhibitionList = exhibitionService.searchExhibition(mid);
         try {
             return fastjson.writeValueAsString(exhibitionList);

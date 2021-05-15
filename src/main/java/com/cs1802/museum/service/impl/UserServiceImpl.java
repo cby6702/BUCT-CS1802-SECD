@@ -30,11 +30,12 @@ public class UserServiceImpl implements UserService {
     逻辑：根据传入uid，返回相应user
      */
     @Override
-    public  User getUser(int uid){
+    public User getUser(int uid){
         return  userMapper.getUser(uid);
     }
 
     /*
+<<<<<<< Updated upstream
     业务：通过account和passwoord登录
     逻辑：根据传入的account查找该用户是否存在，如果存在，检验password是否正确，正确返回true；不正确返回false；
 									    如果不存在，返回false。
@@ -53,5 +54,14 @@ public class UserServiceImpl implements UserService {
                 return false;
         }
     }
+    /*
+    业务：通过uid查找users表中validstate判断用户是否被禁言
+    逻辑：根据传入uid，返回validstate
+     */
+    @Override
+    public int getValidstate(int uid) {
+        return userMapper.getValidstate(uid);
+    }
+
 
 }
