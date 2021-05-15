@@ -3,6 +3,7 @@ package com.example.baidumapdemo.axingbuxiang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,7 +56,7 @@ public class Main3Activity extends AppCompatActivity {
 
         ListView listView=(ListView)findViewById(R.id.listviewm);// 获取列表视图
         final String[] title
-                =new String[100];
+               =new String[100];
 //                = new String[] {"用户001","用户002","用户003",
 //                "用户004","用户005","用户006",
 //                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
@@ -94,12 +95,18 @@ public class Main3Activity extends AppCompatActivity {
                 if(flagg==2)//按藏品名称搜索
                 {
                     int i=0;
-                    List<Collection> collectionList = HttpGet_Collection.getText(inn);//获取数据
-                    for (Collection collection : collectionList) {
-                        //System.out.println(collection.getCname());
-                        //System.out.println(collection.getMid());
-                        title[i]=collection.getCname();
-                        i++;
+                    List<Collection> collectionList = HttpGet_Collection.getText("明永乐");//获取数据
+                    System.out.println("collectionList的内容是："+collectionList);
+                    if(collectionList==null){
+                        title[0]="无藏品";
+                    }else{
+                        for (Collection collection : collectionList) {
+                            //System.out.println(collection.getCname());
+                            //System.out.println(collection.getMid());
+                            title[i]=collection.getCname();
+                        //    Log.d("title",title[i]);
+                            i++;
+                        }
                     }
                 }
             }
