@@ -2,10 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-<<<<<<< Updated upstream
+
      username: buctcs1802
      password: cs1802..
-
 #    username: root
 #    password: 31531500qm.
 
