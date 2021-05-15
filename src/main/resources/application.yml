@@ -1,6 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+
     username: buctcs1802
     password: cs1802..
 #    username: root
