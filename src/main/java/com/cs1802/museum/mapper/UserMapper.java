@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper {
-    boolean updateCity(String city, String account);
-    User getUser(String account);
+    boolean updateCity(String city, int uid);
+    User getUser(int uid);
     User AccountExists(String account);
 }

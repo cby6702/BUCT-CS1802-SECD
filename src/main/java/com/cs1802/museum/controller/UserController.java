@@ -42,7 +42,7 @@ public class UserController {
         //2.将uid类型转为int
         int uid = Integer.parseInt(uidString);
         //3.执行更新的业务
-        User user = userService.updateCity(city, uidString);
+        User user = userService.updateCity(city, uid);
         try {
             return fastjson.writeValueAsString(user);
         } catch (JsonProcessingException e) {
@@ -60,8 +60,9 @@ public class UserController {
      */
 
     @GetMapping("/select/{uid}")
-    public String getUser(@PathVariable("account") String uidString){
-        User user = userService.getUser(uidString);
+    public String getUser(@PathVariable("uid") String uidString){
+        int uid=Integer.parseInt(uidString);
+        User user = userService.getUser(uid);
         try {
             return fastjson.writeValueAsString(user);
         } catch (JsonProcessingException e) {

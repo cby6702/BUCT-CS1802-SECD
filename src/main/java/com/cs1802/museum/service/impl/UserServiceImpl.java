@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
          2.修改若成功则返回true，获取新的user记录返回；否则返回null
      */
     @Override
-    public User updateCity(String city, String account) {
-        if(userMapper.updateCity(city, account)){
-           return userMapper.getUser(account);
+    public User updateCity(String city, int uid) {
+        if(userMapper.updateCity(city,uid)){
+           return userMapper.getUser(uid);
         }
         return null;
     }
@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
     逻辑：根据传入uid，返回相应user
      */
     @Override
-    public  User getUser(String account){
-        return  userMapper.getUser(account);
+    public  User getUser(int uid){
+        return  userMapper.getUser(uid);
     }
 
     /*
