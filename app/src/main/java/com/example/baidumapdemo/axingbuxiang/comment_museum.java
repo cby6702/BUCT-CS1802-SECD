@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangtianzi.HttpGet_Zcomments;
 import com.example.baidumapdemo.wangtianzi.Main2Activity;
 
 import android.util.Log;
@@ -75,6 +76,13 @@ public class comment_museum extends AppCompatActivity {
 
         //以下是评星条的内容
         ratingbar = (RatingBar) findViewById(R.id.ratingBar2);	//获取星级评分条
+//        ratingbar.setOnRatingBarChangeListener(new ratingbar.OnRatingBarChangeListener() {
+//            float res = HttpGet_Zcomments.getText(1);
+//            //System.out.println(res);
+//
+//        });
+
+
 
     }
 }
