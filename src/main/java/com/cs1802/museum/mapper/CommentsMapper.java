@@ -15,4 +15,6 @@ public interface CommentsMapper {
     Comments isComment(int uid, int mid);
 
     List<AllComments> showComments(int mid);
+
+    boolean uploadComments(Comments comments);
 }

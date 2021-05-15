@@ -73,4 +73,8 @@
         </if>
         limit #{begin}, #{pageSize}
     </select>
+
+    <select id="getMuseum1" resultMap="museumMap">
+        SELECT * FROM museums where mid = #{mid}
+    </select>
 </mapper>

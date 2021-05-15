@@ -40,4 +40,22 @@ public class CommentsTest {
         List<AllComments> comments = commentsService.showAllComments(1);
         System.out.println(comments);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("用户上传评价test")
+    public void uploadCommentsTest() {
+
+        Comments comments = new Comments();
+        comments.setUid(3);
+        comments.setMid(3);
+        comments.setExhibitionstar(3);
+        comments.setServicestar(3);
+        comments.setEnvironmentstar(3);
+        comments.setGeneral_comment(3);
+        comments.setComment("好");
+        //comments.setPicture("……");
+        boolean t = commentsService.uploadComments(comments);
+        System.out.println(t);
+    }
 }

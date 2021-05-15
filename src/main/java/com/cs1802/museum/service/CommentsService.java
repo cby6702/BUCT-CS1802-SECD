@@ -13,4 +13,6 @@ public interface CommentsService {
 
     List<AllComments> showComments(int mid);
     List<AllComments> showAllComments(int mid);
+
+    boolean uploadComments(Comments comments);
 }

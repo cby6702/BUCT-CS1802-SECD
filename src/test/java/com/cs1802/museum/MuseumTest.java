@@ -30,4 +30,12 @@ public class MuseumTest {
         Page<Museum> page = museumService.sortMuseum("all", 0, 1, 1);
         System.out.println(page);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("根据mid查询博物馆表test")
+    public void getMuseumTest1(){
+        Museum museum = museumService.searchMuseum1(1);
+        System.out.println(museum);
+    }
 }

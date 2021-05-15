@@ -20,4 +20,18 @@
     <select id="showComments" resultMap="general_Map">
         SELECT * FROM comments where mid=#{mid}
     </select>
+
+    <insert id="uploadComments">
+        <bind name="comment" value="comment"/>
+        <bind name="picture" value="picture"/>
+        INSERT INTO comments set uid=#{uid},mid=#{mid},exhibitionstar=#{exhibitionstar},servicestar=#{servicestar},environmentstar=#{environmentstar},general_comment=#{general_comment}
+        <trim prefix="," suffix=" " suffixOverrides=",">
+        <if test="comment!=null">
+             comment=#{comment},
+        </if>
+        <if test="picture!=null">
+            picture=#{picture}
+        </if>
+        </trim>
+    </insert>
 </mapper>

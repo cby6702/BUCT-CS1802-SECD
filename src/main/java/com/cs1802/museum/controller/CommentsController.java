@@ -6,15 +6,15 @@ import com.cs1802.museum.bean.User;
 import com.cs1802.museum.service.CommentsService;
 import com.cs1802.museum.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/comments")
@@ -86,5 +86,27 @@ public class CommentsController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 功能：用户上传评价
+     * url:/comments/upload
+     * 返回true（上传成功）或false
+     *
+     * @param  json
+     * @return true或false
+     */
+    @PostMapping("/upload")
+    public boolean UploadComments(@RequestBody String json) {
+        //1.解析json包
+        try {
+            Comments comments = fastjson.readValue(json, new TypeReference<Comments>() {
+            });
+            //2.执行业务逻辑，插入数据并返回是否成功
+            return commentsService.uploadComments(comments);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

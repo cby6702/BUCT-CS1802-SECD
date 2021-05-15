@@ -89,4 +89,13 @@ public class CommentsServiceImpl implements CommentsService {
         }
         return commentsList;
     }
+
+    /*
+    业务：用户上传评价
+    逻辑：1.向Comments表中插入数据
+     */
+    @Override
+    public boolean uploadComments(Comments comments) {
+        return commentsMapper.uploadComments(comments);
+    }
 }

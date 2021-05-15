@@ -86,4 +86,25 @@ public class MuseumController {
         }
         return null;
     }
+
+    /**
+     * 功能：根据博物馆id查询博物馆表
+     *      url: /museum/search/mid
+     *      返回museum对象（String）
+     * @param  midString   url上带的（前端传回来的都是string类型）
+     * @return
+     */
+    @GetMapping("/search/{mid}")
+    public String getMuseum1(@PathVariable("mid") String midString){
+        //1.将mid转为int类型
+        int mid = Integer.parseInt(midString);
+        //2.执行查询业务逻辑
+        Museum museum = museumService.searchMuseum1(mid);
+        try {
+            return fastjson.writeValueAsString(museum);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

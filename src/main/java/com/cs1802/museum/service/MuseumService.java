@@ -9,4 +9,6 @@ public interface MuseumService {
     Page<Museum> showPage(String city, int pageNo);
 
     Page<Museum> sortMuseum(String city, int sortItem, int sortKind, int pageNo);
+
+    Museum searchMuseum1(int mid);
 }
