@@ -64,16 +64,28 @@ public class Main3Activity extends AppCompatActivity {
 
                 if(flagg==0)//按博物馆名称搜索
                 {
-                    String res = HttpGet_Museums.getText("inn");//获取数据
+                    List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
+                    for (Museums museums : museumsList) {
+                        System.out.println(museums.getName());
+                        System.out.println(museums.getMid());
+                    }
 
                 }
                 if(flagg==1)//按展览名称搜索
                 {
-                    String res = HttpGet_Exhibition.getText("inn");//获取数据
+                    List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
+                    for (Exhibition exhibition : exhibitionList) {
+                        System.out.println(exhibition.getEname());
+                        System.out.println(exhibition.getMid());
+                    }
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
-                    String res = HttpGet_Collection.getText("inn");//获取数据
+                    List<Collection> collectionList = HttpGet_Collection.getText(inn);//获取数据
+                    for (Collection collection : collectionList) {
+                        System.out.println(collection.getCname());
+                        System.out.println(collection.getMid());
+                    }
                 }
             }
         });
