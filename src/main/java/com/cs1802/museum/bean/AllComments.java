@@ -17,6 +17,6 @@ public class AllComments {
     private double general_comment;
     private String comment;
     private String picture;
-    private String account;
+    private String name;
     private String avatarUrl;
 }

@@ -81,10 +81,10 @@ public class CommentsServiceImpl implements CommentsService {
             int uid = commentsList.get(i).getUid();
             User user=userService.getUser(uid);
             //4.获得用户账号、头像
-            String UserAccount = user.getAccount();
+            String UserName = user.getName();
             String UserAvatarUrl = user.getAvatarUrl();
             //5.将用户账号、头像插入Allcomments对象中
-            commentsList.get(i).setAccount(UserAccount);
+            commentsList.get(i).setName(UserName);
             commentsList.get(i).setAvatarUrl(UserAvatarUrl);
         }
         return commentsList;
