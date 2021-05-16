@@ -88,7 +88,7 @@ public class Main4Activity extends AppCompatActivity {
         String mobile = object.getString("mobile");
         String email = object.getString("email");
         int uid=object.getInt("uid");
-        final String[] strings = { name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
+        final String[] strings = { "账号 "+ uid,"姓名 "+name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(Main4Activity.this, personalct.class);
         intent.putExtra("strings",strings);//传递string数组

@@ -97,9 +97,9 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="108dp"
-        android:layout_height="99dp"
-        android:layout_marginEnd="300dp"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:layout_marginEnd="292dp"
         app:layout_constraintBottom_toBottomOf="@+id/ll_show"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

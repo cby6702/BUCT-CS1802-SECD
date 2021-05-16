@@ -31,6 +31,7 @@ public class mynew extends AppCompatActivity {
                         textView.setTextColor(Color.BLACK);
                         textView.setText(s);
                         textView.setTextSize(30);
+                        textView.setBackgroundResource(R.drawable.frame);
                         ll_show.addView(textView);
                     }
                 }

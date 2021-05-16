@@ -160,7 +160,7 @@ public class personalct extends AppCompatActivity {
             String comtext= jsonObject.getString("comtext");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
             int tid = jsonObject.getInt("tid");//消息编号
             Log.d(String.valueOf(i), "jiexi_news: 次数");
-            strings[i]=i+"  消息:"+comtext+"\n";
+            strings[i]=i+"\n消息:"+comtext+"\n";
         }//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(personalct.this, mynew.class);
