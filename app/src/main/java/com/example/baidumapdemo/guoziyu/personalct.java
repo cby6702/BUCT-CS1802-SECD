@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.baidumapdemo.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,7 @@ public class personalct extends AppCompatActivity {
         setContentView(R.layout.activity_personalct);
         Intent intent = getIntent();//跳转页面
         final String[] strings = intent.getStringArrayExtra("strings");//传递后台返回信息
+        final  int uid=intent.getIntExtra("uid",0);
         runOnUiThread(new Runnable() {//显示后台返回个人信息
             @Override
             public void run() {
@@ -45,8 +48,8 @@ public class personalct extends AppCompatActivity {
             }
         });
         init_gzy1();
-        init_gzy2();
-        init_gzy3();
+        init_gzy2(uid);
+        init_gzy3(uid);
     }
     public void init_gzy1(){
         Button gzy = findViewById(R.id.button2);
@@ -59,7 +62,7 @@ public class personalct extends AppCompatActivity {
             }
         });
     }
-    public void init_gzy2(){
+    public void init_gzy2(final int uid){
         final Button sendPost = findViewById(R.id.commentary);//设定关联构件为以login为id的
         sendPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,15 +72,15 @@ public class personalct extends AppCompatActivity {
                     @Override
                     public void run() {//后端进行交互
                         try {
-                            int u_id = 1, target_id = 1;
                             OkHttpClient client = new OkHttpClient(); //创建HTTP客户端
                             System.out.println("ok??");
                             Request request = new Request.Builder()
-                                    .url("http://8.140.3.158:81/user/select/1") //后端请求接口的路径http://8.140.3.158:81/user/select/1
+                                    .url("http://8.140.3.158:81/user/MyComments/"+uid) //后端请求接口的路径http://8.140.3.158:81/user/select/1
                                     .get().build(); //创造http请求
                             Response response = client.newCall(request).execute(); //执行发送指令
                             String s = response.body().string();//接收回返数据
-                            jiexi_commentary(s);//josn解析
+                            JSONArray jsonArray = new JSONArray(s); //将文本格式的JSON转换为JSON数组
+                            jiexi_commentary(jsonArray);//josn解析
                         } catch (Exception e) {
                             e.printStackTrace();
                             runOnUiThread(new Runnable() {
@@ -92,7 +95,7 @@ public class personalct extends AppCompatActivity {
             }
         });
     }
-    public void init_gzy3(){
+    public void init_gzy3(final int uid){
         final Button sendPost = findViewById(R.id.news);//设定关联构件为以login为id的——————修改1
         sendPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +105,15 @@ public class personalct extends AppCompatActivity {
                     @Override
                     public void run() {//后端进行交互
                         try {
-                            int u_id = 1, target_id = 1;
                             OkHttpClient client = new OkHttpClient(); //创建HTTP客户端
                             System.out.println("ok??");
                             Request request = new Request.Builder()
-                                    .url("http://8.140.3.158:81/user/select/1") //后端请求接口的路径http://8.140.3.158:81/user/select/1------修改2
+                                    .url("http://8.140.3.158:81/user/MyTexts/"+uid) //后端请求接口的路径http://8.140.3.158:81/user/select/1------修改2
                                     .get().build(); //创造http请求
                             Response response = client.newCall(request).execute(); //执行发送指令
                             String s = response.body().string();//接收回返数据
-                            jiexi_news(s);//josn解析
+                            JSONArray jsonArray = new JSONArray(s); //将文本格式的JSON转换为JSON数组
+                            jiexi_news(jsonArray);//josn解析
                         } catch (Exception e) {
                             e.printStackTrace();
                             runOnUiThread(new Runnable() {
@@ -125,27 +128,39 @@ public class personalct extends AppCompatActivity {
             }
         });
     }
-    private void jiexi_commentary(String s) throws JSONException {//解析显示数据：先接收数据，然后传递给评论界面——修改4
-        JSONObject object = new JSONObject(s);
-        System.out.println(s);
-        String name = object.getString("name");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
-        String gender = object.getString("gender");
-        String logincount = object.getString("logincount");
-        String city = object.getString("city");
-        final String[] strings = {"name " + name, "gender " + gender, "logincount  " + logincount, "city     " + city};//用string来记录数组
+    private void jiexi_commentary(JSONArray jsonArray) throws JSONException {//解析显示数据：先接收数据，然后传递给评论界面——修改4
+        final String[] strings = new String[100];//设定最多显示100个数组
+        for(int i=0;i<jsonArray.length();i++){ //遍历这个数组
+            JSONObject jsonObject = jsonArray.getJSONObject(i); //取出JSON元素
+            System.out.println(jsonObject);
+            String conment = jsonObject.getString("comment");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
+            int tid = jsonObject.getInt("aid");//消息编号
+            int mid = jsonObject.getInt("mid");//博物馆编号
+            int exhibitionstar = jsonObject.getInt("exhibitionstar");//展览分数
+            int servicestar= jsonObject.getInt("servicestar");//服务分数
+            int environmentstar= jsonObject.getInt("environmentstar");//环境分数
+            double general_comment=jsonObject.getInt("general_comment");//总分
+                strings[i]=i+"  博物馆"+mid+"：展览分数"+exhibitionstar+
+                        "\n服务分数"+servicestar +
+                        "\n环境分数"+environmentstar+
+                        "\n总分分数"+general_comment+
+                        "\n评论"+conment+"\n";
+        }
         Intent intent = new Intent();//转移界面
         intent.setClass(personalct.this, mycomment.class);//--------修改6
         intent.putExtra("strings",strings);//传递string数组
         startActivity(intent);
     }
-    private void jiexi_news(String s) throws JSONException {//解析显示数据：先接收数据，然后传递给消息界面
-        JSONObject object = new JSONObject(s);
-        System.out.println(s);
-        String name = object.getString("name");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）
-        String gender = object.getString("gender");
-        String logincount = object.getString("logincount");
-        String city = object.getString("city");
-        final String[] strings = {"name " + name, "gender " + gender, "logincount  " + logincount, "city     " + city};//用string来记录数组
+    private void jiexi_news(JSONArray jsonArray) throws JSONException {//解析显示数据：先接收数据，然后传递给消息界面
+        final String[] strings = new String[100];//设定最多显示100个数组
+        for(int i=0;i<jsonArray.length();i++){ //遍历这个数组
+            JSONObject jsonObject = jsonArray.getJSONObject(i); //取出JSON元素
+            System.out.println(jsonObject);
+            String comtext= jsonObject.getString("comtext");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
+            int tid = jsonObject.getInt("tid");//消息编号
+
+            strings[i]=i+"  消息:"+comtext+"\n";
+        }//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(personalct.this, mynew.class);
         intent.putExtra("strings",strings);//传递string数组

@@ -87,10 +87,12 @@ public class Main4Activity extends AppCompatActivity {
         String name = object.getString("name");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）
         String mobile = object.getString("mobile");
         String email = object.getString("email");
+        int uid=object.getInt("uid");
         final String[] strings = { name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(Main4Activity.this, personalct.class);
         intent.putExtra("strings",strings);//传递string数组
+        intent.putExtra("uid",uid);
         startActivity(intent);
     }
     private void next_personal(final String s)  {//解析显示数据：先接收数据，然后传递给个人中心界面
