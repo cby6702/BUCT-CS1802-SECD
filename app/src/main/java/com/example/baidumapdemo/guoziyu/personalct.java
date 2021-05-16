@@ -41,7 +41,8 @@ public class personalct extends AppCompatActivity {
                         TextView textView = new TextView(getApplicationContext());
                         textView.setTextColor(Color.BLACK);
                         textView.setText(s);
-                        textView.setTextSize(20);
+                        textView.setTextSize(15);
+                        textView.setBackgroundResource(R.drawable.frame1);
                         ll_show.addView(textView);
                     }
                 }
@@ -140,7 +141,7 @@ public class personalct extends AppCompatActivity {
             int servicestar= jsonObject.getInt("servicestar");//服务分数
             int environmentstar= jsonObject.getInt("environmentstar");//环境分数
             double general_comment=jsonObject.getInt("general_comment");//总分
-                strings[i]=i+"  博物馆"+mid+"：展览分数"+exhibitionstar+
+                strings[i]=i+"\n博物馆"+mid+"：展览分数"+exhibitionstar+
                         "\n服务分数"+servicestar +
                         "\n环境分数"+environmentstar+
                         "\n总分分数"+general_comment+
@@ -158,7 +159,7 @@ public class personalct extends AppCompatActivity {
             System.out.println(jsonObject);
             String comtext= jsonObject.getString("comtext");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
             int tid = jsonObject.getInt("tid");//消息编号
-
+            Log.d(String.valueOf(i), "jiexi_news: 次数");
             strings[i]=i+"  消息:"+comtext+"\n";
         }//用string来记录数组
         Intent intent = new Intent();//转移界面

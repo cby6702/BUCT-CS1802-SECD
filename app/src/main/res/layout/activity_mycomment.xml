@@ -6,122 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".guoziyu.mycomment">
 
-<TextView
-    android:id="@+id/title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="96dp"
-    android:text="我的评论页"
-    android:textColor="#000000"
-    android:textSize="23sp"
-    app:layout_constraintHorizontal_bias="0.528"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="------我的评价------"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/ll_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
-<Button
-    android:id="@+id/button2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="112dp"
-    android:text="我的评论1"
-    app:layout_constraintHorizontal_bias="0.398"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title" />
-
-<Button
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="160dp"
-    android:text="我的评论2"
-    app:layout_constraintEnd_toEndOf="@+id/button2"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/button2"
-    app:layout_constraintTop_toBottomOf="@+id/title" />
-
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
-        android:text="我的评论3"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:text="我的评论4"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <Button
-    android:id="@+id/button5"
-    android:layout_width="194dp"
-    android:layout_height="42dp"
-    android:layout_marginTop="130dp"
-    android:text="一键删除/已读全部评论 "
-    app:layout_constraintTop_toTopOf="parent"
-    tools:layout_editor_absoluteX="215dp" />
-
-<Button
-    android:id="@+id/button6"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="删除"
-    app:layout_constraintStart_toEndOf="@+id/button2"
-    app:layout_constraintTop_toTopOf="@+id/button2" />
-
-<Button
-    android:id="@+id/button7"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="删除"
-    app:layout_constraintEnd_toEndOf="@+id/button6"
-    app:layout_constraintStart_toStartOf="@+id/button6"
-    app:layout_constraintTop_toTopOf="@+id/button" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="删除"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="删除"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
+        android:id="@+id/button5"
+        android:layout_width="194dp"
+        android:layout_height="42dp"
+        android:text="一键删除/已读全部评论 "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_1" />
 
     <Button
         android:id="@+id/button10"

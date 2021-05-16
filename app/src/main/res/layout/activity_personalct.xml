@@ -11,16 +11,26 @@
 
     <LinearLayout
         android:id="@+id/ll_show"
-        android:layout_width="273dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="292dp"
+        android:layout_height="149dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/commentary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/user_line"
+            android:layout_width="13dp"
+            android:layout_height="31dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2"
@@ -44,7 +54,7 @@
         android:layout_marginBottom="11dp"
         android:text="查看我的评论"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_show" />
@@ -83,18 +93,17 @@
         app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="555dp" />
+        app:layout_constraintTop_toTopOf="@+id/button4" />
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="228dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginEnd="312dp"
-        android:layout_marginBottom="232dp"
-        app:layout_constraintBottom_toTopOf="@+id/commentary"
+        android:layout_width="108dp"
+        android:layout_height="99dp"
+        android:layout_marginEnd="300dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_show"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/sysus" />
 
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--gzy的-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    android:shape="rectangle">
+    <!-- 设置一个黑色边框 -->
+    <stroke android:width="2px" android:color="#000000"/>
+
+    <!-- 设置一下边距,让空间大一点 -->
+    <padding
+        android:left="5dp"
+        android:top="5dp"
+        android:right="5dp"
+        android:bottom="5dp"/>
+
+</shape>
