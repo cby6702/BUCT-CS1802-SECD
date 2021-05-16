@@ -1,19 +1,15 @@
 package com.example.baidumapdemo.wangtianzi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
-import android.widget.Toast;
-import android.os.Bundle;
 
 import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.axingbuxiang.Main3Activity;
-import com.example.baidumapdemo.axingbuxiang.comment_museum;
 
 public class Main2Activity extends AppCompatActivity {
 

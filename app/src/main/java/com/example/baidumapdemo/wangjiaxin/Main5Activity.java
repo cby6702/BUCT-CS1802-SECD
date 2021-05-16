@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.axingbuxiang.comment_museum;
+import com.example.baidumapdemo.wangtianzi.comment_museum;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 
 public class Main5Activity extends AppCompatActivity {

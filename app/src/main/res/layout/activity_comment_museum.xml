@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/xila"
-    tools:context=".axingbuxiang.comment_museum">>
+    tools:context=".wangtianzi.comment_museum">>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -36,7 +36,7 @@
             android:layout_marginBottom="10dp"
             android:isIndicator="true"
             android:numStars="5"
-            android:rating="4" />
+             />
 
         <!-- 列表视图-->
         <!--评论按钮-->
