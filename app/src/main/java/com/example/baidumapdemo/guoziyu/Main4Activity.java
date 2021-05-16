@@ -61,10 +61,9 @@ public class Main4Activity extends AppCompatActivity {
         JSONObject object = new JSONObject(s);
         System.out.println(s);
         String name = object.getString("name");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）
-        String gender = object.getString("gender");
-        String logincount = object.getString("logincount");
-        String city = object.getString("city");
-        final String[] strings = {"name " + name, "gender " + gender, "logincount  " + logincount, "city     " + city};//用string来记录数组
+        String mobile = object.getString("mobile");
+        String email = object.getString("email");
+        final String[] strings = { name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(Main4Activity.this, personalct.class);
         intent.putExtra("strings",strings);//传递string数组

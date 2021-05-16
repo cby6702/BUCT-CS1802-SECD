@@ -38,7 +38,7 @@ public class personalct extends AppCompatActivity {
                         TextView textView = new TextView(getApplicationContext());
                         textView.setTextColor(Color.BLACK);
                         textView.setText(s);
-                        textView.setTextSize(30);
+                        textView.setTextSize(20);
                         ll_show.addView(textView);
                     }
                 }
