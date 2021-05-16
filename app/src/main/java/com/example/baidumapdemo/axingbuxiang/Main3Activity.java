@@ -82,18 +82,32 @@ public class Main3Activity extends AppCompatActivity {
                         i++;
                         //System.out.println(museums.getMid());
                     }*/
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
+                            System.out.println(museumsList);
+
+                            collection_infos = addtoList0(museumsList);
+                        }
+                    }).start();
+                    Log.e("信息",collection_infos.toString());
+                    show_museum_adapter();
 
                 }
                 if(flagg==1)//按展览名称搜索
                 {
-                    int i=0;
-                    List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
-                    for (Exhibition exhibition : exhibitionList) {
-                       // System.out.println(exhibition.getEname());
-                        //System.out.println(exhibition.getMid());
-                        title[i]=exhibition.getEname();
-                        i++;
-                    }
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
+                            System.out.println(exhibitionList);
+
+                            collection_infos = addtoList1(exhibitionList);
+                        }
+                    }).start();
+                    Log.e("信息",collection_infos.toString());
+                    show_museum_adapter();
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
@@ -142,6 +156,26 @@ public class Main3Activity extends AppCompatActivity {
                 Toast.makeText(Main3Activity.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public List<Map<String,Object>> addtoList0(List<Museums> museumsList){
+        List<Map<String,Object>> collect_info = new ArrayList<>();
+
+        for (Museums museums : museumsList) {
+            Map<String,Object> mapinfo = new HashMap<>();
+            mapinfo.put("title",museums.getName());
+            collect_info.add(mapinfo);
+        }
+        return collect_info;
+    }
+    public List<Map<String,Object>> addtoList1(List<Exhibition> exhibitionList){
+        List<Map<String,Object>> collect_info = new ArrayList<>();
+
+        for (Exhibition exhibition : exhibitionList) {
+            Map<String,Object> mapinfo = new HashMap<>();
+            mapinfo.put("title",exhibition.getEname());
+            collect_info.add(mapinfo);
+        }
+        return collect_info;
     }
     public List<Map<String,Object>> addtoList(List<Collection> collectionList){
         List<Map<String,Object>> collect_info = new ArrayList<>();
