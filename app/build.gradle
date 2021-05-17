@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\android\\wnh\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
+            storeFile file('D:\\gitrepostry\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
             //大家这里的绝对路径需要自己找到BaiDuMapSign_1802文件的地点然后更改
             storePassword 'wwang123'
             keyAlias = 'wangnaihao'
@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -44,6 +43,7 @@ dependencies {
     //邹傲 首页需要的组件依赖
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.zaaach:citypicker:2.0.1'
+
     //焦春雨 登陆界面需要的组件依赖
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     debugImplementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
