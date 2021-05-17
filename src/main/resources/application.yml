@@ -1,20 +1,21 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-#    username: buctcs1802
-#    password: cs1802..
-    username: root
-    password: 31531500qm.
+    username: buctcs1802
+    password: cs1802..
+#    username: root
+#    password: cry900207.
 
     url: jdbc:mysql://localhost:3306/museum?autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
 
   jackson:
     date-format: yyyy-MM-dd
     time-zone: GMT+8
+
   servlet:
     multipart:
-      max-request-size: 50MB
+      max-file-size: 300MB
+
   mvc:
     hiddenmethod:
       filter:
@@ -33,7 +34,9 @@ upload:
   pro : D:/buct/2020-2021-2/软件工程/课设/uploadVoice/
   dev : C:/Users/Administrator/Desktop/uploadVoice/
 myIp:
-  address: http://8.140.3.158:81/
+  address:
+    dev: http://8.140.3.158:81/
+    pro: http://localhost:81/
 
 
 mybatis:

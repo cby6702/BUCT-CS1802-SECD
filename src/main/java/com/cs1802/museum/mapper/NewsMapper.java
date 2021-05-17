@@ -10,4 +10,8 @@ import java.util.List;
 @Repository
 public interface NewsMapper {
     List<News> getNews(int mid);
+
+    int getCount();
+
+    List<News> getItems(int begin, int pageSize);
 }

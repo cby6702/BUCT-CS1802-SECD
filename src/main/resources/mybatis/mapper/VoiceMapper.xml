@@ -12,4 +12,19 @@
     <select id="getVoice2" resultType="com.cs1802.museum.bean.Voice">
         SELECT * FROM voice where cid = #{id}
     </select>
+    
+    <insert id="add">
+        <bind name="voice" value="voice"/>
+        <bind name="uid" value="uid"/>
+        <bind name="type" value="type"/>
+        <bind name="mid" value="mid"/>
+        <bind name="id" value="id"/>
+        insert into voice set voice = #{voice}, uid = #{uid}, type = #{type}, mid = #{mid}
+        <if test="type == 1">
+            ,eid = #{id}
+        </if>
+        <if test="type == 2">
+            ,cid = #{id}
+        </if>
+    </insert>
 </mapper>

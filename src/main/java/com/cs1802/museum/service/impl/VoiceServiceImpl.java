@@ -31,4 +31,18 @@ public class VoiceServiceImpl implements VoiceService {
             return voiceMapper.getVoice2(id);
     }
 
+    /**
+     * 插入voice表
+     * @param voice
+     * @param uid
+     * @param type 根据type的值决定填不填id
+     * @param mid
+     * @param id
+     * @return
+     */
+    @Override
+    public int add(String voice, int uid, int type, int mid, int id) {
+        return voiceMapper.add(voice, uid, type, mid, id);
+    }
+
 }

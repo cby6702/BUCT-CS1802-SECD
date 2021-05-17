@@ -10,4 +10,6 @@ public interface VoiceMapper {
     Voice getVoice0(int id);
     Voice getVoice1(int id);
     Voice getVoice2(int id);
+
+    int add(String voice, int uid, int type, int mid, int id);
 }

@@ -10,6 +10,10 @@ public class SpringMVCConfig implements WebMvcConfigurer {
     @Value("${upload.dev}")
     private String savePath;
 
+    /**
+     * 开启服务器内音频的地址映射
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("/voice/**")

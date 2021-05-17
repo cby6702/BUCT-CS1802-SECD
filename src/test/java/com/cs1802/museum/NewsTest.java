@@ -1,6 +1,7 @@
 package com.cs1802.museum;
 
 import com.cs1802.museum.bean.News;
+import com.cs1802.museum.bean.Page;
 import com.cs1802.museum.service.NewsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,5 +24,12 @@ public class NewsTest {
 //    public void getNews() {
 //        List<News> newsList = newsService.searchNews(1);
 //        System.out.println(newsList);
+//    }
+
+//    @Test
+//    @DisplayName("新闻页分页显示")
+//    public void showPageTest(){
+//        Page<News> page = newsService.showPage(61);
+//        System.out.println(page);
 //    }
 }

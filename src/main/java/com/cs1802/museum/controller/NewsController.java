@@ -1,6 +1,7 @@
 package com.cs1802.museum.controller;
 
 import com.cs1802.museum.bean.News;
+import com.cs1802.museum.bean.Page;
 import com.cs1802.museum.service.NewsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,6 +39,23 @@ public class NewsController {
             return fastjson.writeValueAsString(newsList);
         }
         catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 新闻页显示分页新闻
+     * @param pageNoString
+     * @return
+     */
+    @GetMapping("/show/{pageNo}")
+    public String showNews(@PathVariable("pageNo") String pageNoString){
+        int pageNo = Integer.parseInt(pageNoString);
+        Page<News> page = newsService.showPage(pageNo);
+        try {
+            return fastjson.writeValueAsString(page);
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
         return null;

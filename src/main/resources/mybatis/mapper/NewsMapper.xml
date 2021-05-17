@@ -6,4 +6,11 @@
     <select id="getNews" resultType="com.cs1802.museum.bean.News">
         SELECT * FROM news where mid = #{mid}
     </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from news
+    </select>
+    <select id="getItems" resultType="com.cs1802.museum.bean.News">
+        select * from news limit #{begin}, #{pageSize}
+    </select>
 </mapper>
