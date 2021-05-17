@@ -28,17 +28,19 @@ public class CityPickerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_picker);
         List<HotCity> hotCities = new ArrayList<>();
-        hotCities.add(new HotCity("北京", "北京", "101010100"));
-        hotCities.add(new HotCity("上海", "上海", "101020100"));
-        hotCities.add(new HotCity("广州", "广东", "101280101"));
-        hotCities.add(new HotCity("深圳", "广东", "101280601"));
-        hotCities.add(new HotCity("杭州", "浙江", "101210101"));
+        hotCities.add(new HotCity("北京市", "北京", "101010100"));
+        hotCities.add(new HotCity("上海市", "上海", "101020100"));
+        hotCities.add(new HotCity("河北省", "河北省", "101280101"));
+        hotCities.add(new HotCity("广西", "广西省", "101280601"));
+        hotCities.add(new HotCity("天津市", "天津", "101210101"));
+        hotCities.add(new HotCity("黑龙江", "黑龙江", "101280602"));
+
         int anim=0;
         CityPicker.getInstance()
                 .setFragmentManager(getSupportFragmentManager())  //此方法必须调用
                 .enableAnimation(true)//启用动画效果
                 .setAnimationStyle(anim)  //自定义动画
-                .setLocatedCity(new LocatedCity("杭州", "浙江", "101210101"))  //APP自身已定位的城市，默认为null（定位失败）
+                .setLocatedCity(new LocatedCity("北京市", "北京", "101010100"))  //APP自身已定位的城市，默认为null（定位失败）
                 .setHotCities(hotCities)
                 .setOnPickListener(new OnPickListener() {
                     @Override
@@ -61,7 +63,7 @@ public class CityPickerActivity extends AppCompatActivity {
                             public void run() {
                                 //定位完成之后更新数据
                                 CityPicker.getInstance()
-                                        .locateComplete(new LocatedCity("深圳", "广东", "101280601"), LocateState.SUCCESS);
+                                        .locateComplete(new LocatedCity("北京市", "北京", "101010100"), LocateState.SUCCESS);
                             }
                         }, 2000);
                     }
