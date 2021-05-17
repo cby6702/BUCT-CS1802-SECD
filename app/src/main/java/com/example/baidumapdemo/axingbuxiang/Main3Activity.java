@@ -3,6 +3,8 @@ package com.example.baidumapdemo.axingbuxiang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,7 +26,8 @@ public class Main3Activity extends AppCompatActivity {
 
     private String cityname="北京";       //默认当前城市为北京
     private int flagg=0;
-    private List<Map<String,Object>> collection_infos = new ArrayList<>();
+    private List<Map<String,Object>> collection_infos = new ArrayList<>();//定义json数组
+    Handler handler;//为了控制线程
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,6 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
 //        //建立数据源
-//        String[] mItems={"博物馆","展览","藏品"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-  //      spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -45,8 +44,7 @@ public class Main3Activity extends AppCompatActivity {
                 if(result.equals("展览")) flagg=1;
                 if(result.equals("藏品")) flagg=2;
                 Toast.makeText(Main3Activity.this, result, Toast.LENGTH_SHORT).show();//把result显示出来但不影响用户操作的提示栏
-//                String res = HttpGet_Museums.getText("1");//获取数据
-//                System.out.println(res);
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -56,11 +54,7 @@ public class Main3Activity extends AppCompatActivity {
         });
 
         ListView listView=(ListView)findViewById(R.id.listviewm);// 获取列表视图
-        final String[] title
-               =new String[100];
-//                = new String[] {"用户001","用户002","用户003",
-//                "用户004","用户005","用户006",
-//                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
+        final String[] title =new String[100];
         Button buttonq=(Button)findViewById(R.id.qbtn);		//获取“确认”按钮
         buttonq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,16 +66,6 @@ public class Main3Activity extends AppCompatActivity {
 
                 if(flagg==0)//按博物馆名称搜索
                 {
-                    int i=0;
-
-
-
-                    /*for (Museums museums : museumsList) {
-                       // System.out.println(museums.getName());
-                        title[i]=museums.getName().toString();
-                        i++;
-                        //System.out.println(museums.getMid());
-                    }*/
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -91,8 +75,9 @@ public class Main3Activity extends AppCompatActivity {
                             collection_infos = addtoList0(museumsList);
                         }
                     }).start();
-                    Log.e("信息",collection_infos.toString());
-                    show_museum_adapter();
+                    Message message=new Message();
+                    message.what=1;
+                    handler.sendMessage(message);
 
                 }
                 if(flagg==1)//按展览名称搜索
@@ -106,35 +91,41 @@ public class Main3Activity extends AppCompatActivity {
                             collection_infos = addtoList1(exhibitionList);
                         }
                     }).start();
-                    Log.e("信息",collection_infos.toString());
-                    show_museum_adapter();
+                    Message message=new Message();
+                    message.what=1;
+                    handler.sendMessage(message);
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
-
-                        /*for (Collection collection : collectionList) {
-                            //System.out.println(collection.getCname());
-                            //System.out.println(collection.getMid());
-                            title[i]=collection.getCname();
-                        //    Log.d("title",title[i]);
-                            i++;*/
-                            new Thread(new Runnable() {
+                    new Thread(new Runnable() {
                                 @Override
-                                public void run() {
-                                    List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
-                                    System.out.println(collectionlist);
-
-                                    collection_infos = addtoList(collectionlist);
+                        public void run() {
+                            List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
+                             // System.out.println(collectionlist);
+                             collection_infos = addtoList(collectionlist);
                                 }
-                            }).start();
-                            Log.e("信息",collection_infos.toString());
-                            show_museum_adapter();
-                        }
+                    }).start();
+                    Message message=new Message();
+                    message.what=1;
+                    handler.sendMessage(message);
+                }
                     }
 
 
         });
 
+        handler=new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                if (what == 1) {
+                    Log.i("handler已接受到消息", "" + what);
+                    Log.e("信息",collection_infos.toString());
+                    show_museum_adapter();
+                }
+            }
+        };
 
         List<Map<String ,Object >> listitem = new ArrayList<Map<String ,Object >>();// 创建一个list集合
         // 通过for循环将图片id和列表项文字放到Map中，并添加到list集合中

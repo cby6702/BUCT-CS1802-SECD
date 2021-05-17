@@ -40,7 +40,7 @@
             android:theme="@style/DefaultCityPickerTheme" />
         <activity android:name=".zouao.BeginActivity" />
         <activity android:name=".zouao.Main6Activity" />
-        <activity android:name=".axingbuxiang.comment_museum" />
+        <activity android:name=".wangtianzi.comment_museum" />
         <activity android:name=".guoziyu.mynew" />
         <activity android:name=".guoziyu.mycomment" />
         <activity android:name=".guoziyu.personalifo" />

@@ -1,31 +1,28 @@
 package com.example.baidumapdemo.wangtianzi;
+//对应UserComment.java
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.List;
 
 public class HttpGet_Zcomments {
 
-    public static  float getText(int mid) {
+    static List<Usercomment> UsercommentList;
+    public static List<Usercomment> getText(int mid) {
         try {
             // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
             //URL url = new URL(https://api.ownthink.com/bot")
-            String u = "http://8.140.3.158:81/comments/search/"+mid ;//keyword是查询关键字
+            String u = "http://8.140.3.158:81/comments/show/"+mid ;//keyword是查询关键字
             URL url = new URL(u);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            conn.setDoOutput(true);
+            // conn.setDoOutput(true);
             conn.connect();
 
 
@@ -41,15 +38,16 @@ public class HttpGet_Zcomments {
 
             }
             is.close();
-            System.out.println(buffer.toString() );//看返回的数据是否写全
-            Usercomment res = gson.fromJson(buffer.toString(), Usercomment.class);
+            System.out.println("看返回的数据是否写全:"+buffer.toString() );//看返回的数据是否写全
 
-            return res.getGeneral_comment();
+            //Usercomment res = gson.fromJson(buffer.toString(), Usercomment.class);
+            Type listType = new TypeToken<List<Usercomment>>() {}.getType();//java通过反射获取对象类型
+            UsercommentList = gson.fromJson(buffer.toString(), listType);
 
         } catch (Exception e) {
             e.printStackTrace();
-            return 9;
         }
+        return UsercommentList;
 
     }
 }

@@ -1,30 +1,10 @@
 package com.example.baidumapdemo.wangtianzi;
-
+//用来获取general_comment  name  avatarUrl  comment
 
 public class Usercomment {
-    private int uid;
-
-    private String account;
-
-    private String password;
-
-    private String name;
-
-    private String gender;
-
-    private String email;
-
-    private String moblie;
-
-    private String avatarUrl;
-
-    private int logincount;
-
-    private int validstate;
-
-    private String city;
-
     private int aid;
+
+    private int uid;
 
     private int mid;
 
@@ -32,85 +12,29 @@ public class Usercomment {
 
     private int servicestar;
 
-    private int envrironmentstar;
+    private int environmentstar;
 
-    private float general_comment;
+    private double general_comment;
 
     private String comment;
 
     private String picture;
 
-    public void setUid(int uid){
-        this.uid = uid;
-    }
-    public int getUid(){
-        return this.uid;
-    }
-    public void setAccount(String account){
-        this.account = account;
-    }
-    public String getAccount(){
-        return this.account;
-    }
-    public void setPassword(String password){
-        this.password = password;
-    }
-    public String getPassword(){
-        return this.password;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public String getName(){
-        return this.name;
-    }
-    public void setGender(String gender){
-        this.gender = gender;
-    }
-    public String getGender(){
-        return this.gender;
-    }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public String getEmail(){
-        return this.email;
-    }
-    public void setMoblie(String moblie){
-        this.moblie = moblie;
-    }
-    public String getMoblie(){
-        return this.moblie;
-    }
-    public void setAvatarUrl(String avatarUrl){
-        this.avatarUrl = avatarUrl;
-    }
-    public String getAvatarUrl(){
-        return this.avatarUrl;
-    }
-    public void setLogincount(int logincount){
-        this.logincount = logincount;
-    }
-    public int getLogincount(){
-        return this.logincount;
-    }
-    public void setValidstate(int validstate){
-        this.validstate = validstate;
-    }
-    public int getValidstate(){
-        return this.validstate;
-    }
-    public void setCity(String city){
-        this.city = city;
-    }
-    public String getCity(){
-        return this.city;
-    }
+    private String name;
+
+    private String avatarUrl;
+
     public void setAid(int aid){
         this.aid = aid;
     }
     public int getAid(){
         return this.aid;
+    }
+    public void setUid(int uid){
+        this.uid = uid;
+    }
+    public int getUid(){
+        return this.uid;
     }
     public void setMid(int mid){
         this.mid = mid;
@@ -130,16 +54,16 @@ public class Usercomment {
     public int getServicestar(){
         return this.servicestar;
     }
-    public void setEnvrironmentstar(int envrironmentstar){
-        this.envrironmentstar = envrironmentstar;
+    public void setEnvironmentstar(int environmentstar){
+        this.environmentstar = environmentstar;
     }
-    public int getEnvrironmentstar(){
-        return this.envrironmentstar;
+    public int getEnvironmentstar(){
+        return this.environmentstar;
     }
-    public void setGeneral_comment(float general_comment){
+    public void setGeneral_comment(double general_comment){
         this.general_comment = general_comment;
     }
-    public float getGeneral_comment(){
+    public double getGeneral_comment(){
         return this.general_comment;
     }
     public void setComment(String comment){
@@ -153,6 +77,18 @@ public class Usercomment {
     }
     public String getPicture(){
         return this.picture;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setAvatarUrl(String avatarUrl){
+        this.avatarUrl = avatarUrl;
+    }
+    public String getAvatarUrl(){
+        return this.avatarUrl;
     }
 
 }

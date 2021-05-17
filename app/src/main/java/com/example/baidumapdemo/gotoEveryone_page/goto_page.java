@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.Main3Activity;
-import com.example.baidumapdemo.axingbuxiang.comment_museum;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangjiaxin.Main5Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
