@@ -37,6 +37,18 @@ public class Main2Activity extends AppCompatActivity {
         ratingbar2 = (RatingBar) findViewById(R.id.ratingBar2);//星级评分条 服务
         ratingbar3 = (RatingBar) findViewById(R.id.ratingBar3);//星级评分条 环境
 
+        //以下是评星条的内容
+        ratingbar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Log.e("------------","当前的评价等级："+rating);
+//                List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
+//                int i= (int)commentslist.get(0).getGeneral_comment();
+//                System.out.println(i);
+//                ratingbar.setRating(i);
+            }
+        });
+
         Button button=(Button)findViewById(R.id.btn);		//获取“提交”按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +67,8 @@ public class Main2Activity extends AppCompatActivity {
                 //Toast.makeText(Main2Activity.this, "你评价了" + rating + "颗星", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         //需要的前后端交接：通过post传editText2文本框的内容和ratingBar1、ratingBar2、ratingBar3的内容给后端
         //上传成功则返回true；失败返回false
