@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class HttpPost_comment {
 
-    public boolean HttpPost_comment(int uid,int mid,int exhibitionsta,int servicestar,int environmentstar,double general_comment,String comment,String picture)
+    public static boolean  sendText(int uid,int mid,int exhibitionsta,int servicestar,int environmentstar,double general_comment,String comment,String picture)
     {
         int k;
         String s=new String();

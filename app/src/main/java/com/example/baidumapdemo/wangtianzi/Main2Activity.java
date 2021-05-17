@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.example.baidumapdemo.R;
 
@@ -16,6 +20,10 @@ public class Main2Activity extends AppCompatActivity {
     private RatingBar ratingbar1;	//星级评分条 展览
     private RatingBar ratingbar2;	//星级评分条 服务
     private RatingBar ratingbar3;	//星级评分条 环境
+    private int rating1,rating2,rating3;
+    private double rating;
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,27 +56,64 @@ public class Main2Activity extends AppCompatActivity {
 //                ratingbar.setRating(i);
             }
         });
+        ratingbar2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Log.e("------------","当前的评价等级："+rating);
+            }
+        });
+        ratingbar3.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Log.e("------------","当前的评价等级："+rating);
+            }
+        });
 
         Button button=(Button)findViewById(R.id.btn);		//获取“提交”按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result1 = ratingbar1.getProgress();
-                int result2 = ratingbar1.getProgress();
-                int result3 = ratingbar1.getProgress();            //获取进度
-                float rating1 = ratingbar1.getRating();
-                float rating2 = ratingbar1.getRating();
-                float rating3 = ratingbar1.getRating();            //获取等级
-                float step1 = ratingbar1.getStepSize();
-                float step2 = ratingbar1.getStepSize();
-                float step3 = ratingbar1.getStepSize();            //获取每次最少要改变多少个星级
-                float rating = (rating1+rating2+rating3)/3;
-                //Log.i("星级评分条","step="+step1+" result="+result1+" rating="+rating);
-                //Toast.makeText(Main2Activity.this, "你评价了" + rating + "颗星", Toast.LENGTH_SHORT).show();
+                rating1 = (int)ratingbar1.getRating();//展览
+                rating2 = (int)ratingbar2.getRating();//服务
+                rating3 = (int)ratingbar3.getRating();//环境
+                rating = (rating1+rating2+rating3)/(3.0);
+
+                EditText input=(EditText) findViewById(R.id.pinglun);//搜索框输入的数据
+                final String inn=input.getText().toString().trim();
+                Toast.makeText(Main2Activity.this, inn, Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean result=HttpPost_comment.sendText(1,1,rating1,rating2,rating3,rating,inn,null);
+                        if(result==true)
+                            Toast.makeText(Main2Activity.this,"已成功评价",Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(Main2Activity.this,"评价失败",Toast.LENGTH_SHORT).show();
+
+                        Message message=new Message();
+                        message.what=1;
+                        handler.sendMessage(message);
+                    }
+                }).start();
+
             }
         });
 
+        //handle控制线程
+        handler=new Handler(){
+            public void handleMessage(android.os.Message msg) {
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
 
+                if (what == 1) {
+                    Log.i("handler已接受到消息", "" + what);
+
+
+
+                    //代码放在这里
+                }
+            }
+        };
 
         //需要的前后端交接：通过post传editText2文本框的内容和ratingBar1、ratingBar2、ratingBar3的内容给后端
         //上传成功则返回true；失败返回false
