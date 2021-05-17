@@ -51,6 +51,8 @@ public class personalct extends AppCompatActivity {
         init_gzy1();
         init_gzy2(uid);
         init_gzy3(uid);
+        init_gzy4();
+        init_gzy5();
     }
     public void init_gzy1(){
         Button gzy = findViewById(R.id.button2);
@@ -58,6 +60,28 @@ public class personalct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), personalifo.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+    }
+    public void init_gzy4(){//退出账户。跳转到登录界面
+        Button gzy = findViewById(R.id.button4);
+        gzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(), Main4Activity.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+    }
+    public void init_gzy5(){//切换账户。跳转到登录界面
+        Button gzy = findViewById(R.id.button5);
+        gzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(), Main4Activity.class);
                 startActivity(intent2);
                 finish();
             }
