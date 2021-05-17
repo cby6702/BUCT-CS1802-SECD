@@ -5,6 +5,7 @@ import com.cs1802.museum.bean.Comments;
 import com.cs1802.museum.bean.User;
 import com.cs1802.museum.mapper.CommentsMapper;
 import com.cs1802.museum.service.CommentsService;
+import com.cs1802.museum.service.MuseumService;
 import com.cs1802.museum.service.UserService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class CommentsServiceImpl implements CommentsService {
     private UserService userService;
     @Autowired
     private  CommentsService commentsService;
+    @Autowired
+    private MuseumService museumService;
     /*
     业务：根据博物馆id查询评价表
     逻辑：1.根据传入mid，查询comments表并返回对应comments对象
@@ -93,9 +96,15 @@ public class CommentsServiceImpl implements CommentsService {
     /*
     业务：用户上传评价
     逻辑：1.向Comments表中插入数据
+         2.修改museums表中评分
      */
     @Override
     public boolean uploadComments(Comments comments) {
-        return commentsMapper.uploadComments(comments);
+        boolean t1 = commentsMapper.uploadComments(comments);
+        boolean t2 = museumService.updateScore(comments);
+        if(t1&&t2)
+            return true;
+        else
+            return false;
     }
 }

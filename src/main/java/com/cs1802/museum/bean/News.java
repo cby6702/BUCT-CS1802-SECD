@@ -17,7 +17,7 @@ public class News {
     private String url;
     private String imageurl;
     private String author;
-    private Date releasetime;
+    private String releasetime;
     private int mid;
     private int status;
     private int nature;

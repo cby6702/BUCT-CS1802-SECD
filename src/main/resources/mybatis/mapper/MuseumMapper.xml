@@ -81,6 +81,10 @@
 
     <select id="searchByName" resultMap="museumMap">
         select * from museums where name like concat('%',#{searchItem},'%')
-
     </select>
+
+    <update id="updateScore">
+        update museums set exhibition_score=#{exhibitionscore},environment_score=#{environmentscore},service_score=#{servicescore},general_score=#{generalscore}
+        where mid=#{mid}
+    </update>
 </mapper>

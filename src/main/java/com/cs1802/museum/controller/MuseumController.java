@@ -1,7 +1,9 @@
 package com.cs1802.museum.controller;
 
+import com.cs1802.museum.bean.Comments;
 import com.cs1802.museum.bean.Museum;
 import com.cs1802.museum.bean.Page;
+import com.cs1802.museum.bean.Score;
 import com.cs1802.museum.service.MuseumService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -123,6 +123,28 @@ public class MuseumController<T> {
         List<T> list = museumService.search(searchKind, searchItem);
         try {
             return fastjson.writeValueAsString(list);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 功能：根据博物馆id查询博物馆表中对应评分
+     * url: /museum/showScore/{mid}
+     * 返回museums表中对应评分（String）
+     *
+     * @param midString url上带的（前端传回来的都是string类型）
+     * @return Score或null
+     */
+    @GetMapping("/showScore/{mid}")
+    public String showScore(@PathVariable("mid") String midString) {
+        //1.将前端传回的String类型mid转换为int类型
+        int mid = Integer.parseInt(midString);
+        //2.执行业务逻辑，返回Score对象
+        Score score= museumService.getScore(mid);
+        try {
+            return fastjson.writeValueAsString(score);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

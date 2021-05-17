@@ -23,4 +23,5 @@ public interface MuseumMapper {
 
     List<Museum> searchByName(String searchItem);
 
+    boolean updateScore(int mid, double exhibitionscore, double environmentscore, double servicescore, double generalscore);
 }

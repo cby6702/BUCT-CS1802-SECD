@@ -1,9 +1,6 @@
 package com.cs1802.museum.service.impl;
 
-import com.cs1802.museum.bean.Exhibition;
-import com.cs1802.museum.bean.Museum;
-import com.cs1802.museum.bean.Page;
-import com.cs1802.museum.bean._Collection;
+import com.cs1802.museum.bean.*;
 import com.cs1802.museum.mapper.CollectionMapper;
 import com.cs1802.museum.mapper.CommentsMapper;
 import com.cs1802.museum.mapper.ExhibitionMapper;
@@ -25,6 +22,8 @@ public class MuseumServiceImpl<T> implements MuseumService {
     private CollectionMapper collectionMapper;
     @Autowired
     private ExhibitionMapper exhibitionMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
     /*
     业务：根据博物馆name查询博物馆表
     逻辑：1.根据传入name，查询museums表并返回对应的museums对象
@@ -115,4 +114,46 @@ public class MuseumServiceImpl<T> implements MuseumService {
         }
         return list;
     }
+
+    /*
+    业务：根据新上传的评分修改museums表中评分
+    逻辑：1.根据新上传comments获得mid及新评分信息
+         2.计算新的评分
+         3.修改museums表中对应评分
+     */
+    @Override
+    public boolean updateScore(Comments comment) {
+        //1.获得comment中mid和评分信息
+        int mid = comment.getMid();
+        int exhibitionstar = comment.getExhibitionstar();
+        int environmentstar = comment.getEnvironmentstar();
+        int servicestar = comment.getServicestar();
+        double general_star =comment.getGeneral_comment();
+        //2.计算新的评分
+        Museum museum = museumMapper.getMuseum1(mid);
+        List<Comments> comments = commentsMapper.getComments(mid);
+        int size = comments.size();
+        double exhibitionscore = (museum.getExhibition_score()*(size-1)+exhibitionstar) / size;
+        double environmentscore = (museum.getEnvironment_score()*(size-1)+environmentstar) / size;
+        double servicescore = (museum.getService_score()*(size-1)+servicestar) / size;
+        double generalscore = (museum.getGeneral_score()*(size-1)+general_star) / size;
+        //3.更新museums表中对应评分
+        return museumMapper.updateScore(mid,exhibitionscore,environmentscore,servicescore,generalscore);
+    }
+
+    /*
+    业务：根据博物馆id查询博物馆表中对应评分并返回
+    逻辑：1.根据传入mid，查询museums表并返回对应评分信息
+     */
+    @Override
+    public Score getScore(int mid) {
+        Museum museum = museumMapper.getMuseum1(mid);
+        Score score = new Score();
+        score.setExhibition_score(museum.getExhibition_score());
+        score.setEnvironment_score(museum.getEnvironment_score());
+        score.setService_score(museum.getService_score());
+        score.setGeneral_score(museum.getGeneral_score());
+        return  score;
+    }
+
 }

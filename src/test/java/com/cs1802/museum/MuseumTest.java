@@ -2,6 +2,7 @@ package com.cs1802.museum;
 
 import com.cs1802.museum.bean.Museum;
 import com.cs1802.museum.bean.Page;
+import com.cs1802.museum.bean.Score;
 import com.cs1802.museum.service.MuseumService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @SpringBootTest
@@ -52,5 +54,12 @@ public class MuseumTest {
 //        List list = museumService.search("博物馆", "北京");
 //        System.out.println(list);
 //        System.out.println(list.size());
+//    }
+//
+//    @Test
+//    @DisplayName("根据mid查询博物馆评分test")
+//    public void showScoreTest() {
+//        Score score = museumService.getScore(3);
+//        System.out.println(score);
 //    }
 }
