@@ -60,6 +60,13 @@ public class comment_museum extends AppCompatActivity {
             public void run() {
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
                 System.out.println(commentslist);
+                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来
+                System.out.println(i);
+                ratingbar.setRating(i);
+
+                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+                textViewToChange.setText(commentslist.get(0).getName());//这里博物馆名字显示的是“张三”，要通过mid找到博物馆的名字显示出来
+
 
                 comment_infos = addtoList(commentslist);
                 Message message=new Message();
@@ -99,6 +106,7 @@ public class comment_museum extends AppCompatActivity {
         ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Log.e("------------","当前的评价等级："+rating);
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
                 int i= (int)commentslist.get(0).getGeneral_comment();
                 System.out.println(i);
