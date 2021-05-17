@@ -26,6 +26,7 @@ public class comment_museum extends AppCompatActivity {
 
     private RatingBar ratingbar;	//星级评分条
     private List<Map<String,Object>> comment_infos = new ArrayList<>();
+    private int mid;
 
     Handler handler;
 
@@ -64,9 +65,19 @@ public class comment_museum extends AppCompatActivity {
                 System.out.println(i);
                 ratingbar.setRating(i);
 
-                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-                textViewToChange.setText(commentslist.get(0).getName());//这里博物馆名字显示的是“张三”，要通过mid找到博物馆的名字显示出来
+//                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+//                textViewToChange.setText(commentslist.get(0).getName());//这里博物馆名字显示的是“张三”，要通过mid找到博物馆的名字显示出来
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String res = HttpGet_Museumname.getText(mid);
+                        final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+                        textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
+                        System.out.println(res);
+                    }
+                }).start();
 
+                mid=commentslist.get(0).getMid();
 
                 comment_infos = addtoList(commentslist);
                 Message message=new Message();
@@ -74,6 +85,17 @@ public class comment_museum extends AppCompatActivity {
                 handler.sendMessage(message);
             }
         }).start();
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String res = HttpGet_Museumname.getText(mid);
+//                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+//                textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
+//
+//                System.out.println(res);
+//            }
+//        }).start();
 
         handler=new Handler(){
             public void handleMessage(android.os.Message msg) {
@@ -87,7 +109,6 @@ public class comment_museum extends AppCompatActivity {
                 }
             }
         };
-
 
 
         Button buttonq=(Button)findViewById(R.id.qqbtn);		//获取“返回”按钮
