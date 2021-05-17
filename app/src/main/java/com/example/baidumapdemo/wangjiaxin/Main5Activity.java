@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangtianzi.comment_museum;
@@ -52,6 +53,12 @@ public class Main5Activity extends AppCompatActivity {
                 //finish();
             }
         });
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("Message");
+        String name = bundle.getString("MuseumName");
+        TextView textView = findViewById(R.id.textView2);
+        textView.setText(name);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

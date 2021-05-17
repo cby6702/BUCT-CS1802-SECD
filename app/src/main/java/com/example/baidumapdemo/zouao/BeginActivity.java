@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.gotoEveryone_page.goto_page;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
+import com.example.baidumapdemo.wangjiaxin.Main5Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 import com.example.baidumapdemo.zouao.Bean.MuseumRootBean;
 import com.example.baidumapdemo.zouao.Bean.Museum;
@@ -191,7 +192,19 @@ public class BeginActivity extends AppCompatActivity {
                 }
             }
         };
-
+        //王嘉薪测试
+//        Button button5=findViewById(R.id.xiangqing);
+//        button5.setText("详情");
+//        button5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Bundle bundle=new Bundle();
+//                Intent intent=new Intent(BeginActivity.this, Main5Activity.class);
+//                bundle.putString("MuseumName","北京历史博物馆");
+//                intent.putExtra("Message",bundle);
+//                startActivity(intent);
+//            }
+//        });
     }
     protected int mFinishCount = 0;
 
@@ -215,37 +228,21 @@ public class BeginActivity extends AppCompatActivity {
     }
     //获取图片资源
     public Bitmap getURLimage(String url) {
-
         Bitmap bmp = null;
-
         try {
-
             URL myurl = new URL(url);
-
             // 获得连接
-
             HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-
             conn.setConnectTimeout(6000);//设置超时
-
             conn.setDoInput(true);
-
             conn.setUseCaches(false);//不缓存
-
             conn.connect();
-
             InputStream is = conn.getInputStream();//获得图片的数据流
-
             bmp = BitmapFactory.decodeStream(is);//读取图像数据
-
             is.close();
-
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
         return bmp;
 
     }
