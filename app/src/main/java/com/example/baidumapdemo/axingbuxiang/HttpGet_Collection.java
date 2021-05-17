@@ -1,5 +1,5 @@
 package com.example.baidumapdemo.axingbuxiang;
-
+//对应Collection.java
 import android.util.Log;
 
 import com.google.gson.Gson;

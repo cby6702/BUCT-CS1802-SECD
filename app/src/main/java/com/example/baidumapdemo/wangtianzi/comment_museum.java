@@ -25,10 +25,10 @@ import java.util.Map;
 public class comment_museum extends AppCompatActivity {
 
     private RatingBar ratingbar;	//星级评分条
-    private List<Map<String,Object>> comment_infos = new ArrayList<>();
-    private int mid;
+    private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
+    private int mid;//通过mid获取博物馆名字显示出来
 
-    Handler handler;
+    Handler handler;//为了控制线程
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class comment_museum extends AppCompatActivity {
         setContentView(R.layout.activity_comment_museum);
 
        // ListView listView=(ListView)findViewById(R.id.listview);// 获取列表视图
-        int[] imageid=new int[100];
+        int[] imageid=new int[100];//放置头像
 //                new int[]{R.drawable.img01,R.drawable.img02,R.drawable.img03,
 //                R.drawable.img04,R.drawable.img05,R.drawable.img06,
 //                R.drawable.img07,R.drawable.img08,R.drawable.img09};// 定义并初始化保存图片id的数组
@@ -45,28 +45,30 @@ public class comment_museum extends AppCompatActivity {
 //            imageid[i]=R.drawable.img01;//现在是全都设置成一张作为头像了
 //        }
 
-        String[] title=new String[100];
+        String[] title=new String[100];//放置姓名
 //                =new String[] {"用户001","用户002","用户003",
 //                "用户004","用户005","用户006",
 //                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
-        String[] comment=new String[100];
+        String[] comment=new String[100];//放置评论内容
 //                =new String[] {"真棒！","下次一定","真好用！"
 //                ,"好棒！","谢谢","很久没有遇到这么好的APP了！"
 //                ,"该用户没有句子评价","希望多多完善","界面真棒！"
 //        };
         //R.id.textView4;
 
+        //
         new Thread(new Runnable() {
             @Override
             public void run() {
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
                 System.out.println(commentslist);
-                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来
+                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
                 System.out.println(i);
                 ratingbar.setRating(i);
 
 //                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
 //                textViewToChange.setText(commentslist.get(0).getName());//这里博物馆名字显示的是“张三”，要通过mid找到博物馆的名字显示出来
+                mid=commentslist.get(0).getMid();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -77,9 +79,7 @@ public class comment_museum extends AppCompatActivity {
                     }
                 }).start();
 
-                mid=commentslist.get(0).getMid();
-
-                comment_infos = addtoList(commentslist);
+                comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
                 Message message=new Message();
                 message.what=1;
                 handler.sendMessage(message);
@@ -97,6 +97,7 @@ public class comment_museum extends AppCompatActivity {
 //            }
 //        }).start();
 
+        //handle控制线程
         handler=new Handler(){
             public void handleMessage(android.os.Message msg) {
                 int what = msg.what;
@@ -105,7 +106,7 @@ public class comment_museum extends AppCompatActivity {
                 if (what == 1) {
                     Log.i("handler已接受到消息", "" + what);
                     Log.e("信息",comment_infos.toString());
-                    show_comment_adapter();
+                    show_comment_adapter();// 将适配器与ListView关联
                 }
             }
         };
@@ -134,11 +135,11 @@ public class comment_museum extends AppCompatActivity {
                 ratingbar.setRating(i);
             }
         });
-
     }
-    public List<Map<String,Object>> addtoList(List<Usercomment>commentsList){
-        List<Map<String,Object>> com_info = new ArrayList<>();
 
+    public List<Map<String,Object>> addtoList(List<Usercomment>commentsList){
+        //addtoList添加进comment_infos的json数组
+        List<Map<String,Object>> com_info = new ArrayList<>();
         for (Usercomment usercomment : commentsList) {
             Map<String,Object> mapinfo = new HashMap<>();
             mapinfo.put("image",usercomment.getAvatarUrl());

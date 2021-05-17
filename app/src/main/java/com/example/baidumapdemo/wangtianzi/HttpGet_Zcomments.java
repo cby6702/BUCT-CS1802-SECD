@@ -1,5 +1,5 @@
 package com.example.baidumapdemo.wangtianzi;
-
+//对应UserComment.java
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

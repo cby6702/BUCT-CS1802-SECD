@@ -1,4 +1,5 @@
 package com.example.baidumapdemo.axingbuxiang;;
+//用来获取mid cname
 public class Collection {
     private int cid;
 

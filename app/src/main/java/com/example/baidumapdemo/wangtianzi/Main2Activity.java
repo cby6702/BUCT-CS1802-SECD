@@ -1,5 +1,5 @@
 package com.example.baidumapdemo.wangtianzi;
-
+//这个是提交评价的java，尚未进行前后端的交互
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,16 +25,18 @@ public class Main2Activity extends AppCompatActivity {
         buttonre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //跳转回上一个页面 即 博物馆评价表总页面
+                //跳转回上一个页面 即 博物馆总评价页面
                 Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
                 startActivity(intent2);
                 finish();
             }
         });
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar1);
-        ratingbar2 = (RatingBar) findViewById(R.id.ratingBar2);
-        ratingbar3 = (RatingBar) findViewById(R.id.ratingBar3);
+
         //获取星级评分条
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar1);//星级评分条 展览
+        ratingbar2 = (RatingBar) findViewById(R.id.ratingBar2);//星级评分条 服务
+        ratingbar3 = (RatingBar) findViewById(R.id.ratingBar3);//星级评分条 环境
+
         Button button=(Button)findViewById(R.id.btn);		//获取“提交”按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,10 +51,15 @@ public class Main2Activity extends AppCompatActivity {
                 float step2 = ratingbar1.getStepSize();
                 float step3 = ratingbar1.getStepSize();            //获取每次最少要改变多少个星级
                 float rating = (rating1+rating2+rating3)/3;
-                Log.i("星级评分条","step="+step1+" result="+result1+" rating="+rating);
+                //Log.i("星级评分条","step="+step1+" result="+result1+" rating="+rating);
                 //Toast.makeText(Main2Activity.this, "你评价了" + rating + "颗星", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //需要的前后端交接：通过post传editText2文本框的内容和ratingBar1、ratingBar2、ratingBar3的内容给后端
+        //上传成功则返回true；失败返回false
+
+        //需要的前后端交接：根据uid、mid判断用户是否可评价
 
     }
 }

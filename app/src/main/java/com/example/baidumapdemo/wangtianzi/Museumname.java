@@ -1,4 +1,5 @@
 package com.example.baidumapdemo.wangtianzi;
+//用来通过mid获取name
 
 public class Museumname {
     private int mid;

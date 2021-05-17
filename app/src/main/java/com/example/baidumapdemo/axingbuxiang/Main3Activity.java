@@ -26,8 +26,8 @@ public class Main3Activity extends AppCompatActivity {
 
     private String cityname="北京";       //默认当前城市为北京
     private int flagg=0;
-    private List<Map<String,Object>> collection_infos = new ArrayList<>();
-    Handler handler;
+    private List<Map<String,Object>> collection_infos = new ArrayList<>();//定义json数组
+    Handler handler;//为了控制线程
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

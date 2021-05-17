@@ -1,4 +1,5 @@
 package com.example.baidumapdemo.wangtianzi;
+//用来获取general_comment  name  avatarUrl  comment
 
 public class Usercomment {
     private int aid;

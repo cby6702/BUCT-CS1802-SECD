@@ -1,4 +1,5 @@
-package com.example.baidumapdemo.axingbuxiang;;
+package com.example.baidumapdemo.axingbuxiang;
+//用来获取mid ename
 public class Exhibition {
     private int eid;
 
