@@ -28,6 +28,7 @@ public class comment_museum extends AppCompatActivity {
     private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
     private int mid;//通过mid获取博物馆名字显示出来
     private int uid=1;
+    String name;
 
     Handler handler;//为了控制线程
 
@@ -42,11 +43,13 @@ public class comment_museum extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         if(bundle!=null){
             //获取数据
-            //uid = bundle.getInt("number1");
+            //uid = bundle.getInt("numuid");
             mid = bundle.getInt("nummid");
-            Log.e("testmid",""+mid);
-        }
+            name = bundle.getString("name");
 
+            Log.e("testmid",""+mid);
+            Log.e("testname",name);
+        }
 
         int[] imageid=new int[100];//放置头像
         String[] title=new String[100];//放置姓名
@@ -57,20 +60,38 @@ public class comment_museum extends AppCompatActivity {
             public void run() {
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
                 System.out.println(commentslist);
-                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
-                System.out.println(i);
-                ratingbar.setRating(i);
+
+                if(commentslist==null)
+                {
+                    int i=0;
+                    //System.out.println(i);
+                    ratingbar.setRating(i);
+                }
+                else
+                {
+                    int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+                    System.out.println(i);
+                    ratingbar.setRating(i);
+                }
+
+//                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+//                System.out.println(i);
+//                ratingbar.setRating(i);
+
+                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+                        textViewToChange.setText(name);//要通过mid找到博物馆的名字显示出来
 
                 //mid=commentslist.get(0).getMid();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String res = HttpGet_Museumname.getText(mid);
-                        final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-                        textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
-                        System.out.println(res);
-                    }
-                }).start();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String res = HttpGet_Museumname.getText(mid);
+//                        final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+//                        textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
+//                        System.out.println(res);
+//                    }
+//                }).start();
+
                 comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
                 Message message=new Message();
                 message.what=1;
@@ -103,7 +124,6 @@ public class comment_museum extends AppCompatActivity {
                         }
                     }
                 }).start();
-
             }
         });
 
@@ -136,8 +156,6 @@ public class comment_museum extends AppCompatActivity {
                 }
             }
         };
-
-
 
         //以下是评星条的内容
         ratingbar = (RatingBar) findViewById(R.id.ratingBar2);	//获取星级评分条

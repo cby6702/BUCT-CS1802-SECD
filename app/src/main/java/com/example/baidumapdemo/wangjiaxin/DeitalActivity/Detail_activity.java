@@ -62,7 +62,9 @@ public class Detail_activity extends AppCompatActivity {
 
                 if (what == 1) {                //进行列表加载
                     Log.i("handler已接受到消息", "" + what);
+
                     Log.e("test123",""+mid);
+                    Log.e("test456",museumname);
                 }
             }
         };
@@ -84,6 +86,7 @@ public class Detail_activity extends AppCompatActivity {
                 //跳转评价页
                 Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("name",museumname);
                 bundle.putInt("nummid",mid);
                 intent2.putExtras(bundle);
                 startActivity(intent2);
