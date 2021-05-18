@@ -39,7 +39,7 @@ public class UserTest {
    @Transactional
    @DisplayName("登录")
    public void LoginTest(){
-     if(userService.Login(1,"123456"))
+     if(userService.Login(38,"123456"))
        System.out.println("登录成功");
      else
          System.out.println("登录失败");
