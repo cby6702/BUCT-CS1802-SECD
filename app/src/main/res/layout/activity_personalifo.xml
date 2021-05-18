@@ -7,34 +7,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".guoziyu.personalifo">
+
         <LinearLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="413dp"
+            android:layout_height="796dp"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="-1dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="@string/register_surface"
                     android:textColor="#ff000000"
-                    android:textSize="40dp"
-                    android:layout_gravity="center"
-                    />
+                    android:textSize="30dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="137dp"
+                    android:layout_height="107dp"
                     android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="103dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="50dp"
                             android:text="@string/identity_text"
                             android:textColor="#ff000000"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/name"
@@ -44,12 +47,12 @@
                             android:layout_marginTop="50dp"
                             android:hint="请输入用户名"
                             android:maxLines="1"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="91dp"
+                    android:layout_height="58dp"
                     android:orientation="horizontal">
 
                         <TextView
@@ -58,7 +61,7 @@
                             android:layout_marginLeft="30dp"
                             android:text="@string/password_text"
                             android:textColor="#ff000000"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/password"
@@ -67,12 +70,12 @@
                             android:layout_marginLeft="5dp"
                             android:hint="请输入密码"
                             android:maxLines="1"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="92dp"
+                    android:layout_height="65dp"
                     android:orientation="horizontal">
 
                         <TextView
@@ -81,7 +84,7 @@
                             android:layout_marginLeft="30dp"
                             android:text="@string/mailbox_text"
                             android:textColor="#ff000000"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/mail"
@@ -90,7 +93,7 @@
                             android:layout_marginLeft="5dp"
                             android:hint="请输入邮箱"
                             android:maxLines="1"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,7 +107,7 @@
                             android:layout_marginLeft="30dp"
                             android:text="@string/phonenumber_text"
                             android:textColor="#ff000000"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/mobile"
@@ -113,12 +116,12 @@
                             android:layout_marginLeft="5dp"
                             android:hint="请输入您的手机号码"
                             android:maxLines="1"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/sign"
-                    android:layout_width="122dp"
+                    android:layout_width="109dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="150dp"
                     android:layout_marginTop="20dp"

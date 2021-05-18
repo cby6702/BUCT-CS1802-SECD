@@ -32,7 +32,7 @@
                 android:layout_marginTop="50dp"
                 android:text="@string/identity_text"
                 android:textColor="#ff000000"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/name"
