@@ -34,6 +34,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".wangjiaxin.museumexplain"></activity>
+        <activity android:name=".guoziyu.personalUpdate"></activity>
         <activity android:name=".zouao.rankActivity" />
         <activity
             android:name=".zouao.CityPickerActivity"
