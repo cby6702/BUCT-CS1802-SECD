@@ -26,8 +26,8 @@ public class comment_museum extends AppCompatActivity {
 
     private RatingBar ratingbar;	//星级评分条
     private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
-    private int mid=1;//通过mid获取博物馆名字显示出来
-    private int uid=1;//通过mid获取博物馆名字显示出来
+    private int mid;//通过mid获取博物馆名字显示出来
+    private int uid=1;
 
     Handler handler;//为了控制线程
 
@@ -35,6 +35,18 @@ public class comment_museum extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_museum);
+
+        //获取数据
+        Intent intent = getIntent();
+        //从intent取出bundle
+        Bundle bundle = intent.getExtras();
+        if(bundle!=null){
+            //获取数据
+            //uid = bundle.getInt("number1");
+            mid = bundle.getInt("nummid");
+            Log.e("testmid",""+mid);
+        }
+
 
         int[] imageid=new int[100];//放置头像
         String[] title=new String[100];//放置姓名
@@ -49,7 +61,7 @@ public class comment_museum extends AppCompatActivity {
                 System.out.println(i);
                 ratingbar.setRating(i);
 
-                mid=commentslist.get(0).getMid();
+                //mid=commentslist.get(0).getMid();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
