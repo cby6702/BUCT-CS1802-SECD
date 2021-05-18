@@ -14,7 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.baidumapdemo.wangjiaxin.collectionexplain;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseummid;
 import com.example.baidumapdemo.wangjiaxin.museumexplain;
@@ -139,8 +139,12 @@ public class Detail_activity extends AppCompatActivity {
                 startActivity(intentmuseum);
                 break;
             case R.id.collection_information:
-                Intent intentcol=new Intent(getApplicationContext(),museumexplain.class);
-                startActivity(intentcol);
+//                Intent intentcol=new Intent(getApplicationContext(),collectionexplain.class);
+//                startActivity(intentcol);
+//                Bundle bundlecol = new Bundle();
+//                bundlecol.putInt("mid",mid);
+//                intentcol.putExtras(bundlecol);
+//                startActivity(intentcol);
                 break;
             case R.id.exhibition_information:
                 Intent intentex=new Intent(getApplicationContext(),museumexplain.class);

@@ -12,31 +12,31 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseumint;
+import com.example.baidumapdemo.wangjiaxin.HTTP.http_getcollectionint;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseumbyname;
 import com.example.baidumapdemo.zouao.Util.HttpGet;
 import com.example.baidumapdemo.zouao.adaptor.MuseumList.MuseumListAdapter;
 
-public class museumexplain extends AppCompatActivity {
+public class collectionexplain extends AppCompatActivity {
     private String museumname;
-    private String opentime;
-    private String museumint;
+    private String colintroduction;
+    private int mid;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_museumexplain);
+        setContentView(R.layout.activity_collectionexplain);
         final MediaPlayer mediaPlayer=MediaPlayer.create(this,R.raw.startend);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        museumname = bundle.getString("museumname");
-        //Log.e("test",museumname);
+        mid = bundle.getInt("mid");
+        Log.e("test999",""+mid);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                museumint=http_getmuseumint.getText(museumname);
-                opentime = http_getmuseumbyname.getText(museumname);
+                colintroduction =http_getcollectionint.getText(mid);
                 Message message=new Message();
                 message.what=1;
                 handler.sendMessage(message);
@@ -51,10 +51,9 @@ public class museumexplain extends AppCompatActivity {
                 if (what == 1) {                //进行列表加载
                     Log.i("handler已接受到消息", "" + what);
 
-                    TextView open_time = findViewById(R.id.timedetails);
-                    open_time.setText(opentime);
-                    TextView introduction=findViewById(R.id.museumint);
-                    introduction.setText(museumint);
+                    TextView colint = findViewById(R.id.coldetails);
+                    colint.setText(colintroduction);
+
                 }
             }
         };

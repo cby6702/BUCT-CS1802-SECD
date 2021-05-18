@@ -22,7 +22,7 @@ public class museumInfo {
     private int exhibition_score;
     private int environment_score;
     private int service_score;
-    private int general_score;
+    private double general_score;
     private int annual_exhibitions;
     private String ing;
     public void setMid(int mid) {
@@ -95,10 +95,10 @@ public class museumInfo {
         return service_score;
     }
 
-    public void setGeneral_score(int general_score) {
+    public void setGeneral_score(double general_score) {
         this.general_score = general_score;
     }
-    public int getGeneral_score() {
+    public double getGeneral_score() {
         return general_score;
     }
 
