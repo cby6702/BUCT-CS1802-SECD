@@ -62,12 +62,12 @@ public class Main4Activity extends AppCompatActivity {
                             if("true".equals(s))
                             {
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(Main4Activity.this, "正在跳转……", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(Main4Activity.this, "正在跳转……", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
                                 next_personal(username);//显示到personalct中
                             }
                             else if ("false".equals(s))
