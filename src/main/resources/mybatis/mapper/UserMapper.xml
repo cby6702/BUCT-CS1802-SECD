@@ -18,7 +18,7 @@
         select * from users where name=#{name}
     </select>
     <insert id="addUser">
-        insert into users(name,password) values (#{name},#{password});
+        insert into users(name,password,email,mobile) values (#{name},#{password},#{email},#{mobile});
     </insert>
     <update id="updateUser">
         update users set name=#{name},gender=#{gender},birthday=#{birthday},email=#{email},mobile=#{mobile},avatarUrl=#{avatarUrl}

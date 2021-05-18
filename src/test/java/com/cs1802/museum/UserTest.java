@@ -16,8 +16,8 @@ import java.util.List;
 @DisplayName("用户测试")
 public class UserTest {
 
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private UserService userService;
 //
 //   @Test
 //    @Transactional
@@ -35,33 +35,33 @@ public class UserTest {
 //        System.out.println(user);
 //    }
 //
-//   @Test
-//   @Transactional
-//   @DisplayName("登录")
-//   public void LoginTest(){
-//     if(userService.Login(1,"123456"))
-//       System.out.println("登录成功");
-//     else
-//         System.out.println("登录失败");
-//     if(userService.Login(1,"kjdsklfjaldsj"))
-//        System.out.println("登录成功");
-//     else
-//        System.out.println("登录失败");
-//    }
+   @Test
+   @Transactional
+   @DisplayName("登录")
+   public void LoginTest(){
+     if(userService.Login(1,"123456"))
+       System.out.println("登录成功");
+     else
+         System.out.println("登录失败");
+     if(userService.Login(1,"kjdsklfjaldsj"))
+        System.out.println("登录成功");
+     else
+        System.out.println("登录失败");
+    }
 //
-//    @Test
-//    @Transactional
-//    @DisplayName("注册")
-//    public void SignTest(){
-//       if(userService.Sign("zxc","123456"))
-//           System.out.println("注册成功");
-//       else
-//           System.out.println("注册失败");
-//       if(userService.Sign("ccy","123456"))
-//           System.out.println("注册成功");
-//       else
-//           System.out.println("注册失败");
-//    }
+    @Test
+    @Transactional
+    @DisplayName("注册")
+    public void SignTest(){
+       if(userService.Sign("zxc","123456","1@qq.com","123"))
+           System.out.println("注册成功");
+       else
+           System.out.println("注册失败");
+       if(userService.Sign("ccy","123456","2@qq.com","345"))
+           System.out.println("注册成功");
+       else
+           System.out.println("注册失败");
+    }
 //
 //    @Test
 //    @Transactional

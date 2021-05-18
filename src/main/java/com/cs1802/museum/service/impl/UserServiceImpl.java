@@ -75,11 +75,11 @@ public class UserServiceImpl implements UserService {
      */
 
     @Override
-    public boolean Sign(String name,String password){
+    public boolean Sign(String name,String password,String email,String mobile){
         User user=userMapper.getSignUser(name);
         System.out.println("user=" + user);
         if(user==null){
-            return userMapper.addUser(name,password);
+            return userMapper.addUser(name,password,email,mobile);
         }
         else
             return false;

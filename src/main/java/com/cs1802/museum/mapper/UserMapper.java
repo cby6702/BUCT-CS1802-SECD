@@ -17,7 +17,7 @@ public interface UserMapper {
     int getValidstate(int uid);
 
     User getSignUser(String name);
-    boolean addUser(String name,String password);
+    boolean addUser(String name,String password,String email,String mobile);
     boolean updateUser(int uid,String name,String gender,String birthday,
                     String email,String mobile,String avatarUrl);
     List<Comments> MyComments(int uid);

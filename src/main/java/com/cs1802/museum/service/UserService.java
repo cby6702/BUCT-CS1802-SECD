@@ -15,7 +15,7 @@ public interface UserService {
 
     boolean Login(int uid, String password);
 
-    boolean Sign(String name, String password);
+    boolean Sign(String name, String password,String email,String mobile);
 
     User updateUser(int uid, User user);
 

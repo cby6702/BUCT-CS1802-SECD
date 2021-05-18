@@ -114,8 +114,10 @@ public class UserController {
         }
         String nameString=params.get("name").toString();
         String passwordString=params.get("password").toString();
+        String emailString=params.get("email").toString();
+        String mobileString=params.get("mobile").toString();
 
-        return userService.Sign(nameString,passwordString);
+        return userService.Sign(nameString,passwordString,emailString,mobileString);
     }
 
     /**
