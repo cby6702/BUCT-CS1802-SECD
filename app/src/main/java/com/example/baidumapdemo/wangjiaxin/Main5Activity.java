@@ -55,9 +55,12 @@ public class Main5Activity extends AppCompatActivity {
         });
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("Message");
-        String name = bundle.getString("MuseumName");
-        TextView textView = findViewById(R.id.textView2);
-        textView.setText(name);
+        if(bundle!=null){
+            String name = bundle.getString("MuseumName");
+            TextView textView = findViewById(R.id.textView2);
+            textView.setText(name);
+        }
+
 
     }
     @Override

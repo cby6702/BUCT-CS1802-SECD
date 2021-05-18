@@ -29,9 +29,8 @@ public class CityPickerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city_picker);
         List<HotCity> hotCities = new ArrayList<>();
         hotCities.add(new HotCity("北京市", "北京", "101010100"));
-        hotCities.add(new HotCity("上海市", "上海", "101020100"));
-        hotCities.add(new HotCity("河北省", "河北省", "101280101"));
-        hotCities.add(new HotCity("广西", "广西省", "101280601"));
+        hotCities.add(new HotCity("河北省", "河北省", "101280404"));
+        hotCities.add(new HotCity("广西", "广西", "101280601"));
         hotCities.add(new HotCity("天津市", "天津", "101210101"));
         hotCities.add(new HotCity("黑龙江", "黑龙江", "101280602"));
 
@@ -63,7 +62,7 @@ public class CityPickerActivity extends AppCompatActivity {
                             public void run() {
                                 //定位完成之后更新数据
                                 CityPicker.getInstance()
-                                        .locateComplete(new LocatedCity("北京市", "北京", "101010100"), LocateState.SUCCESS);
+                                        .locateComplete(new LocatedCity("北京市", "北京市", "101010100"), LocateState.SUCCESS);
                             }
                         }, 2000);
                     }
