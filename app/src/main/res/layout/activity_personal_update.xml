@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="修改个人信息"
+            android:textColor="#ff000000"
             android:textSize="40dp" />
 
         <LinearLayout
@@ -30,6 +31,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="50dp"
                 android:text="@string/identity_text"
+                android:textColor="#ff000000"
                 android:textSize="30dp" />
 
             <EditText
@@ -53,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="50dp"
+                android:textColor="#ff000000"
                 android:text="性 别:"
                 android:textSize="30dp" />
 
@@ -77,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="@string/mailbox_text"
+                android:textColor="#ff000000"
                 android:textSize="30dp" />
 
             <EditText
@@ -99,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="@string/phonenumber_text"
+                android:textColor="#ff000000"
                 android:textSize="30dp" />
 
             <EditText

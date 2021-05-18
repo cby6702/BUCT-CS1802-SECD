@@ -18,19 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/user_line"
-            android:layout_width="13dp"
-            android:layout_height="31dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:background="@color/white" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/button2"
@@ -114,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/ll_show"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.491"
         app:srcCompat="@drawable/sysus" />
 
 
