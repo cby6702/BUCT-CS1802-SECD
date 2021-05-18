@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\android\\wnh\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
+            storeFile file('D:\\githubb\\rgcode\\BUCT-CS1802-SECD\\app\\BaiDuMapSign_1802')
             //大家这里的绝对路径需要自己找到BaiDuMapSign_1802文件的地点然后更改
             storePassword 'wwang123'
             keyAlias = 'wangnaihao'

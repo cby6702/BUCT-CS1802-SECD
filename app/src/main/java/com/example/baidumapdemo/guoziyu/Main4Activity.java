@@ -1,6 +1,5 @@
 package com.example.baidumapdemo.guoziyu;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.zouao.BeginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Main4Activity extends AppCompatActivity {
 
@@ -27,7 +30,7 @@ public class Main4Activity extends AppCompatActivity {
             init_gzy();
             init_sign();
         }
-    public void init_sign(){
+    public void init_sign(){//注册界面
         final Button sendPost = findViewById(R.id.sign);//设定关联构件为以login为id的
 
         sendPost.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +42,7 @@ public class Main4Activity extends AppCompatActivity {
         });
 
     }
-    public void init_gzy(){
+    public void init_gzy(){//登录界面
         final Button sendPost = findViewById(R.id.login);//设定关联构件为以login为id的
         final EditText mEditText_userName = findViewById(R.id.text_userid);//输入用户名
         final EditText mEditText_password = findViewById(R.id.text_userpwd);//输入密码
@@ -103,7 +106,7 @@ public class Main4Activity extends AppCompatActivity {
         int uid=object.getInt("uid");
         final String[] strings = { "账号 "+ uid,"姓名 "+name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
         Intent intent = new Intent();//转移界面
-        intent.setClass(Main4Activity.this, personalct.class);
+        intent.setClass(Main4Activity.this, BeginActivity.class);
         intent.putExtra("strings",strings);//传递string数组
         intent.putExtra("uid",uid);
         startActivity(intent);
