@@ -7,138 +7,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".guoziyu.personalifo">
+
         <LinearLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="413dp"
+            android:layout_height="796dp"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="-1dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_surface"
-                    android:textSize="40dp"
                     android:layout_gravity="center"
-                    />
+                    android:text="@string/register_surface"
+                    android:textColor="#ff000000"
+                    android:textSize="30dp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="107dp"
                     android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="103dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/identity_text"
-                            android:textSize="30dp"
+                            android:layout_marginLeft="30dp"
                             android:layout_marginTop="50dp"
-                            android:layout_marginLeft="30dp"/>
+                            android:text="@string/identity_text"
+                            android:textColor="#ff000000"
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/name"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="50dp"
                             android:layout_marginLeft="5dp"
-                            android:textSize="30dp"
+                            android:layout_marginTop="50dp"
+                            android:hint="请输入用户名"
                             android:maxLines="1"
-                            android:hint="请输入用户名"/>
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
                     android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
                             android:text="@string/password_text"
-                            android:textSize="30dp"
-                            android:layout_marginLeft="30dp"/>
+                            android:textColor="#ff000000"
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/password"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="30dp"
+                            android:hint="请输入密码"
                             android:maxLines="1"
-                            android:hint="请输入密码"/>
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
                     android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
                             android:text="@string/mailbox_text"
-                            android:textSize="30dp"
-                            android:layout_marginLeft="30dp"/>
+                            android:textColor="#ff000000"
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/mail"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="30dp"
+                            android:hint="请输入邮箱"
                             android:maxLines="1"
-                            android:hint="请输入邮箱"/>
+                            android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="101dp"
                     android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
                             android:text="@string/phonenumber_text"
-                            android:textSize="30dp"
-                            android:layout_marginLeft="30dp"/>
+                            android:textColor="#ff000000"
+                            android:textSize="20dp" />
 
                         <EditText
                             android:id="@+id/mobile"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="30dp"
+                            android:hint="请输入您的手机号码"
                             android:maxLines="1"
-                            android:hint="请输入您的手机号码"/>
+                            android:textSize="18dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/sign"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="40dp"
-                            android:layout_marginLeft="150dp"
-                            android:layout_marginTop="20dp"
-                            android:text="@string/surface2_register_button"
-                            />
-
-                </LinearLayout>
+                <Button
+                    android:id="@+id/sign"
+                    android:layout_width="109dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape"
+                    android:text="确定"
+                    android:textSize="18sp" />
 
         </LinearLayout>
-
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
-            android:layout_marginBottom="64dp"
-            android:text="返回"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

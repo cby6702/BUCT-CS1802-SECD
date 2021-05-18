@@ -40,32 +40,7 @@ public class Main5Activity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        museumname = bundle.getString("museumname");
-        Log.e("test333",museumname);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mid = http_getmuseummid.getText(museumname);
-                Message message=new Message();
-                message.what=1;
-                handler.sendMessage(message);
-            }
-        }).start();
 
-
-        handler=new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                int what = msg.what;
-                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
-
-                if (what == 1) {                //进行列表加载
-                    Log.i("handler已接受到消息", "" + what);
-                    Log.e("test123",""+mid);
-                }
-            }
-        };
         Button buttoneva=(Button)findViewById(R.id.eva);		//获取“前往评价”按钮
         buttoneva.setOnClickListener(new View.OnClickListener() {
             @Override

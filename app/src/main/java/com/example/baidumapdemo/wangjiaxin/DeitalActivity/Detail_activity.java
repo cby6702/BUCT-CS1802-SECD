@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +19,17 @@ import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseummid;
 import com.example.baidumapdemo.wangjiaxin.museumexplain;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
+import com.example.baidumapdemo.wangtianzi.HttpGet_Zcomments;
+import com.example.baidumapdemo.wangtianzi.Usercomment;
 import com.example.baidumapdemo.wangtianzi.comment_museum;
+
+import java.util.List;
 
 public class Detail_activity extends AppCompatActivity {
     private String museumname;
     private String address;
     private int mid;
+    private RatingBar ratingBar;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,6 @@ public class Detail_activity extends AppCompatActivity {
 
         museum_name.setText(museumname);
 
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -54,6 +59,14 @@ public class Detail_activity extends AppCompatActivity {
             }
         }).start();
 
+        //这里是wtz加的，可以动态显示博物馆的星级（我先注释掉）
+//        List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
+//        int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+//        System.out.println(i);
+//        ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
+//        ratingBar.setRating(i);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
+        ratingBar.setRating(5);
 
         handler=new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -62,7 +75,9 @@ public class Detail_activity extends AppCompatActivity {
 
                 if (what == 1) {                //进行列表加载
                     Log.i("handler已接受到消息", "" + what);
+
                     Log.e("test123",""+mid);
+                    Log.e("test456",museumname);
                 }
             }
         };
@@ -84,6 +99,7 @@ public class Detail_activity extends AppCompatActivity {
                 //跳转评价页
                 Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("name",museumname);
                 bundle.putInt("nummid",mid);
                 intent2.putExtras(bundle);
                 startActivity(intent2);

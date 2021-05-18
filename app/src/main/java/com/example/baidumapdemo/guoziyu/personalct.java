@@ -149,7 +149,7 @@ public class personalct extends AppCompatActivity {
             int servicestar= jsonObject.getInt("servicestar");//服务分数
             int environmentstar= jsonObject.getInt("environmentstar");//环境分数
             double general_comment=jsonObject.getInt("general_comment");//总分
-                strings[i]=i+"\t博物馆"+mid+"：展览分数:"+exhibitionstar+
+                strings[i]=i+"]\n博物馆"+mid+":\n展览分数:"+exhibitionstar+
                         "\n服务分数:"+servicestar +
                         "\n环境分数:"+environmentstar+
                         "\n总分分数:"+general_comment+
