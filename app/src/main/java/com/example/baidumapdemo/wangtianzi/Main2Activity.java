@@ -20,6 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     private RatingBar ratingbar1;	//星级评分条 展览
     private RatingBar ratingbar2;	//星级评分条 服务
     private RatingBar ratingbar3;	//星级评分条 环境
+    private int uid,mid;//用于接收上一个页面传回的博物馆id和用户id
     boolean result;
     private int rating1,rating2,rating3;
     private double rating;
@@ -29,6 +30,15 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        //获取数据
+        Intent intent = getIntent();
+        //从intent取出bundle
+        Bundle bundle = intent.getExtras();
+        if(bundle!=null){
+            //获取数据
+            uid = bundle.getInt("number1");
+            mid = bundle.getInt("number2");
+        }
 
         Button buttonre=(Button)findViewById(R.id.return1);		//获取“返回”按钮
         buttonre.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +96,7 @@ public class Main2Activity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        result=HttpPost_comment.sendText(1,1,rating1,rating2,rating3,rating,inn,null);
+                        result=HttpPost_comment.sendText(uid,mid,rating1,rating2,rating3,rating,inn,null);
                         //boolean result=HttpPost_comment.sendText()
                         Message message=new Message();
                         message.what=1;

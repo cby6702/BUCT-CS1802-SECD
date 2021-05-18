@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.axingbuxiang.Main3Activity;
 import com.example.baidumapdemo.gotoEveryone_page.goto_page;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangjiaxin.Main5Activity;
@@ -78,8 +79,9 @@ public class BeginActivity extends AppCompatActivity {
 
                 }else if("新闻".equals(s)){
                     //跳转到新闻页
-
                 }else if ("搜索".equals(s)){
+                    Intent intent=new Intent(BeginActivity.this, Main3Activity.class);
+                    startActivity(intent);
                     //跳转到搜索页
                 }
                 else if("我的".equals(s)){

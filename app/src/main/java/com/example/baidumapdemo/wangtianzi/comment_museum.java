@@ -26,7 +26,8 @@ public class comment_museum extends AppCompatActivity {
 
     private RatingBar ratingbar;	//星级评分条
     private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
-    private int mid;//通过mid获取博物馆名字显示出来
+    private int mid=1;//通过mid获取博物馆名字显示出来
+    private int uid=1;//通过mid获取博物馆名字显示出来
 
     Handler handler;//为了控制线程
 
@@ -42,7 +43,7 @@ public class comment_museum extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Usercomment> commentslist = HttpGet_Zcomments.getText(1);//获取数据
+                List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
                 System.out.println(commentslist);
                 int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
                 System.out.println(i);
@@ -74,7 +75,7 @@ public class comment_museum extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String res = HttpGet_commentjudge.getText(1,1);//这里实现跳转
+                        String res = HttpGet_commentjudge.getText(uid,mid);//这里实现跳转
                         System.out.println(res);
                         if(res.equals("true"))
                         {
@@ -90,6 +91,7 @@ public class comment_museum extends AppCompatActivity {
                         }
                     }
                 }).start();
+
             }
         });
 
@@ -106,9 +108,15 @@ public class comment_museum extends AppCompatActivity {
                 }
                 if (what == 2) {
                     Log.i("handler已接受到消息", "" + what);
+
                     Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("number1",uid);//用户id
+                    bundle.putInt("number2",mid);//博物馆id
+                    intent2.putExtras(bundle);
                     startActivity(intent2);
                     finish();
+
                 }
                 if (what == 3) {
                     Log.i("handler已接受到消息", "" + what);
