@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/museum_image"
         android:layout_width="61dp"
-        android:layout_height="wrap_content"
+        android:layout_height="93dp"
         android:layout_margin="5dp"
         android:src="@mipmap/ic_launcher"></ImageView>
 
@@ -32,12 +32,14 @@
             />
 
         <Button
-            android:id="@+id/enter"
+            android:id="@+id/xiangqing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="点击进入" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 

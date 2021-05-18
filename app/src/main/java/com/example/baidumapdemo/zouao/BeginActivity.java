@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.gotoEveryone_page.goto_page;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
@@ -43,15 +45,17 @@ public class BeginActivity extends AppCompatActivity {
     ListView mListView ;
     //博物馆列表项
     private List<Museum> museumList = new ArrayList<>();
-    MuseumRootBean jsonRootBean;  //json实体类
+    private List<Museum> tmp=new ArrayList<>();
+    private MuseumListAdapter museumListAdapter;
     //列表项页数
-    private int page=1;
+    private int page=1;     //从第一页开始查
     private String cityname="北京市";       //默认当前城市为北京
     TextView city;  //当前城市view
     //底部导航
     private TextView mTextView;
     private BottomNavigationView mNavigationView;
-    Handler handler;
+    Handler handler1;   //处理请求列表
+    Handler handler2;   //处理下拉
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +70,6 @@ public class BeginActivity extends AppCompatActivity {
         mNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                mTextView.setText(item.getTitle().toString().toUpperCase());
                 String s=item.getTitle().toString();
                 if("地图".equals(s)){
                     //跳转到地图页
@@ -76,7 +79,10 @@ public class BeginActivity extends AppCompatActivity {
                 }else if("新闻".equals(s)){
                     //跳转到新闻页
 
-                }else if("我的".equals(s)){
+                }else if ("搜索".equals(s)){
+                    //跳转到搜索页
+                }
+                else if("我的".equals(s)){
                     //跳转到登录页
                     Intent intent=new Intent(BeginActivity.this, Main4Activity.class);
                     startActivity(intent);
@@ -95,6 +101,7 @@ public class BeginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //跳转到切换城市排名页
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -113,6 +120,7 @@ public class BeginActivity extends AppCompatActivity {
                 });
             }
         }).start();
+        //获取切换城市回传回的字符串
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -128,7 +136,7 @@ public class BeginActivity extends AppCompatActivity {
                     t.setText("当前城市:"+cityname);
                     Message message=new Message();
                     message.what=1;
-                    handler.sendMessage(message);
+                    handler1.sendMessage(message);
                 }
 
             }
@@ -136,77 +144,67 @@ public class BeginActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                museumList = HttpGet.getText(cityname, String.valueOf(page));
+                SystemClock.sleep(1000);
+                tmp = HttpGet.getText(cityname, String.valueOf(page));
                 Message message=new Message();
                 message.what=1;
-                handler.sendMessage(message);
+                handler1.sendMessage(message);
             }
         }).start();
-        handler=new Handler() {
-            private MuseumListAdapter museumListAdapter;
+        mListView = findViewById(R.id.museum_list);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private boolean isBottom=false; //判断是否为底部
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                if(isBottom && i==AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tmp = HttpGet.getText(cityname, String.valueOf(page));
+                            Message message=new Message();
+                            message.what=1;
+                            handler1.sendMessage(message);
+                        }
+                    }).start();
+                }
+                museumListAdapter.notifyDataSetChanged();
+                isBottom = false;
+            }
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                if(i+i1 == i2){
+                    isBottom = true;
+                }else{
+                    isBottom = false;
+                }
+            }
+
+        });
+        handler1=new Handler() {
             public void handleMessage(android.os.Message msg) {
                 int what = msg.what;
-                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
-
                 if (what == 1) {                //进行列表加载
-                    Log.i("handler已接受到消息", "" + what);
-//                    for (int i = 0; i < museumList.size(); i++) {
-//                        Log.v("博物馆" + i, museumList.get(i).getName());
-//                    }
-                    mListView = findViewById(R.id.museum_list);
-                    museumListAdapter = new MuseumListAdapter(getApplicationContext(), museumList);
-                    mListView.setAdapter(museumListAdapter);
-                    //设置向下滚动事件
-                    mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-                        private boolean isBottom=false; //判断是否为底部
-                        @Override
-                        public void onScrollStateChanged(AbsListView absListView, int i) {
-
-                            if(isBottom &&page<=10&& i==AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
-                                page++; //增加一页
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        museumList = HttpGet.getText(cityname, String.valueOf(page));
-                                        Message message=new Message();
-                                        message.what=1;
-                                        handler.sendMessage(message);
-                                    }
-                                    }).start();
-                                }
-                                //museumListAdapter.notifyDataSetChanged();
-                                isBottom = false;
-                            }
-
-                        @Override
-                        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-                            if(i+i1 == i2){
-                                isBottom = true;
-                            }else{
-                                isBottom = false;
-                            }
+                    if(tmp!=null&&!tmp.isEmpty()){
+                        for (Museum museum : tmp) {
+                            museumList.add(museum);
                         }
-
-                    });
-
+                        museumListAdapter = new MuseumListAdapter(getApplicationContext(), museumList);
+                        mListView.setAdapter(museumListAdapter);
+                        mListView.setSelection((page-1)*7);
+                        page++; //增加一页
+                    }
                 }
             }
         };
-        //王嘉薪测试
-//        Button button5=findViewById(R.id.xiangqing);
-//        button5.setText("详情");
-//        button5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Bundle bundle=new Bundle();
-//                Intent intent=new Intent(BeginActivity.this, Main5Activity.class);
-//                bundle.putString("MuseumName","北京历史博物馆");
-//                intent.putExtra("Message",bundle);
-//                startActivity(intent);
-//            }
-//        });
     }
+
     protected int mFinishCount = 0;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -226,27 +224,4 @@ public class BeginActivity extends AppCompatActivity {
             super.finish();
         }
     }
-    //获取图片资源
-    public Bitmap getURLimage(String url) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(url);
-            // 获得连接
-            HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
-            conn.setConnectTimeout(6000);//设置超时
-            conn.setDoInput(true);
-            conn.setUseCaches(false);//不缓存
-            conn.connect();
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);//读取图像数据
-            is.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bmp;
-
-    }
-
-
 }
-

@@ -71,6 +71,7 @@
     android:layout_height="wrap_content"
     android:numStars="5"
     android:rating="0"
+    android:stepSize="1"
     android:layout_above="@+id/btn"
     android:layout_marginBottom="210dp"/>
     <!-- 服务评分-->
@@ -90,6 +91,7 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:rating="0"
+        android:stepSize="1"
         android:layout_above="@+id/btn"
         android:layout_marginBottom="130dp"/>
     <!-- 环境评分-->
@@ -109,6 +111,7 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:rating="0"
+        android:stepSize="1"
         android:layout_above="@+id/btn"
         android:layout_marginBottom="50dp"/>
 <!--发表评价-->
