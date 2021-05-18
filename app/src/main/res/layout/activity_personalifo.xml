@@ -7,158 +7,138 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".guoziyu.personalifo">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_surface"
+                    android:textSize="40dp"
+                    android:layout_gravity="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/identity_text"
+                            android:textSize="30dp"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginLeft="30dp"/>
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="30dp"
+                            android:maxLines="1"
+                            android:hint="请输入用户名"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/password_text"
+                            android:textSize="30dp"
+                            android:layout_marginLeft="30dp"/>
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="30dp"
+                            android:maxLines="1"
+                            android:hint="请输入密码"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mailbox_text"
+                            android:textSize="30dp"
+                            android:layout_marginLeft="30dp"/>
+
+                        <EditText
+                            android:id="@+id/mail"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="30dp"
+                            android:maxLines="1"
+                            android:hint="请输入邮箱"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/phonenumber_text"
+                            android:textSize="30dp"
+                            android:layout_marginLeft="30dp"/>
+
+                        <EditText
+                            android:id="@+id/mobile"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="30dp"
+                            android:maxLines="1"
+                            android:hint="请输入您的手机号码"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/sign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="40dp"
+                            android:layout_marginLeft="150dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/surface2_register_button"
+                            />
+
+                </LinearLayout>
+
+        </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/user_pwd4"
-            android:layout_width="64dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="120dp"
-            android:text="密码"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/user_pwd"
-            app:layout_constraintTop_toBottomOf="@id/user_id" />
-
-        <TextView
-            android:id="@+id/title"
+        <Button
+            android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="个人信息"
-            android:textColor="#000000"
-            android:textSize="23sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="104dp"
-            android:layout_height="104dp"
-            app:srcCompat="@drawable/sysus"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            android:layout_marginTop="20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-
-        <TextView
-            android:id="@+id/user_id"
-            android:layout_width="64dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="116dp"
-            android:text="用户名"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/user_pwd"
-            app:layout_constraintTop_toBottomOf="@id/icon" />
-
-        <TextView
-            android:id="@+id/user_pwd"
-            android:layout_width="64dp"
-            android:layout_height="39dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="24dp"
-            android:text="手机号"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_id" />
-
-        <TextView
-            android:id="@+id/user_pwd2"
-            android:layout_width="64dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="68dp"
-            android:text="邮箱"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/user_pwd"
-            app:layout_constraintTop_toBottomOf="@id/user_id" />
-
-        <EditText
-            android:id="@+id/text_userid"
-            android:layout_width="289dp"
-            android:layout_height="44dp"
-            android:layout_marginRight="20dp"
-            android:paddingTop="0dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/user_id"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/user_id"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/user_id" />
-
-        <EditText
-            android:id="@+id/text_userid2"
-            android:layout_width="289dp"
-            android:layout_height="44dp"
-            android:layout_marginRight="20dp"
-            android:digits="0123456789"
-            android:paddingTop="0dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/user_pwd"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/user_id"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/user_pwd"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <EditText
-            android:id="@+id/text_userpwd2"
-            android:layout_width="287dp"
-            android:layout_height="43dp"
-            android:layout_marginRight="20dp"
-            android:paddingTop="0dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/user_pwd"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/text_userid"
-            app:layout_constraintTop_toTopOf="@+id/user_pwd2" />
-
-        <EditText
-            android:id="@+id/text_userpwd"
-            android:layout_width="287dp"
-            android:layout_height="43dp"
-            android:layout_marginRight="20dp"
-            android:paddingTop="0dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/user_pwd4"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/user_pwd"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/text_userpwd2"
-            app:layout_constraintTop_toTopOf="@+id/user_pwd4"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <RadioGroup
-            android:id="@+id/radioButton"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_pwd"
-            android:layout_marginTop="30dp"/>
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:text="返回"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginEnd="52dp"
+            android:layout_marginBottom="64dp"
+            android:text="返回"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

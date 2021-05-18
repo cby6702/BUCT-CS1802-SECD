@@ -78,5 +78,6 @@
         android:text="停止播放"
         app:layout_constraintBaseline_toBaselineOf="@+id/pause"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/timedetails" />
+        app:layout_constraintHorizontal_bias="0.0"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,6 @@
 package com.example.baidumapdemo.guoziyu;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,59 +8,55 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.wangtianzi.HttpPost_comment;
-import com.example.baidumapdemo.wangtianzi.Main2Activity;
 
-import java.io.InputStream;
-
-import okhttp3.internal.http.StatusLine;
-
-public class personalifo extends AppCompatActivity {
+public class personalUpdate extends AppCompatActivity {
     Handler handler;
     private String name;
     private String mail;
     private String mobile;
-    private String password;
+    private String gender;
     boolean result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personalifo);
-        init_sign();
+        setContentView(R.layout.activity_personal_update);
+        Intent intent = getIntent();//跳转页面
+        final  int uid=intent.getIntExtra("uid",0);
+        init_sign(uid);
         init_gzy1();
     }
-    public void init_sign() {
+    public void init_sign(final int uid) {
         Button button = (Button) findViewById(R.id.sign);        //获取“提交”按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText input_name = (EditText) findViewById(R.id.name);//姓名
-               name = input_name.getText().toString().trim();
+                name = input_name.getText().toString().trim();
                 EditText input_mail = (EditText) findViewById(R.id.mail);//邮箱
                 mail = input_mail.getText().toString().trim();
                 EditText input_mobile = (EditText) findViewById(R.id.mobile);//邮箱
                 mobile = input_mobile.getText().toString().trim();
-                EditText input_password = (EditText) findViewById(R.id.password);//邮箱
-                password = input_password.getText().toString().trim();
+                EditText input_gender = (EditText) findViewById(R.id.gender);//邮箱
+                gender = input_gender.getText().toString().trim();
                 //   Toast.makeText(personalifo.this, inn, Toast.LENGTH_SHORT).show();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        result = HttpPost_sign.sendText(name, mobile, mail, password);
+                        result = HttpPut_update.sendText(uid,name, mobile, mail, gender);
                         Log.d(name, "run: 姓名：");
                         Log.d(mobile, "run:电话 ");
                         Log.d(mail, "run:邮箱 ");
-                        Log.d(password, "run:password ");
+                        Log.d(gender, "run:性别");
                         if (result == true)
                         {
-                                    Message message = new Message();
-                                    message.what = 1;
-                                    handler.sendMessage(message);
+                            Message message = new Message();
+                            message.what = 1;
+                            handler.sendMessage(message);
 
                         }
                         else if(result==false)
@@ -87,11 +80,11 @@ public class personalifo extends AppCompatActivity {
                     startActivity(intent2);
                     finish();
                     Log.i("handler已接受到消息", "" + what);
-                    Toast.makeText(personalifo.this, "已成功注册,请登录！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(personalUpdate.this, "已成功修改,请登录！", Toast.LENGTH_SHORT).show();
                 }
                 if (what == 2) {
                     Log.i("handler已接受到消息", "" + what);
-                    Toast.makeText(personalifo.this, "用户名已存在，请重新注册！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(personalUpdate.this, "未成功修改，请重新填写！", Toast.LENGTH_SHORT).show();
                 }
             }
         };

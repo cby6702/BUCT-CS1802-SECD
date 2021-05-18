@@ -48,18 +48,19 @@ public class personalct extends AppCompatActivity {
                 }
             }
         });
-        init_gzy1();
+        init_gzy1(uid);
         init_gzy2(uid);
         init_gzy3(uid);
         init_gzy4();
         init_gzy5();
     }
-    public void init_gzy1(){
+    public void init_gzy1(final int uid){//跳转到修改页面
         Button gzy = findViewById(R.id.button2);
         gzy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), personalifo.class);
+                Intent intent2 = new Intent(getApplicationContext(), personalUpdate.class);
+                intent2.putExtra("uid",uid);
                 startActivity(intent2);
                 finish();
             }

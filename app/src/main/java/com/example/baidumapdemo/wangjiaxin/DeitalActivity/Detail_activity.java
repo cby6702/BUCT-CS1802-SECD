@@ -1,7 +1,6 @@
-package com.example.baidumapdemo.wangjiaxin;
+package com.example.baidumapdemo.wangjiaxin.DeitalActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,16 +9,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.wangtianzi.comment_museum;
-import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Main5Activity extends AppCompatActivity {
+import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangjiaxin.museumexplain;
+import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
+import com.example.baidumapdemo.wangtianzi.comment_museum;
+
+public class Detail_activity extends AppCompatActivity {
+    private String museumname;
+    private String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
+        //注册组件
+        TextView museum_name = findViewById(R.id.textView2);
+        TextView address_view = findViewById(R.id.textView3);
+        //接收上一个bundle传递的信息
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        museumname = bundle.getString("name");
+        address = bundle.getString("address");
+        address_view.setText(address);
+//        Bundle bundlezo = intent.getBundleExtra("Message");
+//        String namezo = bundle.getString("MuseumName");
+
+        museum_name.setText(museumname);
 
         Button button2=(Button)findViewById(R.id.button2);		//获取“进入地图页”按钮
         button2.setOnClickListener(new View.OnClickListener() {
@@ -48,18 +65,14 @@ public class Main5Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转上传视频页
-               // Intent intent2 = new Intent(getApplicationContext(), .class);//设置跳转页面
+                // Intent intent2 = new Intent(getApplicationContext(), .class);//设置跳转页面
                 //startActivity(intent2);
                 //finish();
             }
         });
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("Message");
-        if(bundle!=null){
-            String name = bundle.getString("MuseumName");
-            TextView textView = findViewById(R.id.textView2);
-            textView.setText(name);
-        }
+
+
+
 
 
     }
@@ -72,7 +85,10 @@ public class Main5Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.museum_information:
-                Intent intentmuseum=new Intent(getApplicationContext(),museumexplain.class);
+                Intent intentmuseum=new Intent(getApplicationContext(), museumexplain.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("museumname",museumname);
+                intentmuseum.putExtras(bundle);
                 startActivity(intentmuseum);
                 break;
             case R.id.collection_information:
