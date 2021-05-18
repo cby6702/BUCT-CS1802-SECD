@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.alibaba.druid.util.Utils.md5;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -48,6 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean Login(int uid,String password){
         User user = userMapper.getUser(uid);
+        password=md5(password);
         System.out.println("user=" + user);
         if(user==null)
             return false;
