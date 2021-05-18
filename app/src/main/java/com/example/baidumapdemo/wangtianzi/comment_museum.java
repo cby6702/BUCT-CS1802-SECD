@@ -1,11 +1,9 @@
 package com.example.baidumapdemo.wangtianzi;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.baidumapdemo.R;
-
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -26,7 +24,7 @@ public class comment_museum extends AppCompatActivity {
 
     private RatingBar ratingbar;	//星级评分条
     private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
-    private int mid;//通过mid获取博物馆名字显示出来
+    private int mid=6;//通过mid获取博物馆名字显示出来
     private int uid=1;
     String name;
 
@@ -41,19 +39,18 @@ public class comment_museum extends AppCompatActivity {
         Intent intent = getIntent();
         //从intent取出bundle
         Bundle bundle = intent.getExtras();
-        if(bundle!=null){
+        if (bundle != null) {
             //获取数据
             //uid = bundle.getInt("numuid");
-            mid = bundle.getInt("nummid");
+           // mid = bundle.getInt("nummid");
             name = bundle.getString("name");
 
-            Log.e("testmid",""+mid);
-            Log.e("testname",name);
+            Log.e("testmid", "" + mid);
+            Log.e("testname", name);
         }
 
-        int[] imageid=new int[100];//放置头像
-        String[] title=new String[100];//放置姓名
-        String[] comment=new String[100];//放置评论内容
+        final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
+        textViewToChange.setText(name);//要通过mid找到博物馆的名字显示出来
 
         new Thread(new Runnable() {
             @Override
@@ -61,44 +58,41 @@ public class comment_museum extends AppCompatActivity {
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
                 System.out.println(commentslist);
 
+                Log.e("test111", ""+commentslist.get(0).getGeneral_comment());
+
                 if(commentslist==null)
                 {
                     int i=0;
-                    //System.out.println(i);
+                   //System.out.println(i);
                     ratingbar.setRating(i);
+                    comment_infos=null;
+
+                    Message message=new Message();
+                    message.what=0;
+                    handler.sendMessage(message);
                 }
                 else
                 {
                     int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
                     System.out.println(i);
                     ratingbar.setRating(i);
+
+                    comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
+                    Message message=new Message();
+                    message.what=1;
+                    handler.sendMessage(message);
                 }
 
 //                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
 //                System.out.println(i);
 //                ratingbar.setRating(i);
 
-                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-                        textViewToChange.setText(name);//要通过mid找到博物馆的名字显示出来
-
-                //mid=commentslist.get(0).getMid();
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        String res = HttpGet_Museumname.getText(mid);
-//                        final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-//                        textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
-//                        System.out.println(res);
-//                    }
-//                }).start();
-
-                comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
-                Message message=new Message();
-                message.what=1;
-                handler.sendMessage(message);
+                //comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
+//                Message message=new Message();
+//                message.what=1;
+//                handler.sendMessage(message);
             }
         }).start();
-
 
         Button buttonq=(Button)findViewById(R.id.qqbtn);
         buttonq.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +102,7 @@ public class comment_museum extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String res = HttpGet_commentjudge.getText(uid,mid);//这里实现跳转
+                        String res = HttpGet_commentjudge.getText(uid,mid);//这里检查能否进行跳转
                         System.out.println(res);
                         if(res.equals("true"))
                         {
@@ -133,6 +127,11 @@ public class comment_museum extends AppCompatActivity {
                 int what = msg.what;
                 Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
 
+                if (what == 0) {
+                    Log.i("handler已接受到消息", "" + what);
+                    Log.e("信息",comment_infos.toString());
+                    show_comment_adapter();// 将适配器与ListView关联
+                }
                 if (what == 1) {
                     Log.i("handler已接受到消息", "" + what);
                     Log.e("信息",comment_infos.toString());
@@ -141,7 +140,7 @@ public class comment_museum extends AppCompatActivity {
                 if (what == 2) {
                     Log.i("handler已接受到消息", "" + what);
 
-                    Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                    Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);//跳转提交评价页
                     Bundle bundle=new Bundle();
                     bundle.putInt("number1",uid);//用户id
                     bundle.putInt("number2",mid);//博物馆id
@@ -157,16 +156,16 @@ public class comment_museum extends AppCompatActivity {
             }
         };
 
-        //以下是评星条的内容
+//        //以下是评星条的内容
         ratingbar = (RatingBar) findViewById(R.id.ratingBar2);	//获取星级评分条
         ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Log.e("------------","当前的评价等级："+rating);
-                List<Usercomment> commentslist = HttpGet_Zcomments.getText(1);//获取数据
-                int i= (int)commentslist.get(0).getGeneral_comment();
-                System.out.println(i);
-                ratingbar.setRating(i);
+//                List<Usercomment> commentslist = HttpGet_Zcomments.getText(1);//获取数据
+//                int i= (int)commentslist.get(0).getGeneral_comment();
+//                System.out.println(i);
+//                ratingbar.setRating(i);
             }
         });
     }
