@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,11 +14,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseumbyname;
+import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseummid;
 import com.example.baidumapdemo.wangtianzi.comment_museum;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 
 public class Main5Activity extends AppCompatActivity {
 
+    private String museumname;
+    private int mid;
+    Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +40,43 @@ public class Main5Activity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        museumname = bundle.getString("museumname");
+        Log.e("test333",museumname);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mid = http_getmuseummid.getText(museumname);
+                Message message=new Message();
+                message.what=1;
+                handler.sendMessage(message);
+            }
+        }).start();
+
+
+        handler=new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                if (what == 1) {                //进行列表加载
+                    Log.i("handler已接受到消息", "" + what);
+                    Log.e("test123",""+mid);
+                }
+            }
+        };
         Button buttoneva=(Button)findViewById(R.id.eva);		//获取“前往评价”按钮
         buttoneva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转评价页
                 Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
+
+                Bundle bundle=new Bundle();
+               // bundle.putInt("number1",uid);//用户id
+                bundle.putInt("nummid",mid);//博物馆id
+                intent2.putExtras(bundle);
                 startActivity(intent2);
                 finish();
             }
@@ -53,10 +92,10 @@ public class Main5Activity extends AppCompatActivity {
                 //finish();
             }
         });
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("Message");
-        if(bundle!=null){
-            String name = bundle.getString("MuseumName");
+        Intent intentza = getIntent();
+        Bundle bundleza = intentza.getBundleExtra("Message");
+        if(bundleza!=null){
+            String name = bundleza.getString("MuseumName");
             TextView textView = findViewById(R.id.textView2);
             textView.setText(name);
         }

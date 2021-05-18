@@ -31,7 +31,7 @@ public class museumexplain extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         museumname = bundle.getString("museumname");
-        Log.e("test",museumname);
+        //Log.e("test",museumname);
         new Thread(new Runnable() {
             @Override
             public void run() {
