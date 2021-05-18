@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ import com.example.baidumapdemo.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -88,7 +92,7 @@ public class personalct extends AppCompatActivity {
             }
         });
     }
-    public void init_gzy2(final int uid){
+    public void init_gzy2(final int uid){//评论界面
         final Button sendPost = findViewById(R.id.commentary);//设定关联构件为以login为id的
         sendPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,36 +125,15 @@ public class personalct extends AppCompatActivity {
             }
         });
     }
-    public void init_gzy3(final int uid){
+    public void init_gzy3(final int uid){//转到消息界面
         final Button sendPost = findViewById(R.id.news);//设定关联构件为以login为id的——————修改1
         sendPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //类型1——Body型
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {//后端进行交互
-                        try {
-                            OkHttpClient client = new OkHttpClient(); //创建HTTP客户端
-                            System.out.println("ok??");
-                            Request request = new Request.Builder()
-                                    .url("http://8.140.3.158:81/user/MyTexts/"+uid) //后端请求接口的路径http://8.140.3.158:81/user/select/1------修改2
-                                    .get().build(); //创造http请求
-                            Response response = client.newCall(request).execute(); //执行发送指令
-                            String s = response.body().string();//接收回返数据
-                            JSONArray jsonArray = new JSONArray(s); //将文本格式的JSON转换为JSON数组
-                            jiexi_news(jsonArray);//josn解析
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(personalct.this, "网络请求失败！", Toast.LENGTH_SHORT).show();//-----修改3
-                                }
-                            });
-                        }
-                    }
-                }).start();
+                Intent intent = new Intent();//转移界面
+                intent.setClass(personalct.this, mynew.class);//--------修改6
+                intent.putExtra("uid",uid);//传递string数组
+                startActivity(intent);
             }
         });
     }
@@ -177,20 +160,5 @@ public class personalct extends AppCompatActivity {
         intent.putExtra("strings",strings);//传递string数组
         startActivity(intent);
     }
-    private void jiexi_news(JSONArray jsonArray) throws JSONException {//解析显示数据：先接收数据，然后传递给消息界面
-        final String[] strings = new String[100];//设定最多显示100个数组
-        for(int i=0;i<jsonArray.length();i++){ //遍历这个数组
-            JSONObject jsonObject = jsonArray.getJSONObject(i); //取出JSON元素
-            System.out.println(jsonObject);
-            String comtext= jsonObject.getString("comtext");//根据需要显示数据库返回的属性（数据库返回的信息可以在下面“run"里看到）------修改5
-            int tid = jsonObject.getInt("tid");//消息编号
-            Log.d(String.valueOf(i), "jiexi_news: 次数");
-            strings[i]="\t消息\t"+(i+1)+":"+comtext;
-        }//用string来记录数组
 
-        Intent intent = new Intent();//转移界面
-        intent.setClass(personalct.this, mynew.class);
-        intent.putExtra("strings",strings);//传递string数组
-        startActivity(intent);
-    }
 }
