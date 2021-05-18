@@ -39,7 +39,8 @@ public class HttpGet_Zcomments {
             }
             is.close();
             System.out.println("看返回的数据是否写全:"+buffer.toString() );//看返回的数据是否写全
-
+            if(buffer.toString()==null)
+                return null;
             //Usercomment res = gson.fromJson(buffer.toString(), Usercomment.class);
             Type listType = new TypeToken<List<Usercomment>>() {}.getType();//java通过反射获取对象类型
             UsercommentList = gson.fromJson(buffer.toString(), listType);
