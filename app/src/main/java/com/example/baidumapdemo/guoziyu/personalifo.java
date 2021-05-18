@@ -35,7 +35,7 @@ public class personalifo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalifo);
         init_sign();
-        init_gzy1();
+       // init_gzy1();
     }
     public void init_sign() {
         Button button = (Button) findViewById(R.id.sign);        //获取“提交”按钮
@@ -96,15 +96,15 @@ public class personalifo extends AppCompatActivity {
             }
         };
     }
-    public void init_gzy1(){
-        Button gzy = findViewById(R.id.button6);
-        gzy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), personalct.class);
-                startActivity(intent2);
-                finish();
-            }
-        });
-    }
+//    public void init_gzy1(){
+//        Button gzy = findViewById(R.id.button6);
+//        gzy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent2 = new Intent(getApplicationContext(), personalct.class);
+//                startActivity(intent2);
+//                finish();
+//            }
+//        });
+//    }
 }
