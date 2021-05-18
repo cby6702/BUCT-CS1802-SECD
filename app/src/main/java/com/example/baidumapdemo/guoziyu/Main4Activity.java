@@ -25,7 +25,20 @@ public class Main4Activity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main4);
             init_gzy();
+            init_sign();
         }
+    public void init_sign(){
+        final Button sendPost = findViewById(R.id.sign);//设定关联构件为以login为id的
+
+        sendPost.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent();//转移界面
+                intent.setClass(Main4Activity.this, personalifo.class);
+                startActivity(intent);
+            }
+        });
+
+    }
     public void init_gzy(){
         final Button sendPost = findViewById(R.id.login);//设定关联构件为以login为id的
         final EditText mEditText_userName = findViewById(R.id.text_userid);//输入用户名

@@ -11,4 +11,16 @@
     <string name="menu_title_exhibition_information">展览信息</string>
     <string name="menu_title_news">新闻</string>
     <string name="time">周二至周日 全天 09：00-17：00\n周一 全天 固定闭馆</string>
+    <string name="register_surface">用户注册</string>
+    <string name="identity_text">用户名:</string>
+    <string name="password_text">密 码:</string>
+    <string name="mailbox_text">邮 箱:</string>
+    <string name="input_mailbox_text"></string>
+    <string name="phonenumber_text">号码:</string>
+    <string name="input_phonenumber_text"></string>
+    <string name="surface2_register_button">注册</string>
+    <string name="register_message">注册成功!</string>
+    <string name="surface2_message">不能为空!</string>
+
+
 </resources>
