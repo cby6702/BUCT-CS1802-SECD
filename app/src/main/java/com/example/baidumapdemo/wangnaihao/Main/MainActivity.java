@@ -2,10 +2,8 @@ package com.example.baidumapdemo.wangnaihao.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -26,7 +23,6 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.InfoWindow;
-import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
@@ -34,25 +30,19 @@ import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
-import com.baidu.mapapi.search.poi.PoiFilter;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
-import com.baidu.mapapi.search.poi.PoiSortType;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.wangnaihao.DeitalActivity.Detail_activity;
-import com.example.baidumapdemo.wangnaihao.OverLayUtils.OverlayManager;
+import com.example.baidumapdemo.wangjiaxin.DeitalActivity.Detail_activity;
 import com.example.baidumapdemo.wangnaihao.OverLayUtils.PoiOverlay;
 
 import java.util.ArrayList;
@@ -62,11 +52,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.security.auth.callback.Callback;
-
-import static android.os.Parcel.obtain;
-import static java.io.FileDescriptor.in;
 
 public class MainActivity extends AppCompatActivity implements OnGetPoiSearchResultListener{
 
@@ -538,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
         Map<com.baidu.mapapi.search.core.PoiInfo, Integer> Aftersort_map = sortAscend(map);
         for (com.baidu.mapapi.search.core.PoiInfo poiInfo : Aftersort_map.keySet()) {
             Map<String,Object> mapinfo = new HashMap<>();
-            mapinfo.put("name","名称:"+poiInfo.name);
+            mapinfo.put("name",poiInfo.name);
             mapinfo.put("address","地址:"+poiInfo.address);
             mapinfo.put("distance","距离:"+poiInfo.getDistance()+"m");
             info.add(mapinfo);
@@ -563,7 +548,7 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                 Toast.makeText(getApplicationContext(),map.get("distance").toString(),Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("name",map.get("name").toString());
-                bundle.putString("distance", map.get("distance").toString());
+                bundle.putString("address", map.get("address").toString());
                 Intent intent = new Intent(getApplicationContext(),Detail_activity.class);
 
                 intent.putExtras(bundle);
