@@ -9,6 +9,10 @@ import android.widget.Button;
 
 import com.example.baidumapdemo.R;
 
+import java.io.InputStream;
+
+import okhttp3.internal.http.StatusLine;
+
 public class personalifo extends AppCompatActivity {
 
     @Override
