@@ -35,39 +35,19 @@ public class comment_museum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_museum);
 
-       // ListView listView=(ListView)findViewById(R.id.listview);// 获取列表视图
         int[] imageid=new int[100];//放置头像
-//                new int[]{R.drawable.img01,R.drawable.img02,R.drawable.img03,
-//                R.drawable.img04,R.drawable.img05,R.drawable.img06,
-//                R.drawable.img07,R.drawable.img08,R.drawable.img09};// 定义并初始化保存图片id的数组
-//        for(int i=0;i<100;i++)
-//        {
-//            imageid[i]=R.drawable.img01;//现在是全都设置成一张作为头像了
-//        }
-
         String[] title=new String[100];//放置姓名
-//                =new String[] {"用户001","用户002","用户003",
-//                "用户004","用户005","用户006",
-//                "用户007","用户008","用户009"};//定义并初始化保存列表项文字的数组(需要通过后端返回数据进行数组定义）
         String[] comment=new String[100];//放置评论内容
-//                =new String[] {"真棒！","下次一定","真好用！"
-//                ,"好棒！","谢谢","很久没有遇到这么好的APP了！"
-//                ,"该用户没有句子评价","希望多多完善","界面真棒！"
-//        };
-        //R.id.textView4;
 
-        //
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
+                List<Usercomment> commentslist = HttpGet_Zcomments.getText(1);//获取数据
                 System.out.println(commentslist);
                 int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
                 System.out.println(i);
                 ratingbar.setRating(i);
 
-//                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-//                textViewToChange.setText(commentslist.get(0).getName());//这里博物馆名字显示的是“张三”，要通过mid找到博物馆的名字显示出来
                 mid=commentslist.get(0).getMid();
                 new Thread(new Runnable() {
                     @Override
@@ -78,7 +58,6 @@ public class comment_museum extends AppCompatActivity {
                         System.out.println(res);
                     }
                 }).start();
-
                 comment_infos = addtoList(commentslist);//addtoList添加进comment_infos的json数组
                 Message message=new Message();
                 message.what=1;
@@ -86,16 +65,33 @@ public class comment_museum extends AppCompatActivity {
             }
         }).start();
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String res = HttpGet_Museumname.getText(mid);
-//                final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
-//                textViewToChange.setText(res);//要通过mid找到博物馆的名字显示出来
-//
-//                System.out.println(res);
-//            }
-//        }).start();
+
+        Button buttonq=(Button)findViewById(R.id.qqbtn);
+        buttonq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转前往评价的页面
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String res = HttpGet_commentjudge.getText(1,1);//这里实现跳转
+                        System.out.println(res);
+                        if(res.equals("true"))
+                        {
+                            Message message=new Message();
+                            message.what=2;
+                            handler.sendMessage(message);
+                        }
+                        else
+                        {
+                            Message message=new Message();
+                            message.what=3;
+                            handler.sendMessage(message);
+                        }
+                    }
+                }).start();
+            }
+        });
 
         //handle控制线程
         handler=new Handler(){
@@ -108,20 +104,20 @@ public class comment_museum extends AppCompatActivity {
                     Log.e("信息",comment_infos.toString());
                     show_comment_adapter();// 将适配器与ListView关联
                 }
+                if (what == 2) {
+                    Log.i("handler已接受到消息", "" + what);
+                    Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
+                    startActivity(intent2);
+                    finish();
+                }
+                if (what == 3) {
+                    Log.i("handler已接受到消息", "" + what);
+                    Toast.makeText(comment_museum.this,"您没有评价权限或已经评价",Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
 
-        Button buttonq=(Button)findViewById(R.id.qqbtn);		//获取“返回”按钮
-        buttonq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //跳转回上一个页面 即 博物馆评价表总页面
-                Intent intent2 = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(intent2);
-                finish();
-            }
-        });
 
         //以下是评星条的内容
         ratingbar = (RatingBar) findViewById(R.id.ratingBar2);	//获取星级评分条
@@ -129,7 +125,7 @@ public class comment_museum extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Log.e("------------","当前的评价等级："+rating);
-                List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
+                List<Usercomment> commentslist = HttpGet_Zcomments.getText(1);//获取数据
                 int i= (int)commentslist.get(0).getGeneral_comment();
                 System.out.println(i);
                 ratingbar.setRating(i);

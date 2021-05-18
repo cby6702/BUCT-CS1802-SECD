@@ -88,7 +88,6 @@ public class Main2Activity extends AppCompatActivity {
                     public void run() {
                         result=HttpPost_comment.sendText(1,1,rating1,rating2,rating3,rating,inn,null);
                         //boolean result=HttpPost_comment.sendText()
-
                         Message message=new Message();
                         message.what=1;
                         handler.sendMessage(message);
