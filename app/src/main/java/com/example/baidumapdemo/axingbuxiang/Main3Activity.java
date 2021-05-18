@@ -54,7 +54,7 @@ public class Main3Activity extends AppCompatActivity {
         });
 
         ListView listView=(ListView)findViewById(R.id.listviewm);// 获取列表视图
-        final String[] title =new String[100];
+        final String[] title =new String[1000];
         Button buttonq=(Button)findViewById(R.id.qbtn);		//获取“确认”按钮
         buttonq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +73,12 @@ public class Main3Activity extends AppCompatActivity {
                             System.out.println(museumsList);
 
                             collection_infos = addtoList0(museumsList);
+                            Message message=new Message();
+                            message.what=1;
+                            handler.sendMessage(message);
                         }
                     }).start();
-                    Message message=new Message();
-                    message.what=1;
-                    handler.sendMessage(message);
+
 
                 }
                 if(flagg==1)//按展览名称搜索
@@ -89,11 +90,12 @@ public class Main3Activity extends AppCompatActivity {
                             System.out.println(exhibitionList);
 
                             collection_infos = addtoList1(exhibitionList);
+                            Message message=new Message();
+                            message.what=1;
+                            handler.sendMessage(message);
                         }
                     }).start();
-                    Message message=new Message();
-                    message.what=1;
-                    handler.sendMessage(message);
+
                 }
                 if(flagg==2)//按藏品名称搜索
                 {
@@ -103,11 +105,12 @@ public class Main3Activity extends AppCompatActivity {
                             List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
                              // System.out.println(collectionlist);
                              collection_infos = addtoList(collectionlist);
+                                    Message message=new Message();
+                                    message.what=1;
+                                    handler.sendMessage(message);
                                 }
                     }).start();
-                    Message message=new Message();
-                    message.what=1;
-                    handler.sendMessage(message);
+
                 }
                     }
 

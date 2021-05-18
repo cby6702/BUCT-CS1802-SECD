@@ -20,6 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     private RatingBar ratingbar1;	//星级评分条 展览
     private RatingBar ratingbar2;	//星级评分条 服务
     private RatingBar ratingbar3;	//星级评分条 环境
+    boolean result;
     private int rating1,rating2,rating3;
     private double rating;
     Handler handler;
@@ -76,6 +77,7 @@ public class Main2Activity extends AppCompatActivity {
                 rating1 = (int)ratingbar1.getRating();//展览
                 rating2 = (int)ratingbar2.getRating();//服务
                 rating3 = (int)ratingbar3.getRating();//环境
+
                 rating = (rating1+rating2+rating3)/(3.0);
 
                 EditText input=(EditText) findViewById(R.id.pinglun);//搜索框输入的数据
@@ -84,18 +86,14 @@ public class Main2Activity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        boolean result=HttpPost_comment.sendText(1,1,rating1,rating2,rating3,rating,inn,null);
-                        if(result==true)
-                            Toast.makeText(Main2Activity.this,"已成功评价",Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(Main2Activity.this,"评价失败",Toast.LENGTH_SHORT).show();
+                        result=HttpPost_comment.sendText(1,1,rating1,rating2,rating3,rating,inn,null);
+                        //boolean result=HttpPost_comment.sendText()
 
                         Message message=new Message();
                         message.what=1;
                         handler.sendMessage(message);
                     }
                 }).start();
-
             }
         });
 
@@ -107,16 +105,13 @@ public class Main2Activity extends AppCompatActivity {
 
                 if (what == 1) {
                     Log.i("handler已接受到消息", "" + what);
-
-
-
-                    //代码放在这里
+                    if(result==true)
+                        Toast.makeText(Main2Activity.this,"已成功评价",Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(Main2Activity.this,"评价失败",Toast.LENGTH_SHORT).show();
                 }
             }
         };
-
-        //需要的前后端交接：通过post传editText2文本框的内容和ratingBar1、ratingBar2、ratingBar3的内容给后端
-        //上传成功则返回true；失败返回false
 
         //需要的前后端交接：根据uid、mid判断用户是否可评价
 
