@@ -59,14 +59,6 @@ public class Detail_activity extends AppCompatActivity {
             }
         }).start();
 
-        //这里是wtz加的，可以动态显示博物馆的星级（我先注释掉）
-//        List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
-//        int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
-//        System.out.println(i);
-//        ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
-//        ratingBar.setRating(i);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
-        ratingBar.setRating(5);
 
         handler=new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -81,6 +73,37 @@ public class Detail_activity extends AppCompatActivity {
                 }
             }
         };
+
+        //这里是wtz加的，可以动态显示博物馆的星级
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Log.e("------------","当前的评价等级："+rating);
+                List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
+                System.out.println(commentslist);
+
+                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+                System.out.println(i);
+                ratingBar.setRating(i);
+            }
+        });
+
+
+        handler=new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                if (what == 1) {                //进行列表加载
+                    Log.i("handler已接受到消息", "" + what);
+                    Log.e("test123",""+mid);
+                    Log.e("test456",museumname);
+                }
+            }
+        };
+
+
         Button button2=(Button)findViewById(R.id.button2);		//获取“进入地图页”按钮
         button2.setOnClickListener(new View.OnClickListener() {
             @Override

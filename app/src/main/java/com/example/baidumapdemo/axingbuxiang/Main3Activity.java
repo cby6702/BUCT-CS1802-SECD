@@ -147,7 +147,9 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
-                Toast.makeText(Main3Activity.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Main3Activity.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
