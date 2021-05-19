@@ -11,7 +11,7 @@ public class Voice {
     private int vid;
     private String voice;
     private int uid;
-    private int check;
+    private int vcheck;
     private int authority;
     private int type;
     private int mid;
