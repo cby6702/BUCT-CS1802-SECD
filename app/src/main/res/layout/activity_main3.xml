@@ -32,6 +32,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:hint="请输入要搜索的内容"
+        android:text=""
         android:singleLine="true"
         android:textColor="#000000"></EditText>
 
