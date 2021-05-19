@@ -43,6 +43,12 @@ public class Main5Activity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView2);
             textView.setText(museumname);
         }
+        Bundle bundlewtz=intentza.getBundleExtra("Message_museum");
+        if(bundlewtz!=null){
+            museumname = bundlewtz.getString("serachname");
+            TextView textView = findViewById(R.id.textView2);
+            textView.setText(museumname);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -53,18 +59,17 @@ public class Main5Activity extends AppCompatActivity {
             }
         }).start();
 
-
         handler=new Handler() {
             public void handleMessage(android.os.Message msg) {
-                int what = msg.what;
-                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
-
-                if (what == 1) {                //进行列表加载
-                    Log.i("handler已接受到消息", "" + what);
-
-                    Log.e("test123",""+mid);
-                    Log.e("test456",museumname);
-                }
+//                int what = msg.what;
+//                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+//
+//                if (what == 1) {                //进行列表加载
+//                    Log.i("handler已接受到消息", "" + what);
+//
+//                    Log.e("test123",""+mid);
+//                    Log.e("test456",museumname);
+//                }
             }
         };
         //这里是wtz加的，可以动态显示博物馆的星级
@@ -76,7 +81,8 @@ public class Main5Activity extends AppCompatActivity {
                 List<Usercomment> commentslist = HttpGet_Zcomments.getText(mid);//获取数据
                 System.out.println(commentslist);
 
-                int i= (int)commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+                Double d=commentslist.get(0).getGeneral_comment();//获取博物馆总评显示出来（用星标）
+                int i = d.intValue();
                 System.out.println(i);
                 ratingBar.setRating(i);
             }

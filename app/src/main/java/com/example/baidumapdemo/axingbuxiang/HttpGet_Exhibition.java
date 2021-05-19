@@ -17,13 +17,12 @@ import java.util.List;
 
 public class HttpGet_Exhibition {
     static List<Exhibition> ExhibitionList;
-    static String name;
     public  static List<Exhibition> getText(String ename) {
 
         try {
             // URL url = new URL("http://openapi.tuling123.com/openapi/api/v2" );
             //URL url = new URL(https://api.ownthink.com/bot")
-            String u = " http://8.140.3.158:81/museum/search/"+ URLEncoder.encode("展览")+"/"+URLEncoder.encode(name);
+            String u = "http://8.140.3.158:81/museum/search/"+ URLEncoder.encode("展览")+"/"+URLEncoder.encode(ename);
             URL url = new URL(u);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

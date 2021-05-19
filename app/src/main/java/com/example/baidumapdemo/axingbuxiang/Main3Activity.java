@@ -18,6 +18,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.Main5Activity;
+import com.example.baidumapdemo.wangtianzi.HttpGet_Museumname;
+import com.example.baidumapdemo.wangtianzi.HttpGet_Zcomments;
+import com.example.baidumapdemo.wangtianzi.Usercomment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -185,21 +188,26 @@ public class Main3Activity extends AppCompatActivity {
                 //通过flag判断查询方式+mid传过去
                 Intent intent2 = new Intent(getApplicationContext(), Main5Activity.class);//跳转到对应的wjx的页面（这个需要改 暂时先放成Main5Activity）
                 Bundle bundle=new Bundle();
-
                 if(flagg==0)
                 {
-                    bundle.putString("serachitem","博物馆");//选择的是按博物馆搜索
                     bundle.putString("serachname",n);//博物馆名字
                 }
                 if(flagg==1)
                 {
-                    bundle.putString("serachitem","展览");//选择的是按展览搜索
-                    bundle.putString("serachname",n);//展览名字
+                    List<Exhibition> exhibitionList1 = HttpGet_Exhibition.getText(n);//n是展览名字
+                    int mid=exhibitionList1.get(0).getMid();
+                    Log.e("mid",""+id);
+                    String in= HttpGet_Museumname.getText(mid);
+
+                    bundle.putString("serachname",in);//博物馆名字
                 }
                 if(flagg==2)
                 {
-                    bundle.putString("serachitem","藏品");//选择的是按藏品搜索
-                    bundle.putString("serachname",n);//藏品名字
+                    List<Collection> CollectionList1 = HttpGet_Collection.getText(n);//n是藏品名字
+                    int mid=CollectionList1.get(0).getMid();
+                    String in= HttpGet_Museumname.getText(mid);
+                    Log.e("mid",""+mid);
+                    bundle.putString("serachname",in);//博物馆名字
                 }
                 intent2.putExtra("Message_museum",bundle);
                 startActivity(intent2);
