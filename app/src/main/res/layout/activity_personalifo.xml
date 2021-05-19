@@ -14,8 +14,9 @@
             android:layout_height="796dp"
             android:layout_marginTop="100dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="-1dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
                     android:layout_gravity="center"
                     android:text="@string/register_surface"
                     android:textColor="#ff000000"
-                    android:textSize="30dp" />
+                    android:textSize="25dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -127,6 +128,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/shape"
                     android:text="确定"
+                    android:textColor="#ffffff"
                     android:textSize="18sp" />
 
         </LinearLayout>
