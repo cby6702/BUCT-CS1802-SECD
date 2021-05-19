@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
     private  static  double Longitude;
     //适配器相关
     private List<Map<String,Object>> infos = new ArrayList<>();
+    //
+    private double x = 40.25995352497919;
+    private double y = 116.15726048919863;
 
 
     @Override
@@ -228,8 +231,10 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                                 + marker.getPosition().longitude,
                         Toast.LENGTH_LONG).show();
 
-                lat.setText(marker.getPosition().latitude+"");
-                lon.setText(marker.getPosition().longitude+"");
+
+                x = marker.getPosition().latitude;
+                y = marker.getPosition().longitude;
+
             }
 
             public void onMarkerDragStart(Marker marker) {
@@ -247,8 +252,6 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
          */
         keyword =findViewById(R.id.Edit1);
         distance = findViewById(R.id.Edit2);
-        lat =findViewById(R.id.Edit3);
-        lon =findViewById(R.id.Edit4);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
         b1.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements OnGetPoiSearchRes
                      */
 
                     mPoiSearch.searchNearby(new PoiNearbySearchOption()
-                            .location(new LatLng(Double.parseDouble(lat.getText().toString()), Double.parseDouble(lon.getText().toString())))
+                            .location(new LatLng(x, y))
                             .radius(Integer.parseInt(MainActivity.this.distance.getText().toString()))
                             //支持多个关键字并集检索，不同关键字间以$符号分隔，最多支持10个关键字检索。如:”银行$酒店”
                             .keyword(keyword.getText().toString().trim())
