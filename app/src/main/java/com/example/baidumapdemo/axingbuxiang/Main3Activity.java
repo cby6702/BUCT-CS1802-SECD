@@ -185,22 +185,23 @@ public class Main3Activity extends AppCompatActivity {
                 //通过flag判断查询方式+mid传过去
                 Intent intent2 = new Intent(getApplicationContext(), Main5Activity.class);//跳转到对应的wjx的页面（这个需要改 暂时先放成Main5Activity）
                 Bundle bundle=new Bundle();
+
                 if(flagg==0)
                 {
-                    bundle.putString("serachitem",n);//选择的是按博物馆搜索
+                    bundle.putString("serachitem","博物馆");//选择的是按博物馆搜索
                     bundle.putString("serachname",n);//博物馆名字
                 }
                 if(flagg==1)
                 {
-                    bundle.putString("serachitem",n);//选择的是按展览搜索
+                    bundle.putString("serachitem","展览");//选择的是按展览搜索
                     bundle.putString("serachname",n);//展览名字
                 }
                 if(flagg==2)
                 {
-                    bundle.putString("serachitem",n);//选择的是按藏品搜索
+                    bundle.putString("serachitem","藏品");//选择的是按藏品搜索
                     bundle.putString("serachname",n);//藏品名字
                 }
-                intent2.putExtras(bundle);
+                intent2.putExtra("Message_museum",bundle);
                 startActivity(intent2);
                 finish();
             }
