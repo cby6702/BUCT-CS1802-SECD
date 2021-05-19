@@ -2,6 +2,7 @@ package com.example.baidumapdemo.axingbuxiang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangjiaxin.Main5Activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,8 +45,7 @@ public class Main3Activity extends AppCompatActivity {
                 if(result.equals("博物馆")) flagg=0;
                 if(result.equals("展览")) flagg=1;
                 if(result.equals("藏品")) flagg=2;
-                Toast.makeText(Main3Activity.this, result, Toast.LENGTH_SHORT).show();//把result显示出来但不影响用户操作的提示栏
-
+                //Toast.makeText(Main3Activity.this, result, Toast.LENGTH_SHORT).show();//把result显示出来但不影响用户操作的提示栏
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -62,57 +63,64 @@ public class Main3Activity extends AppCompatActivity {
 
                 EditText input=(EditText) findViewById(R.id.sous);//搜索框输入的数据
                 final String inn=input.getText().toString().trim();
-                Toast.makeText(Main3Activity.this, inn, Toast.LENGTH_SHORT).show();
-
-                if(flagg==0)//按博物馆名称搜索
+                //Toast.makeText(Main3Activity.this, inn, Toast.LENGTH_SHORT).show();
+                if("".equals(inn))
                 {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
-                            System.out.println(museumsList);
-
-                            collection_infos = addtoList0(museumsList);
-                            Message message=new Message();
-                            message.what=1;
-                            handler.sendMessage(message);
-                        }
-                    }).start();
-
-
+                    Toast.makeText(Main3Activity.this, "查找内容为空", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+//                    startActivity(intent);
+//                    finish();
                 }
-                if(flagg==1)//按展览名称搜索
+                else
                 {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
-                            System.out.println(exhibitionList);
+                    if(flagg==0)//按博物馆名称搜索
+                    {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<Museums> museumsList = HttpGet_Museums.getText(inn);//获取数据
+                                System.out.println(museumsList);
 
-                            collection_infos = addtoList1(exhibitionList);
-                            Message message=new Message();
-                            message.what=1;
-                            handler.sendMessage(message);
-                        }
-                    }).start();
-
-                }
-                if(flagg==2)//按藏品名称搜索
-                {
-                    new Thread(new Runnable() {
-                                @Override
-                        public void run() {
-                            List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
-                             // System.out.println(collectionlist);
-                             collection_infos = addtoList(collectionlist);
-                                    Message message=new Message();
-                                    message.what=1;
-                                    handler.sendMessage(message);
-                                }
-                    }).start();
-
-                }
+                                collection_infos = addtoList0(museumsList);
+                                Message message=new Message();
+                                message.what=1;
+                                handler.sendMessage(message);
+                            }
+                        }).start();
                     }
+                    if(flagg==1)//按展览名称搜索
+                    {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<Exhibition> exhibitionList = HttpGet_Exhibition.getText(inn);//获取数据
+                                System.out.println(exhibitionList);
+
+                                collection_infos = addtoList1(exhibitionList);
+                                Message message=new Message();
+                                message.what=1;
+                                handler.sendMessage(message);
+                            }
+                        }).start();
+                    }
+                    if(flagg==2)//按藏品名称搜索
+                    {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<Collection> collectionlist = HttpGet_Collection.getText(inn);//获取数据
+                                // System.out.println(collectionlist);
+                                collection_infos = addtoList(collectionlist);
+                                Message message=new Message();
+                                message.what=1;
+                                handler.sendMessage(message);
+                            }
+                        }).start();
+                    }
+
+                }
+
+            }
 
 
         });
@@ -130,26 +138,6 @@ public class Main3Activity extends AppCompatActivity {
             }
         };
 
-        List<Map<String ,Object >> listitem = new ArrayList<Map<String ,Object >>();// 创建一个list集合
-        // 通过for循环将图片id和列表项文字放到Map中，并添加到list集合中
-        for(int i=0;i<title.length;i++){
-            Map<String,Object> map =new HashMap<String, Object>();// 实例化Map对象
-            map.put("name",title[i]);
-            listitem.add(map);// 将map对象添加到List集合中
-        }
-        SimpleAdapter adapter=new SimpleAdapter
-                (this,listitem,R.layout.xmain,
-                        new String[]{"name"},new int[]{R.id.title});
-        // 创建SimpleAdapter
-
-        listView.setAdapter(adapter); // 将适配器与ListView关联
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
-                Toast.makeText(Main3Activity.this,map.get("name").toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
     }
     public List<Map<String,Object>> addtoList0(List<Museums> museumsList){
         List<Map<String,Object>> collect_info = new ArrayList<>();
@@ -191,7 +179,30 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
-                Toast.makeText(getApplicationContext(),map.get("title").toString(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),map.get("title").toString(),Toast.LENGTH_SHORT).show();
+                String n=map.get("title").toString();
+                Toast.makeText(getApplicationContext(),n,Toast.LENGTH_SHORT).show();
+                //通过flag判断查询方式+mid传过去
+                Intent intent2 = new Intent(getApplicationContext(), Main5Activity.class);//跳转到对应的wjx的页面（这个需要改 暂时先放成Main5Activity）
+                Bundle bundle=new Bundle();
+                if(flagg==0)
+                {
+                    bundle.putString("serachitem",n);//选择的是按博物馆搜索
+                    bundle.putString("serachname",n);//博物馆名字
+                }
+                if(flagg==1)
+                {
+                    bundle.putString("serachitem",n);//选择的是按展览搜索
+                    bundle.putString("serachname",n);//展览名字
+                }
+                if(flagg==2)
+                {
+                    bundle.putString("serachitem",n);//选择的是按藏品搜索
+                    bundle.putString("serachname",n);//藏品名字
+                }
+                intent2.putExtras(bundle);
+                startActivity(intent2);
+                finish();
             }
         });
     }

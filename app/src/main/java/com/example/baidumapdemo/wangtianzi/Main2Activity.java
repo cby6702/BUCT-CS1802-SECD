@@ -20,7 +20,8 @@ public class Main2Activity extends AppCompatActivity {
     private RatingBar ratingbar1;	//星级评分条 展览
     private RatingBar ratingbar2;	//星级评分条 服务
     private RatingBar ratingbar3;	//星级评分条 环境
-    private int uid,mid;//用于接收上一个页面传回的博物馆id和用户id
+    private int uid=3,mid;//用于接收上一个页面传回的博物馆id和用户id
+    String name;//用于接收上一个页面传回的博物馆name
     boolean result;
     private int rating1,rating2,rating3;
     private double rating;
@@ -36,8 +37,9 @@ public class Main2Activity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         if(bundle!=null){
             //获取数据
-            uid = bundle.getInt("number1");
-            mid = bundle.getInt("number2");
+            //uid = bundle.getInt("number1");
+            mid = bundle.getInt("mid");
+            name =bundle.getString("name" );
         }
 
         Button buttonre=(Button)findViewById(R.id.return1);		//获取“返回”按钮
@@ -46,6 +48,11 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View v) {
                 //跳转回上一个页面 即 博物馆总评价页面
                 Intent intent2 = new Intent(getApplicationContext(), comment_museum.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("name",name);//博物馆name
+                bundle.putInt("nummid",mid);//博物馆i
+                intent2.putExtras(bundle);
                 startActivity(intent2);
                 finish();
             }
@@ -61,10 +68,6 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Log.e("------------","当前的评价等级："+rating);
-//                List<Usercomment> commentslist = HttpGet_Zcomments.getText(423);//获取数据
-//                int i= (int)commentslist.get(0).getGeneral_comment();
-//                System.out.println(i);
-//                ratingbar.setRating(i);
             }
         });
         ratingbar2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

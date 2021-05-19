@@ -25,8 +25,6 @@ public class goto_page extends AppCompatActivity {
         init_wnh();
         //注册王天滋测试页面的按钮并设置点击事件
         init_wtz();
-        //注册李坤测试页面的按钮并设置点击事件
-        init_axing();
         //注册郭紫玉测试页面的按钮并设置点击事件
         init_gzy();
         //注册邹傲测试页面的按钮并设置点击事件
@@ -53,17 +51,6 @@ public class goto_page extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent2);
-                finish();
-            }
-        });
-    }
-    public void init_axing(){
-        Button axing = findViewById(R.id.axing);
-        axing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(intent);
                 finish();
             }
         });
