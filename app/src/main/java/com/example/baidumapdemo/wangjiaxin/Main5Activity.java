@@ -1,6 +1,5 @@
 package com.example.baidumapdemo.wangjiaxin;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,11 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.example.baidumapdemo.wangjiaxin.collectionexplain;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseummid;
@@ -31,6 +33,7 @@ public class Main5Activity extends AppCompatActivity {
     private String museumname;
     private int mid;
     private RatingBar ratingBar;
+    private String srcmuseum2;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +41,15 @@ public class Main5Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main5);
         Intent intentza = getIntent();
         Bundle bundleza = intentza.getBundleExtra("Message");
-        if(bundleza!=null){
             museumname = bundleza.getString("MuseumName");
             TextView textView = findViewById(R.id.textView2);
             textView.setText(museumname);
-        }
+            final ImageView imageView2=findViewById(R.id.museumsrc);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mid = http_getmuseummid.getText(museumname);
+                srcmuseum2 =http_getmuseummid.getpicture(museumname);
                 Message message=new Message();
                 message.what=1;
                 handler.sendMessage(message);
@@ -54,19 +57,7 @@ public class Main5Activity extends AppCompatActivity {
         }).start();
 
 
-        handler=new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                int what = msg.what;
-                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
 
-                if (what == 1) {                //进行列表加载
-                    Log.i("handler已接受到消息", "" + what);
-
-                    Log.e("test123",""+mid);
-                    Log.e("test456",museumname);
-                }
-            }
-        };
         //这里是wtz加的，可以动态显示博物馆的星级
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);	//获取星级评分条
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -81,6 +72,20 @@ public class Main5Activity extends AppCompatActivity {
                 ratingBar.setRating(i);
             }
         });
+        handler=new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                if (what == 1) {                //进行列表加载
+                    Log.i("handler已接受到消息", "" + what);
+
+                    Log.e("test123",""+mid);
+                    Log.e("test456",museumname);
+                    Glide.with(getApplicationContext()).load(srcmuseum2).into(imageView2);
+                }
+            }
+        };
         Button button2=(Button)findViewById(R.id.button2);		//获取“进入地图页”按钮
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
