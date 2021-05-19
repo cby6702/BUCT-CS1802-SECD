@@ -76,6 +76,16 @@ public class personalUpdate extends AppCompatActivity {
 
             }
         });
+
+        Button button1 = (Button) findViewById(R.id.return1);        //获取“返回”按钮
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               next_personal(uid);
+
+            }
+        });
+
         handler = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 int what = msg.what;

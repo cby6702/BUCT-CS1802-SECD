@@ -6,11 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingDefaultResource">
+
+
     <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="413dp"
+        android:layout_height="796dp"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -18,15 +24,15 @@
             android:layout_gravity="center"
             android:text="修改个人信息"
             android:textColor="#ff000000"
-            android:textSize="40dp" />
+            android:textSize="25dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="107dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="103dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="50dp"
@@ -36,107 +42,111 @@
 
             <EditText
                 android:id="@+id/name"
-                android:layout_width="220dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="50dp"
                 android:hint="请输入待更改的用户名"
                 android:maxLines="1"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="58dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp"
-                android:textColor="#ff000000"
                 android:text="性 别:"
-                android:textSize="30dp" />
+                android:textColor="#ff000000"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/gender"
-                android:layout_width="220dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="50dp"
                 android:hint="请输入您的性别"
                 android:maxLines="1"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="65dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="98dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="@string/mailbox_text"
                 android:textColor="#ff000000"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/mail"
-                android:layout_width="225dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="请输入邮箱"
                 android:maxLines="1"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="77dp"
+            android:layout_height="101dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="96dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="@string/phonenumber_text"
                 android:textColor="#ff000000"
-                android:textSize="30dp" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/mobile"
-                android:layout_width="227dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="请输入您的手机号码"
                 android:maxLines="1"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/sign"
-            android:layout_width="122dp"
+            android:layout_width="109dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="90dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape"
             android:text="确定"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/return1"
+            android:layout_width="109dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="-50dp"
+            android:background="@drawable/shape"
+            android:text="返回"
+            android:textColor="#ffffff"
             android:textSize="18sp" />
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="64dp"
-        android:text="返回"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </LinearLayout>
+
+
+
