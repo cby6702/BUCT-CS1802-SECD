@@ -33,6 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".wangjiaxin.collectionexplain"/>
         <activity android:name=".wangjiaxin.museumexplain" />
         <activity android:name=".guoziyu.personalUpdate" />
         <activity android:name=".zouao.rankActivity" />

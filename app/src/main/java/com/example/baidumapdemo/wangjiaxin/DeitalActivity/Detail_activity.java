@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.baidumapdemo.wangjiaxin.collectionexplain;
@@ -124,6 +125,7 @@ public class Detail_activity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("name",museumname);
                 bundle.putInt("nummid",mid);
+                Log.v("MIT",String.valueOf(mid));
                 intent2.putExtras(bundle);
                 startActivity(intent2);
                 finish();
@@ -162,12 +164,12 @@ public class Detail_activity extends AppCompatActivity {
                 startActivity(intentmuseum);
                 break;
             case R.id.collection_information:
-//                Intent intentcol=new Intent(getApplicationContext(),collectionexplain.class);
-//                startActivity(intentcol);
-//                Bundle bundlecol = new Bundle();
-//                bundlecol.putInt("mid",mid);
-//                intentcol.putExtras(bundlecol);
-//                startActivity(intentcol);
+               Intent intentcol=new Intent(getApplicationContext(),collectionexplain.class);
+                Bundle bundlecol = new Bundle();
+                bundlecol.putString("colmid",String.valueOf(mid));
+                intentcol.putExtras(bundlecol);
+                startActivity(intentcol);
+                Toast.makeText(getApplicationContext(),mid+"",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.exhibition_information:
                 Intent intentex=new Intent(getApplicationContext(),museumexplain.class);
