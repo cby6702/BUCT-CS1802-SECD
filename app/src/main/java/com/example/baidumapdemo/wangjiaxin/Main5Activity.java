@@ -40,6 +40,7 @@ public class Main5Activity extends AppCompatActivity {
             }
         });
 
+
         Button buttoneva=(Button)findViewById(R.id.eva);		//获取“前往评价”按钮
         buttoneva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,13 +50,10 @@ public class Main5Activity extends AppCompatActivity {
 
                 Bundle bundle=new Bundle();
                // bundle.putInt("number1",uid);//用户id
-                if(bundle!=null){
-                    bundle.putInt("nummid",mid);//博物馆id
-                    intent2.putExtras(bundle);
-                    startActivity(intent2);
-                    finish();
-                }
-
+                bundle.putInt("nummid",mid);//博物馆id
+                intent2.putExtras(bundle);
+                startActivity(intent2);
+                finish();
             }
         });
 
@@ -76,6 +74,8 @@ public class Main5Activity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView2);
             textView.setText(name);
         }
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

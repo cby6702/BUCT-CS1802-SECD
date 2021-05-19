@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--石鼎 排名页-->
 <resources>
     <string-array name="array_ways_choice">
         <item>降序排名</item>

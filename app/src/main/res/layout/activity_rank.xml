@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--石鼎 排名页-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,8 +8,9 @@
     tools:context=".zouao.rankActivity">
 
     <LinearLayout
+        android:id="@+id/title_rank"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_gravity="center_horizontal"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="296dp">
@@ -26,17 +27,19 @@
             android:id="@+id/id_rank_choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/arrays_rank_choice"
-            tools:layout_editor_absoluteX="170dp"
-            tools:layout_editor_absoluteY="94dp" />
+            android:entries="@array/arrays_rank_choice"/>
 
         <Spinner
             android:id="@+id/id_ways_choice"
             android:layout_width="166dp"
             android:layout_height="match_parent"
-            android:entries="@array/array_ways_choice" />
+            android:entries="@array/array_ways_choice"/>
 
     </LinearLayout>
+    <ListView
+        android:id="@+id/list_rank_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_rank"/>
 
-
-</LinearLayout>
+</RelativeLayout>
