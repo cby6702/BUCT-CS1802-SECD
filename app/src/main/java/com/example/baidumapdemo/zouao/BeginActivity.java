@@ -67,8 +67,6 @@ public class BeginActivity extends AppCompatActivity {
     private TextView mTextView;
     private BottomNavigationView mNavigationView;
     Handler handler1;   //处理请求列表
-    Handler handler2;   //处理下拉
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();//接收登录页面回传信息
@@ -205,7 +203,7 @@ public class BeginActivity extends AppCompatActivity {
                         for (Museum museum : tmp) {
                             museumList.add(museum);
                         }
-                        museumListAdapter = new MuseumListAdapter(getApplicationContext(), museumList);
+                        museumListAdapter = new MuseumListAdapter(getApplicationContext(), museumList,uid);
                         mListView.setAdapter(museumListAdapter);
                         mListView.setSelection((page-1)*7);
                         page++; //增加一页

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.gotoEveryone_page.goto_page;
+import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 /**
  * 石鼎 启动页
@@ -47,7 +48,7 @@ public class Main6Activity extends AppCompatActivity implements View.OnClickList
             @Override
             public void run() {
                 //从闪屏界面跳转到首界面
-                Intent intent = new Intent(getApplicationContext(), BeginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),Main4Activity.class);
                 startActivity(intent);
                 finish();
             }
@@ -85,7 +86,7 @@ public class Main6Activity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.tv:
                 //从闪屏界面跳转到首界面
-                Intent intent = new Intent(getApplicationContext(),BeginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),Main4Activity.class);
                 startActivity(intent);
                 finish();
                 if (runnable != null) {

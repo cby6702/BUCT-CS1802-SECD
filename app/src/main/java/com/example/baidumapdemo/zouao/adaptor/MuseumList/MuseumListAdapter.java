@@ -36,10 +36,10 @@ public class MuseumListAdapter extends BaseAdapter {
     ImageView imageView;    //博物馆图片view
     TextView titleTextView; //博物馆名称view
     Button button;          //博物馆详情按钮
-
+    Integer uid=1;        //从焦春雨页面获得uid
     // 通过构造方法将数据源与数据适配器关联起来
     // context:要使用当前的Adapter的界面对象
-    public MuseumListAdapter(Context context, List<Museum> list) {
+    public MuseumListAdapter(Context context, List<Museum> list,Integer uid) {
         mList = list;
         mInflater = LayoutInflater.from(context);
     }
@@ -74,7 +74,7 @@ public class MuseumListAdapter extends BaseAdapter {
         imageView.setMaxWidth(50);
         Glide.with(mInflater.getContext()).load(bean.getPicture()).into(imageView);
         titleTextView.setText(bean.getName());
-        //为按钮设计点击时间
+        //为按钮设计点击事件
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +85,7 @@ public class MuseumListAdapter extends BaseAdapter {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//不是在Activity中进行跳转，需要添加这个方法;
                 Bundle bundle=new Bundle();
                 bundle.putString("MuseumName",bean.getName());
+                bundle.putInt("uid",uid);
                 intent.putExtra("Message",bundle);
                 context.startActivity(intent);
             }
