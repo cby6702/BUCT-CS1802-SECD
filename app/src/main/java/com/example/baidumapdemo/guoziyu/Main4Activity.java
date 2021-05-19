@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.baidumapdemo.R;
+import com.example.baidumapdemo.wangtianzi.Data_uid;
 import com.example.baidumapdemo.zouao.BeginActivity;
 
 import org.json.JSONException;
@@ -104,6 +105,7 @@ public class Main4Activity extends AppCompatActivity {
         String mobile = object.getString("mobile");
         String email = object.getString("email");
         int uid=object.getInt("uid");
+        Data_uid.setid(uid);
         final String[] strings = { "账号 "+ uid,"姓名 "+name, "手机号 " + mobile, "邮箱  " + email};//用string来记录数组
         Intent intent = new Intent();//转移界面
         intent.setClass(Main4Activity.this, BeginActivity.class);

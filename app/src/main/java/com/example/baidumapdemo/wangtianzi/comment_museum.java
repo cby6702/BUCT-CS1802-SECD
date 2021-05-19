@@ -25,7 +25,7 @@ public class comment_museum extends AppCompatActivity {
     private RatingBar ratingbar;	//星级评分条
     private List<Map<String,Object>> comment_infos = new ArrayList<>();//定义Usercomment的json数组
     private int mid;//通过mid获取博物馆名字显示出来
-    private int uid=3;
+    private int uid;
     String name;
 
     Handler handler;//为了控制线程
@@ -48,6 +48,8 @@ public class comment_museum extends AppCompatActivity {
             Log.e("testmid", "" + mid);
             Log.e("testname", name);
         }
+
+        uid=Data_uid.getid();
 
         final TextView textViewToChange = (TextView) findViewById(R.id.textView4);
         textViewToChange.setText(name);//要通过mid找到博物馆的名字显示出来

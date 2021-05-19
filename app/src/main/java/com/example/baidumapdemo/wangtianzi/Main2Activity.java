@@ -20,7 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     private RatingBar ratingbar1;	//星级评分条 展览
     private RatingBar ratingbar2;	//星级评分条 服务
     private RatingBar ratingbar3;	//星级评分条 环境
-    private int uid=3,mid;//用于接收上一个页面传回的博物馆id和用户id
+    private int uid,mid;//用于接收上一个页面传回的博物馆id和用户id
     String name;//用于接收上一个页面传回的博物馆name
     boolean result;
     private int rating1,rating2,rating3;
@@ -31,6 +31,9 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        uid=Data_uid.getid();
+
         //获取数据
         Intent intent = getIntent();
         //从intent取出bundle
