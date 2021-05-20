@@ -10,11 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.example.baidumapdemo.wangjiaxin.collectionexplain;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.wangjiaxin.HTTP.http_getmuseummid;
@@ -32,6 +35,7 @@ public class Main5Activity extends AppCompatActivity {
     private int mid;
     private RatingBar ratingBar;
     Handler handler;
+    private String srcmuseum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public class Main5Activity extends AppCompatActivity {
             TextView textView = findViewById(R.id.textView2);
             textView.setText(museumname);
         }
+        final ImageView imageView2=findViewById(R.id.museumsrc);
         Bundle bundlewtz=intentza.getBundleExtra("Message_museum");
         if(bundlewtz!=null){
             museumname = bundlewtz.getString("serachname");
@@ -53,6 +58,7 @@ public class Main5Activity extends AppCompatActivity {
             @Override
             public void run() {
                 mid = http_getmuseummid.getText(museumname);
+                srcmuseum =http_getmuseummid.getpicture(museumname);
                 Message message=new Message();
                 message.what=1;
                 handler.sendMessage(message);
@@ -61,15 +67,16 @@ public class Main5Activity extends AppCompatActivity {
 
         handler=new Handler() {
             public void handleMessage(android.os.Message msg) {
-//                int what = msg.what;
-//                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
-//
-//                if (what == 1) {                //进行列表加载
-//                    Log.i("handler已接受到消息", "" + what);
-//
-//                    Log.e("test123",""+mid);
-//                    Log.e("test456",museumname);
-//                }
+                int what = msg.what;
+                Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                if (what == 1) {                //进行列表加载
+                    Log.i("handler已接受到消息", "" + what);
+
+                   Log.e("test123",""+mid);
+                   Log.e("test456",museumname);
+                Glide.with(getApplicationContext()).load(srcmuseum).into(imageView2);
+                }
             }
         };
         //这里是wtz加的，可以动态显示博物馆的星级
