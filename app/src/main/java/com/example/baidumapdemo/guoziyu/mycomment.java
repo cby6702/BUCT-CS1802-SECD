@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,28 +47,17 @@ public class mycomment extends AppCompatActivity {
         //传递信息
         List<String> datas = new ArrayList<>();
 
-        for (int i=0;strings[i]!=null;i++) {
+        for (int i = 0; strings[i] != null; i++) {
             datas.add(Arrays.toString(new String[]{strings[i]}));
         }
         System.out.println(Arrays.toString(strings));
 
-        ListView listView = findViewById( R.id.list_view);
+        ListView listView = findViewById(R.id.list_view);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                mycomment.this, R.layout.news_ltem,R.id.news_in,datas
+                mycomment.this, R.layout.news_ltem, R.id.news_in, datas
         );
 
         listView.setAdapter(adapter);
 //        init_gzy1();
     }
-//    public void init_gzy1(){
-//        Button gzy = findViewById(R.id.button10);
-//        gzy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent2 = new Intent(getApplicationContext(), personalct.class);
-//                startActivity(intent2);
-//                finish();
-//            }
-//        });
-//    }
 }

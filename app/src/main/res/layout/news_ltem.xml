@@ -20,10 +20,6 @@
     android:orientation="vertical"
     tools:ignore="MissingConstraints"
 >
-    <TextView
-        android:id="@+id/news_tid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/news_in"
@@ -33,10 +29,10 @@
         android:padding="5dp"
         android:textColor="#ff000000"
         android:textSize="25dp" />
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<!--    <Button-->
+<!--        android:id="@+id/delete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
 <!--    <Button-->
 <!--        android:id="@+id/button2"-->
 <!--        android:layout_width="wrap_content"-->
