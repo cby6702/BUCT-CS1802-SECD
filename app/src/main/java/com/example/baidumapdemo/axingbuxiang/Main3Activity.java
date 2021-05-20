@@ -194,6 +194,7 @@ public class Main3Activity extends AppCompatActivity {
                 }
                 if(flagg==1)
                 {
+                    
                     List<Exhibition> exhibitionList1 = HttpGet_Exhibition.getText(n);//n是展览名字
                     int mid=exhibitionList1.get(0).getMid();
                     Log.e("mid",""+id);
@@ -202,7 +203,9 @@ public class Main3Activity extends AppCompatActivity {
                     bundle.putString("serachname",in);//博物馆名字
                 }
                 if(flagg==2)
+
                 {
+                    // Log.e("mid",""+mid);
                     List<Collection> CollectionList1 = HttpGet_Collection.getText(n);//n是藏品名字
                     int mid=CollectionList1.get(0).getMid();
                     String in= HttpGet_Museumname.getText(mid);
