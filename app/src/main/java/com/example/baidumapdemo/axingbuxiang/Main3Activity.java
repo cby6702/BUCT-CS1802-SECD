@@ -33,6 +33,8 @@ public class Main3Activity extends AppCompatActivity {
     private int flagg=0;
     private List<Map<String,Object>> collection_infos = new ArrayList<>();//定义json数组
     Handler handler;//为了控制线程
+    private int mid;
+    private  String in;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,37 +182,69 @@ public class Main3Activity extends AppCompatActivity {
         listView.setAdapter(adapter); // 将适配器与ListView关联
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 Map<String,Object> map = ( Map<String, Object> )parent.getItemAtPosition(position);//获取选择项的值
                 //Toast.makeText(getApplicationContext(),map.get("title").toString(),Toast.LENGTH_SHORT).show();
-                String n=map.get("title").toString();
+                final String n=map.get("title").toString();
                 Toast.makeText(getApplicationContext(),n,Toast.LENGTH_SHORT).show();
                 //通过flag判断查询方式+mid传过去
                 Intent intent2 = new Intent(getApplicationContext(), Main5Activity.class);//跳转到对应的wjx的页面（这个需要改 暂时先放成Main5Activity）
-                Bundle bundle=new Bundle();
+                final Bundle bundle=new Bundle();
                 if(flagg==0)
                 {
                     bundle.putString("serachname",n);//博物馆名字
                 }
                 if(flagg==1)
                 {
-                    
-                    List<Exhibition> exhibitionList1 = HttpGet_Exhibition.getText(n);//n是展览名字
-                    int mid=exhibitionList1.get(0).getMid();
-                    Log.e("mid",""+id);
-                    String in= HttpGet_Museumname.getText(mid);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Exhibition> exhibitionList1 = HttpGet_Exhibition.getText(n);//n是展览名字
+                            int mid=exhibitionList1.get(0).getMid();
+                            Log.e("mid",""+id);
+                            in= HttpGet_Museumname.getText(mid);
+                            Message message=new Message();
+                            message.what=2;
+                            handler.sendMessage(message);
+                        }
+                    }).start();
+                    handler=new Handler() {
+                        public void handleMessage(android.os.Message msg) {
+                            int what = msg.what;
+                            Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
 
-                    bundle.putString("serachname",in);//博物馆名字
+                            if (what == 2) {
+                                bundle.putString("serachname",in);//博物馆名字
+                            }
+                        }
+                    };
                 }
-                if(flagg==2)
 
+                if(flagg==2)
                 {
                     // Log.e("mid",""+mid);
-                    List<Collection> CollectionList1 = HttpGet_Collection.getText(n);//n是藏品名字
-                    int mid=CollectionList1.get(0).getMid();
-                    String in= HttpGet_Museumname.getText(mid);
-                    Log.e("mid",""+mid);
-                    bundle.putString("serachname",in);//博物馆名字
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Collection> CollectionList1 = HttpGet_Collection.getText(n);//n是藏品名字
+                            mid=CollectionList1.get(0).getMid();
+                            Message message=new Message();
+                            message.what=2;
+                            handler.sendMessage(message);
+                        }
+                    }).start();
+                    handler=new Handler() {
+                        public void handleMessage(android.os.Message msg) {
+                            int what = msg.what;
+                            Log.i("handler", "已经收到消息，消息what：" + what + ",id:" + Thread.currentThread().getId());
+
+                            if (what == 2) {
+                                String in= HttpGet_Museumname.getText(mid);
+                                Log.e("mid",""+mid);
+                                bundle.putString("serachname",in);//博物馆名字
+                            }
+                        }
+                    };
                 }
                 intent2.putExtra("Message_museum",bundle);
                 startActivity(intent2);
