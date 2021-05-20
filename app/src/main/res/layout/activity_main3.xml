@@ -29,7 +29,7 @@
         <!--输入框-->
         <EditText
             android:id="@+id/sous"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="请输入要搜索的内容"
             android:singleLine="true"
