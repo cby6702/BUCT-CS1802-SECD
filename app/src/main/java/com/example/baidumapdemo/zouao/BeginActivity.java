@@ -61,7 +61,7 @@ public class BeginActivity extends AppCompatActivity {
     private MuseumListAdapter museumListAdapter;
     //列表项页数
     private int page=1;     //从第一页开始查
-    private String cityname="北京市";       //默认当前城市为北京
+    private String cityname="河北省";       //默认当前城市为北京
     TextView city;  //当前城市view
     //底部导航
     private TextView mTextView;
