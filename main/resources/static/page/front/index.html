@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../css/element.css">
+    <link rel="stylesheet" href="../../css/base.css">
+
+    <style>
+        .item {
+            width: 70px;
+            font-size: 18px;
+            color: #aaa;
+            text-align: center;
+            cursor: pointer;
+        }
+        .item:hover, .item.active {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <!-- header-->
+    <el-row>
+        <div style="height: 60px; line-height: 60px; background-color: #232323">
+            <el-row>
+                <el-col :span="9">
+                    <div style="color: #efefef; font-size: 24px; padding-left: 100px">SEER</div>
+                </el-col>
+                <el-col :span="12">
+                    <div style="display: flex">
+                        <a href=""><div class="item active">首页</div></a>
+                        <div class="item">首页</div>
+                        <div class="item">首页</div>
+                    </div>
+                </el-col>
+                <el-col :span="3">
+                    <div v-if="user.id">
+                        <span>hello, tom</span>
+                        <el-button size="mini">退出</el-button>
+                    </div>
+                    <div v-else>
+                        <a href="/page/end/login.html"><el-button size="mini" type="primary">登录</el-button></a>
+                        <a href="/page/end/register.html"><el-button size="mini">注册</el-button></a>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+    </el-row>
+
+    <!-- main -->
+    <el-row>
+        <el-col :span="18" :offset="3">
+
+            <el-carousel height="400px">
+                <el-carousel-item v-for="item in imgList" :key="item">
+                    <img style="width: 100%" :src='item' alt="">
+                </el-carousel-item>
+            </el-carousel>
+
+            <div>
+
+            </div>
+        </el-col>
+    </el-row>
+
+</div>
+
+<!--    js-->
+<script src="../../js/jquery.min.js"></script>
+
+<script src="../../js/vue.min.js"></script>
+<script src="../../js/element.js"></script>
+
+<script>
+    new Vue({
+        el: "#wrapper",
+        data: {
+            user: {},
+            imgList: [
+                'https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/b35f4e2c6be14bd3b3625b091e084e3e.jpg',
+                'https://ssyerv1.oss-cn-hangzhou.aliyuncs.com/picture/99b4156834da429bb3b81f8bb143cf48.jpg'
+            ]
+        },
+        created() {
+            this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {};
+        },
+        methods: {
+
+        }
+    })
+</script>
+</body>
+</html>

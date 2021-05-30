@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../css/element.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <style>
+        .el-divider__text {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper" v-cloak>
+    <el-container>
+        <el-aside :width="isCollapse ? '64px' : '200px'" style="background-color: black; transition:width .5s; min-height: 100vh">
+            <div style="background-color: black; height: 60px; line-height: 60px; text-align: center;
+                color: white; font-size: 20px;">
+                <transition name="el-fade-in-linear">
+                    <span name="fade" v-show="!isCollapse"><a href="/page/end/index.html">X-Admin</a></span>
+                </transition>
+            </div>
+            <!-- 菜单 -->
+            <el-menu :default-openeds="['1']" style="border: none;" background-color="black" text-color="#fff" active-text-color="#ffd04b"
+                     default-active="home"
+                     class="el-menu-vertical-demo" :collapse="isCollapse">
+                <a href="/page/end/index.html">
+                    <el-menu-item index="home">
+                        <i class="el-icon-data-line"></i>
+                        <span slot="title">首页</span>
+                    </el-menu-item>
+                </a>
+                <el-submenu index="1" v-if="user.permission && user.permission.length > 0">
+                    <template slot="title">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">信息管理</span>
+                    </template>
+                    <a :href=`${item.path}` v-for="item in user.permission" :key="item.id">
+                        <el-menu-item :index="item.flag">
+                            <i class="el-icon-s-data"></i>
+                            <span slot="title">{{item.name}}</span>
+                        </el-menu-item>
+                    </a>
+                </el-submenu>
+            </el-menu>
+        </el-aside>
+        <el-container>
+            <el-header style="background-color: black; line-height: 60px; color: white;">
+                <el-row>
+                    <el-col :span="1">
+                        <i style="font-size: 22px; cursor: pointer"
+                           :class="[isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']" @click="handleCollapse"></i>
+                    </el-col>
+                    <el-col :span="2" :offset="21" style="text-align: right">
+                        <span style="color: white; margin-right: 10px">{{user.username}}</span>
+                        <el-dropdown>
+                            <img :src=`/files/${user.avatar}`
+                                 style="width: 40px; height: 40px; margin-right: 10px; border-radius: 50%">
+                            <el-dropdown-menu slot="dropdown">
+                                <a href="/page/end/person.html"
+                                   style="display:inline-block; padding: 5px 0; width: 100px; text-align: center; color: black">个人信息</a>
+                                <a @click="logout" href="#"
+                                   style="display:block; width: 100px;  text-align: center; color: black">退出</a>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </el-col>
+                </el-row>
+            </el-header>
+            <!-- 主体区域 -->
+            <el-main>
+                <el-divider content-position="left">数据概览</el-divider>
+                <el-row :gutter="10" style="padding: 5px 0">
+                    <el-col :span="6">
+                        <el-card style="padding: 10px">
+                            <div style="display: inline-block; padding-right: 20px; vertical-align: middle;">
+                                <img src="../../file/home/home-01.png" style="width: 60px">
+                            </div>
+                            <div style="display: inline-block; padding-left: 40px; vertical-align: middle;">
+                                <div style="color: #455a64; font-size: 24px; padding-bottom: 5px">{{ users.length }}</div>
+                                <div style="color: #99abb4;">用户</div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-card style="padding: 10px">
+                            <div style="display: inline-block; padding-right: 20px; vertical-align: middle;">
+                                <img src="../../file/home/home-02.png" style="width: 60px">
+                            </div>
+                            <div style="display: inline-block; padding-left: 40px; vertical-align: middle;">
+                                <div style="color: #455a64; font-size: 24px; padding-bottom: 5px">{{ roles.length }}</div>
+                                <div style="color: #99abb4;">角色</div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-card style="padding: 10px">
+                            <div style="display: inline-block; padding-right: 20px; vertical-align: middle;">
+                                <img src="../../file/home/home-03.png" style="width: 60px">
+                            </div>
+                            <div style="display: inline-block; padding-left: 40px; vertical-align: middle;">
+                                <div style="color: #455a64; font-size: 24px; padding-bottom: 5px">{{ permissions.length }}</div>
+                                <div style="color: #99abb4;">权限</div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-card style="padding: 10px">
+                            <div style="display: inline-block; padding-right: 20px; vertical-align: middle;">
+                                <img src="../../file/home/home-04.png" style="width: 60px">
+                            </div>
+                            <div style="display: inline-block; padding-left: 40px; vertical-align: middle;">
+                                <div style="color: #455a64; font-size: 24px; padding-bottom: 5px">{{ notices.length }}</div>
+                                <div style="color: #99abb4;">公告</div>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="10">
+<!--                    <el-col :span="12">-->
+<!--                        <el-card>-->
+<!--                            &lt;!&ndash; 为ECharts准备一个具备大小（宽高）的Dom &ndash;&gt;-->
+<!--                            <div id="main" style="width: 600px;height:400px; margin: 0 auto"></div>-->
+<!--                        </el-card>-->
+<!--                    </el-col>-->
+
+                    <el-col :span="12">
+                        <el-card>
+                            <div slot="header" class="clearfix">
+                                <h3>系统公告</h3>
+                            </div>
+                            <el-collapse accordion v-model="active">
+                                <el-collapse-item :name="index" v-for="(item ,index) in notices">
+                                    <template slot="title">
+                                        <b>{{ item.title }}</b>
+                                        <span style="margin-left: 50px; color: #888">{{ item.time }}</span>
+                                    </template>
+                                    <div style="padding: 0 20px">{{ item.content }}</div>
+                                </el-collapse-item>
+                            </el-collapse>
+                        </el-card>
+                    </el-col>
+                </el-row>
+
+<!--                <el-row style="padding: 5px 0">-->
+<!--                    <el-col :span="24">-->
+<!--                        <el-card>-->
+<!--                            &lt;!&ndash; 为ECharts准备一个具备大小（宽高）的Dom &ndash;&gt;-->
+<!--                            <div id="polyline" style="width: 100%;height:400px; margin: 0 auto"></div>-->
+<!--                        </el-card>-->
+<!--                    </el-col>-->
+<!--                </el-row>-->
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+
+<script src="../../js/echarts.min.js"></script>
+<script src="../../js/china.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/vue.min.js"></script>
+<script src="../../js/element.js"></script>
+
+
+
+<script>
+    let pieOption = {
+        "title":{
+            "text":"商品销量统计"
+        },
+        "legend":{
+            "x":"left",
+            "y":"center",
+            "orient":"vertical",
+            "data":[
+
+            ]
+        },
+        "tooltip":{
+            "show":true
+        },
+        "xAxis":null,
+        "yAxis":null,
+        "series":[
+            {
+                "name":"用户比例",
+                "type":"pie",
+                "radius":"55%",
+                "data":[
+
+                ]
+            }
+        ]
+    }
+
+    new Vue({
+        el: "#wrapper",
+        data: {
+            active: 0,
+            users: [],
+            roles: [],
+            permissions: [],
+            notices: [],
+            user: {},
+            tableData: [],
+            pageNum: 1,
+            pageSize: 10,
+            total: 0,
+            dialogFormVisible: false,
+            entity: {},
+            isCollapse: false
+        },
+        created() {
+            this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {};
+            this.$nextTick(() => {
+                this.load();
+            })
+        },
+        methods: {
+            load() {
+                // 基于准备好的dom，初始化echarts实例
+                // let myChart = echarts.init(document.getElementById('main'));
+                // 使用刚指定的配置项和数据显示图表。
+                // myChart.setOption(pieOption);
+
+                $.get("/api/notice/").then((res) => {
+                    this.notices = res.data;
+                })
+                $.get("/api/user/").then((res) => {
+                    this.users = res.data;
+                })
+                $.get("/api/role/").then((res) => {
+                    this.roles = res.data;
+                })
+                $.get("/api/permission/").then((res) => {
+                    this.permissions = res.data;
+                })
+            },
+            handleCollapse() {
+                this.isCollapse = !this.isCollapse;
+            },
+            logout() {
+                $.get("/api/user/logout");
+                sessionStorage.removeItem("user");
+                location.href = "/page/end/login.html";
+            }
+        }
+    })
+</script>
+</body>
+</html>
