@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaiduMapDemo</string>
+    <string name="app_name">博物馆应用平台</string>
     <string name="museumname">XX博物馆(4A)</string>
     <string name="entermap">进入地图页</string>
     <string name="address">北京市西城区xx路外大街99号</string>

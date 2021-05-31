@@ -10,7 +10,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.baidumapdemo.R;
-import com.example.baidumapdemo.gotoEveryone_page.goto_page;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.wangnaihao.Main.MainActivity;
 /**

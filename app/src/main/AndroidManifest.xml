@@ -42,7 +42,6 @@
             android:name=".zouao.CityPickerActivity"
             android:theme="@style/DefaultCityPickerTheme" />
         <activity android:name=".zouao.BeginActivity" />
-        <activity android:name=".zouao.Main6Activity" />
         <activity android:name=".wangtianzi.comment_museum" />
         <activity android:name=".guoziyu.mynew" />
         <activity android:name=".guoziyu.mycomment" />
@@ -54,7 +53,7 @@
         <activity android:name=".wangjiaxin.Main5Activity" />
         <activity android:name=".wangnaihao.Main.MainActivity" />
         <activity android:name=".wangjiaxin.DeitalActivity.Detail_activity" /> <!-- 添加地图所需要的权限 -->
-        <activity android:name=".gotoEveryone_page.goto_page">
+        <activity android:name=".zouao.Main6Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

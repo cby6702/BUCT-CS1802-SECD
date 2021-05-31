@@ -23,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.baidumapdemo.R;
 import com.example.baidumapdemo.axingbuxiang.Main3Activity;
-import com.example.baidumapdemo.gotoEveryone_page.goto_page;
 import com.example.baidumapdemo.guoziyu.Main4Activity;
 import com.example.baidumapdemo.guoziyu.personalUpdate;
 import com.example.baidumapdemo.guoziyu.personalct;
@@ -234,9 +233,7 @@ public class BeginActivity extends AppCompatActivity {
             Toast.makeText(this, "再按一次退出！", Toast.LENGTH_LONG).show();
         } else if (mFinishCount == 2) {
             //跳回测试页
-            Intent intent=new Intent(BeginActivity.this, goto_page.class);
-            startActivity(intent);
-            super.finish();
+
         }
     }
     //焦春雨：回返信息给个人中心
