@@ -2,7 +2,7 @@ import request
 import time
 import hashlib 
 import json
-import db
+#import db
 
 headers={
     "Accept":"application/json, text/javascript, */*; q=0.01",
@@ -25,8 +25,9 @@ page_num=1
 #     print(i)
 museum_num=1
 
-db_opera=db.sql_sql()
+#db_opera=db.sql_sql()
 save_file=open("数据1.txt","wt+",encoding='utf-8')
+
 for i in range(1,172):
     print("当前页码",page_num)
     bodys={
@@ -35,10 +36,12 @@ for i in range(1,172):
     }
     # print(bodys)
     s=request.post("http://app.gjzwfw.gov.cn/jimps/link.do",headers=headers,data=bodys,verify=False)
-
+    start = time.perf_counter()
     sp= json.loads(s.text)
     page_num=page_num+1
-
+    end = time.perf_counter()
+    time111 = end - start
+    print("运行耗时", end - start)
     for sps in sp["data"]["data"]:
         # print(sps)
         # sql='''INSERT INTO `museums`(`mid`, `name`, `introduction`, `opentime`, `city`) \
@@ -47,6 +50,8 @@ for i in range(1,172):
         museum_num+=1
         save_file.write(str(museum_num)+'\\'+sps["instName"]+'\\'+sps["summary"]+'\\'+sps["openTime"]+'\\'+sps["areaCode"]+'\n')
         # save_file.write(str(sp))
+
     time.sleep(1)
 # db_opera.set_close()
+
 save_file.close()
